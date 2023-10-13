@@ -16,7 +16,7 @@ const PrintProof = () => {
     <>
       {order && order.data ? (
         <div className="column-styles">
-          <div className="row-styles-right">
+          <div className="row-styles-right desktop">
             <div style={{ fontFamily: "Roboto condensed" }} onClick={() => {}}>
               <IconButton onClick={() => handlePrint()}>
                 {" "}
@@ -28,6 +28,16 @@ const PrintProof = () => {
               </span>
             </div>
           </div>
+          <div style={{ fontFamily: "Roboto condensed" }} onClick={() => {}}>
+              <IconButton onClick={() => handlePrint()}>
+                {" "}
+                <Printer size={30} color="rgb(2, 2, 26)" />
+              </IconButton>
+              <span style={{ color: "rgb(2, 2, 26)", fontWeight: "bold" }}>
+                {" "}
+                Print Proof
+              </span>
+            </div>
           <div className="column-styles" ref={componentRef}>
             <h3
               style={{

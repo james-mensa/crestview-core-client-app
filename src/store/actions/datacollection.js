@@ -243,6 +243,7 @@ export const DeleteRoom = (id) => {
 export const BookRoom = (room, client, data) => {
   return async (dispatch, getdispatch) => {
     try {
+      console.log({room:room, client:client, data:data});
       const newd = await axios.post(
         `${API}/session/client/book/rooms/${room}/${client}`,
         data

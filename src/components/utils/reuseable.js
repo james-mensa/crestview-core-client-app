@@ -267,3 +267,79 @@ const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 return daysDifference
     }
   
+    
+export const showCoursesm = () => {
+  
+  const containerv = document.querySelectorAll(".layoutspacv");
+
+  containerv.forEach((child,index) => {
+      const prevSibling = child.previousElementSibling;
+  
+      if (index>0 && prevSibling ){
+  
+  
+  
+          setInterval(()=>{
+            if(prevSibling.classList.contains("showspac")) {
+                  if (child.getBoundingClientRect().top < window.innerHeight) {
+                      
+                          if (!child.classList.contains("showspac")) {
+                              child.classList.add("showspac");
+                              
+                          }
+                    
+                  }   
+              }
+          },500
+  
+          )
+      }
+      else{
+          if (child.getBoundingClientRect().top < window.innerHeight) {
+         
+                  if (!child.classList.contains("showspac")) {
+                      child.classList.add("showspac");
+                  }
+          
+          }
+      }
+     
+  })
+
+window.addEventListener("scroll", () => {
+
+
+containerv.forEach((child,index) => {
+  const prevSibling = child.previousElementSibling;
+
+  if (index>0 && prevSibling ){
+
+
+
+      setInterval(()=>{
+        if(prevSibling.classList.contains("showspac")) {
+              if (child.getBoundingClientRect().top < window.innerHeight) {
+                  
+                      if (!child.classList.contains("showspac")) {
+                          child.classList.add("showspac");
+                      }
+                
+              }   
+          }
+      },500
+
+      )
+  }
+  else{
+      if (child.getBoundingClientRect().top < window.innerHeight) {
+     
+              if (!child.classList.contains("showspac")) {
+                  child.classList.add("showspac");
+              }
+      
+      }
+  }
+ 
+})
+});
+};

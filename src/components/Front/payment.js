@@ -32,6 +32,8 @@ import CardPay from "../utils/cardpayment";
 import { useDispatch, useSelector } from "react-redux";
 import { BookRoom, GetRoom } from "../../store/actions/datacollection";
 import PrintProof from "./printproof";
+import MobileTopNav from "../utils/mobilenav";
+import LoaderView from "../utils/loaderView";
 
 const PaymentSection = () => {
   const Checkuser = useSelector((item) => item.authuser);
@@ -78,6 +80,7 @@ const PaymentSection = () => {
       )
     );
   };
+  const showmenu=false;
   return (
     <>
       {roombox && roombox.data ? (
@@ -100,14 +103,14 @@ const PaymentSection = () => {
                   </IconButton>
                 </div>
 
-                <h1>Payment Successfull</h1>
+               
                 <PrintProof/>
               </div>
             </div>
           ) : null}
 
           <div style={{ minHeight: `${window.innerHeight}px` }}>
-            <SectionNav />
+            <MobileTopNav showmenu={showmenu}/>
             <div className="payment-layout">
               <div className="payment-c">
                 <div className="room-details">
@@ -367,7 +370,7 @@ const PaymentSection = () => {
           <Footer />
         </div>
       ) : (
-        <div>no</div>
+        <LoaderView/>
       )}
     </>
   );

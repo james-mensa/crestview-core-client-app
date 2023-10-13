@@ -21,6 +21,8 @@ import { GetsearchResult } from "../../store/actions/datacollection";
 import BookRoomBox from "./Room/bookroom";
 import { enableScroll, showToastify, stayDays } from "../utils/reuseable";
 import MobileTopNav from "../utils/mobilenav";
+import SkeletonLoading from "../skeletonLoading/SkeletonLoading";
+import SkeletonLoadingCards from "../skeletonLoading/SkeletonLoadingCards";
 const SearchResult = () => {
   const dispatch = useDispatch();
   const { startDate, endDate, roomtype, person } = useParams();
@@ -29,11 +31,13 @@ const SearchResult = () => {
   const room_type = decodeURIComponent(roomtype);
   const people = decodeURIComponent(person);
   const searchroombox = useSelector((item) => item.searchRooms);
-
+  let currentDate =new Date(Date.now());
+  const tomorrowD = new Date(currentDate);
+  tomorrowD.setDate(currentDate.getDate() + 1);
   const [dates, setDates] = useState([
     {
       startDate: start_date !== "any" ? new Date(start_date) : Date.now(),
-      endDate: end_Date !== "any" ? new Date(end_Date) : Date.now(),
+      endDate: end_Date !== "any" ? new Date(end_Date) :  Date.now(),
       key: "selection",
     },
   ]);
@@ -96,11 +100,13 @@ const SearchResult = () => {
   }, [dispatch]);
   const [showmenu, setmenu] = useState(false);
   return (
-    <div className="main-layout">
+    <>
+      {searchroombox && searchroombox.data ?
+        <div className="main-layout">
       <MobileTopNav />
       <div
         className="mobile"
-        style={{ fontFamily: "Roboto condensed", fontSize: "12px" ,display:"flex",flexDirection:"row",alignItems:"center"}}
+        style={{ fontFamily: "Roboto condensed", fontSize: "12px" ,flexDirection:"row",alignItems:"center"}}
       >
         <IconButton onClick={() => setmenu(true)}>
           <Filter />
@@ -499,7 +505,13 @@ const SearchResult = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </div>:
+   
+    <SkeletonLoadingCards/>
+
+      }
+    </>
+  
   );
 };
 

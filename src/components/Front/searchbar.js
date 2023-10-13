@@ -17,10 +17,13 @@ import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
   const navigate=useNavigate();
+  let currentDate =new Date(Date.now());
+  const tomorrowD = new Date(currentDate);
+  tomorrowD.setDate(currentDate.getDate() + 1);
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: tomorrowD,
       key: "selection",
     },
   ]);

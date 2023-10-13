@@ -9,7 +9,7 @@ function BookRoomBox(props) {
   const navigate = useNavigate();
   const data = props.data;
   return (
-    <div className="Roomcard" onClick={() => {}}>
+    <div className="Roomcard " onClick={() => {}}>
       <img src={data.image} alt="" className="card-room-img" />
       <div className="room-description" >
         <div className="row-btw" style={{marginTop:"10px"}}>

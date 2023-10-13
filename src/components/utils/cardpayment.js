@@ -207,7 +207,7 @@ const CardPay = (props) => {
            
           </div>
         </div>
-        <div className="mobile row-styles-right" style={{ marginTop: "10px" }} >
+        <div className="mobile row-styles-right" style={{ marginTop: "10px" ,marginRight:"15px"}} >
         <>
                 {btbloading ? (
                   <div className="instruction-btn-valid">

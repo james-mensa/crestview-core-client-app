@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import HomePageSkeleton from "../skeletonLoading/HomePageSkeleton";
 import SearchBox from "./searchbar";
 import TopNav from "../utils/pagenav";
+
 import Rooms from "./Rooms/index";
 import Attention from "./attention";
 import WhatWeDo from "./whatwedo";
@@ -14,11 +15,17 @@ import Footer from "./footer.js";
 import MobileSearchBox from "./mobilesearc";
 import MobileTopNav from "../utils/mobilenav";
 import MenuNav from "./menunav";
+import { showCoursesm } from "../utils/reuseable";
+
 const Home = () => {
   const [showmennu, setmenu] = useState(false);
+  const showmenu=true
   useEffect(() => {
     AOS.init();
   }, []);
+  useEffect(()=>{
+   showCoursesm()
+  });
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
   const Checkuser = useSelector((item) => item.authuser);
@@ -69,7 +76,7 @@ const Home = () => {
             style={{ minHeight: `${window.innerHeight}px` }}
           >
             {" "}
-            <MobileTopNav setmenu={setmenu}/>
+            <MobileTopNav setmenu={setmenu} showmenu={showmenu}/>
             <div className="mobileboxs">
               <MobileSearchBox />
             </div>

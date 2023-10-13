@@ -8,7 +8,7 @@ function Room(props) {
   const navigate = useNavigate();
   const data = props.data;
   return (
-    <div className="Roomcard" onClick={() => {}}>
+    <div className="Roomcard layoutspacv" onClick={() => {}}>
       <img src={data.image} alt="" className="card-room-img" />
       <div className="spaces-btw">
         {" "}

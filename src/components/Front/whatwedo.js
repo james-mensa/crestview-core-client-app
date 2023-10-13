@@ -2,11 +2,11 @@ import React from "react";
 
 const WhatWeDo = () => {
   return (
-    <div className="roomType">
-     <p style={{fontWeight:"bold", fontSize:"18px",fontFamily:"Roboto condensed"}}>Special offers and Environment</p>
+    <div className="roomType ">
+     <p  style={{fontWeight:"bold", fontSize:"18px",fontFamily:"Roboto condensed"}}>Special offers and Environment</p>
     
       <div className="align-grid">
-        <div className="Roomcard" onClick={() => {}}>
+        <div className="Roomcard layoutspacv" onClick={() => {}}>
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696000598/conference_eumktz.jpg"
@@ -28,7 +28,7 @@ const WhatWeDo = () => {
           </div>
         </div>
 
-        <div className="Roomcard" onClick={() => {}}>
+        <div className="Roomcard layoutspacv " onClick={() => {}} >
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696935089/theater_w7ndvn.jpg"
@@ -48,7 +48,7 @@ const WhatWeDo = () => {
           </div>
         </div>
 
-        <div className="Roomcard" onClick={() => {}}>
+        <div className="Roomcard layoutspacv" onClick={() => {}}>
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696935577/dinning_kdplek.jpg"
@@ -66,7 +66,7 @@ const WhatWeDo = () => {
             </p>
           </div>
         </div>
-        <div className="Roomcard" onClick={() => {}}>
+        <div className="Roomcard layoutspacv" onClick={() => {}}>
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696935325/rooftop_nl4ccv.jpg"

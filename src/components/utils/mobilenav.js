@@ -35,7 +35,7 @@ const MobileTopNav = (props) => {
         {Checkuser && Checkuser.auth ? (
           <>
             <div
-              className="uavatar"
+              
                  >
               {" "}
               <IconButton
@@ -43,7 +43,8 @@ const MobileTopNav = (props) => {
         >
                 <Person size={22} />{" "}
               </IconButton>{" "}
-              <IconButton
+              {props.showmenu ? 
+                <IconButton
                 onClick={() => {
                   disableScroll();
                   props.setmenu(true);
@@ -51,6 +52,9 @@ const MobileTopNav = (props) => {
               >
                 <List/>
               </IconButton>
+              :null
+              }
+             
             </div>
           </>
         ) : (
@@ -61,7 +65,9 @@ const MobileTopNav = (props) => {
                 <span onClick={() => navigate("/user/Signup")}>Join Now</span>
               </div>
             </div>
-            <IconButton
+            {
+              props.showmenu ?
+              <IconButton
               onClick={() => {
                 disableScroll();
                 props.setmenu(true);
@@ -69,6 +75,9 @@ const MobileTopNav = (props) => {
             >
               <List />
             </IconButton>
+            :null
+            }
+          
           </>
         )}
       </div>

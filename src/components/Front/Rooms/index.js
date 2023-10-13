@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Room from '../Room/index';
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllRoomTypes } from '../../../store/actions/datacollection';
+import SkeletonLoadingCards from '../../skeletonLoading/SkeletonLoadingCards';
 
 function Rooms() {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function Rooms() {
                     <Room data={item} /> 
                 </div>)
             })
-           :null
+           :<SkeletonLoadingCards/>
         }
         
         
