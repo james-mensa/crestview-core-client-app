@@ -29,15 +29,15 @@ const PrintProof = () => {
             </div>
           </div>
           <div style={{ fontFamily: "Roboto condensed" }} onClick={() => {}}>
-              <IconButton onClick={() => handlePrint()}>
-                {" "}
-                <Printer size={30} color="rgb(2, 2, 26)" />
-              </IconButton>
-              <span style={{ color: "rgb(2, 2, 26)", fontWeight: "bold" }}>
-                {" "}
-                Print Proof
-              </span>
-            </div>
+            <IconButton onClick={() => handlePrint()}>
+              {" "}
+              <Printer size={30} color="rgb(2, 2, 26)" />
+            </IconButton>
+            <span style={{ color: "rgb(2, 2, 26)", fontWeight: "bold" }}>
+              {" "}
+              Print Proof
+            </span>
+          </div>
           <div className="column-styles" ref={componentRef}>
             <h3
               style={{
@@ -102,7 +102,9 @@ const PrintProof = () => {
               <span style={{ color: " rgb(0, 0, 0)" }}>
                 Email: rixoshotelscommunity@gmail.com
               </span>
-              <span style={{ color: " rgb(0, 0, 0)" }}>Location: East legon</span>
+              <span style={{ color: " rgb(0, 0, 0)" }}>
+                Location: East legon
+              </span>
               <img
                 onClick={() => {}}
                 alt=""

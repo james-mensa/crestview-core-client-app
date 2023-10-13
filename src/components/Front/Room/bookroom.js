@@ -4,17 +4,19 @@ import { BoundingBoxCircles, Cup, Person, Star } from "react-bootstrap-icons";
 import { FaBed } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { showToastify } from "../../utils/reuseable";
+import { useSelector } from "react-redux";
 
 function BookRoomBox(props) {
   const navigate = useNavigate();
   const data = props.data;
+  const myaccount = useSelector((data) => data.authuser);
   return (
     <div className="Roomcard " onClick={() => {}}>
       <img src={data.image} alt="" className="card-room-img" />
-      <div className="room-description" >
-        <div className="row-btw" style={{marginTop:"10px"}}>
+      <div className="room-description">
+        <div className="row-btw" style={{ marginTop: "10px" }}>
           <h3>{data.room_type}</h3>
-          <h3 style={{marginRight:"5px"}}>Room {data.room_numer}</h3>
+          <h3 style={{ marginRight: "5px" }}>Room {data.room_numer}</h3>
         </div>
         <div className="row-styles">
           <span>{data.price} / per Night</span>
@@ -40,14 +42,30 @@ function BookRoomBox(props) {
         </div>
         <div className="row-styles-b">
           {props.valid ? (
-            <p
-              className="book-now"
-              onClick={() =>
-                navigate(`/room/payment/${data._id}/${props.start}/${props.end}`)
-              }
-            >
-              Book now
-            </p>
+            <>
+              {myaccount && myaccount.account ? (
+                <p
+                  className="book-now"
+                  onClick={() =>
+                    navigate(
+                      `/room/payment/${data._id}/${props.start}/${props.end}`
+                    )
+                  }
+                >
+                  Book now
+                </p>
+              ) : (
+                <p
+                  className="book-now"
+                  onClick={() => {
+                    showToastify("ERROR", "Login ");
+                    navigate(`/user/login`);
+                  }}
+                >
+                  Book now
+                </p>
+              )}
+            </>
           ) : (
             <p
               className="book-now"
