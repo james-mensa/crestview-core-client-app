@@ -6,7 +6,7 @@ import { enableScroll, showToastify, stayDays } from "../utils/reuseable";
 import { FaCalendarAlt, FaCaretLeft, FaCaretRight, FaUserFriends } from "react-icons/fa";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
-import { GetsearchResult } from "../../store/actions/datacollection";
+import { Clear_SearchBox, GetsearchResult } from "../../store/actions/datacollection";
 import { DateRange } from "react-date-range";
 const SearchNav = (props) => {
 
@@ -241,6 +241,7 @@ const SearchNav = (props) => {
                 className="header_search_btn"
                 type="button"
                 onClick={() => {
+                  dispatch(Clear_SearchBox())
                   SearhValues();
                 }}
               >

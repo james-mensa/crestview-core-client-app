@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 import TopNav from "../utils/pagenav";
 import { useDispatch, useSelector } from "react-redux";
-import { GetsearchResult } from "../../store/actions/datacollection";
+import { Clear_SearchBox, GetsearchResult } from "../../store/actions/datacollection";
 import BookRoomBox from "./Room/bookroom";
 import { enableScroll, showToastify, stayDays } from "../utils/reuseable";
 import MobileTopNav from "../utils/mobilenav";
@@ -290,6 +290,7 @@ const SearchResult = () => {
                   className="header_search_btn"
                   type="button"
                   onClick={() => {
+                    dispatch(Clear_SearchBox())
                     SearhValues();
                     setmenu(false)
                     enableScroll()
@@ -468,6 +469,7 @@ const SearchResult = () => {
                 className="header_search_btn"
                 type="button"
                 onClick={() => {
+                  dispatch(Clear_SearchBox())
                   SearhValues();
                 }}
               >

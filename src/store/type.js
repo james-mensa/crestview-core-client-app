@@ -15,6 +15,6 @@ export const ALLORDERS="allorders";
 export const GETROOMS="getrooms";
 export const ADDROOM="Addroom";
 export const ORDERDETAIL="OrderDetail";
-export const API="";
+export const API="/api";
 export const SEARCRESULTS="SEARCRESULTS"
 

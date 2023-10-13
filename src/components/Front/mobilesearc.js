@@ -14,6 +14,8 @@ import { DateRange } from "react-date-range";
 import { MdLocalHotel } from "react-icons/md";
 import { X } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Clear_SearchBox } from "../../store/actions/datacollection";
 
 const MobileSearchBox = () => {
   const navigate=useNavigate();
@@ -64,7 +66,9 @@ const MobileSearchBox = () => {
    
     navigate(`/rooms/search-results/${dates[0].startDate}/${dates[0].endDate}/${roomtype}/${options}`
     )
+  
   }
+  const dispatch=useDispatch()
   return (
     <div className="front_form-search">
       <div className="header_search_item-s" onClick={CloseCalender}>
@@ -197,6 +201,8 @@ const MobileSearchBox = () => {
           className="header_search_btn"
           type="button"
           onClick={() => {
+            dispatch(Clear_SearchBox())
+            
             SearhValues()
           }}
         >
