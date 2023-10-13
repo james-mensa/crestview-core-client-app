@@ -725,6 +725,7 @@
   background-color: rgb(17, 14, 32);
   color: white;
   font-family: Roboto condensed;
+  padding-left: 5px;
 }
 
 .align-grid {
@@ -1474,7 +1475,7 @@
     padding-left: 5px;
   }
   .aboutcompany {
-    width: 95%;
+    width: 88%;
   }
   .room-description {
     padding-left: 5px;
