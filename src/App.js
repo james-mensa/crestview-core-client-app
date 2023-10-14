@@ -37,6 +37,7 @@ import  TypeDashboard from "./components/Admin/typepanel"
 import AddRoomTypes from "./components/Admin/addroomtype";
 import AddRoomCategory from "./components/Admin/addromfromcategory";
 import Location from "./components/utils/location";
+import PanelBook from "./components/Admin/panelbooks";
 function App() {
   const notifications = useSelector((value) => value.notification);
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function App() {
         <Route path="/room/payment/:id/:start/:end" element={<PaymentSection />}></Route>
         <Route path="/client/profile" element={<UserPanel />} />
         <Route path="/client/panel/records" element={<BookingsPanel />} />
+        <Route path="/admin/panel/bookings" element={<PanelBook />} />
         <Route path="/client/panel/settings" element={<SettingsPanel />} />
         <Route path="/admin/panel/overview" element={<AdminDashboard />} />
         <Route path="/admin/panel/rooms" element={<PanelRoom/>} />

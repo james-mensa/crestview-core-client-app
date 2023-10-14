@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
+import BookingsPage from "./bookingspage";
 
 const PanelBook = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const PanelBook = () => {
             >
                 <span>Manage rooms types</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/admin/panel/records")}>
               <span>Bookings</span>
             </p>
             <p onClick={() => navigate("/client/panel/records")}>
@@ -55,7 +56,7 @@ const PanelBook = () => {
             </span>
           </div>
         </div>
-        <div></div>
+        <BookingsPage/>
       </div>
     </div>
   );

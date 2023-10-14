@@ -4,6 +4,7 @@ import Room from '../Room/index';
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllRoomTypes } from '../../../store/actions/datacollection';
 import SkeletonLoadingCards from '../../skeletonLoading/SkeletonLoadingCards';
+import { showCoursesm } from '../../utils/reuseable';
 
 function Rooms() {
     const dispatch = useDispatch();
@@ -14,7 +15,10 @@ function Rooms() {
     const room_types = useSelector((item) => item.roomtypes);
 
     const [rooms, setRooms] = useState([]);
-
+    useEffect(()=>{
+        window.addEventListener("scroll",showCoursesm())
+       
+      });
    
     return (
         <div className='roomType' id='roomsCat'>

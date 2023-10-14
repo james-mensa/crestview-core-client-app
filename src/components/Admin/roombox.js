@@ -23,8 +23,8 @@ function RoomBox(props) {
 
   const dispatch = useDispatch();
   return (
-    <div className="Roomcard" onClick={() => {}}>
-      <img src={data.image} alt="" className="card-room-img" />
+    <div className="Roomcard-a" onClick={() => {}}>
+      <img src={data.image} alt="" className="card-room-img-s" />
       <div className="room-description">
         <div className="row-btw">
           <h3>{data.room_type}</h3>

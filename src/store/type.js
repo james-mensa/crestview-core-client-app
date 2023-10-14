@@ -11,10 +11,11 @@ export const GETROOM="getroon";
 export const BOOKROOM = "bookroom";
 export const ALLRATINGS="allratings";
 export const ROOMTYPES="roomtypes";
-export const ALLORDERS="allorders";
+export const ALLORDERSD="allordersd";
 export const GETROOMS="getrooms";
 export const ADDROOM="Addroom";
 export const ORDERDETAIL="OrderDetail";
 export const API="/api";
 export const SEARCRESULTS="SEARCRESULTS"
+
 

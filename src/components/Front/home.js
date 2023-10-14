@@ -24,7 +24,8 @@ const Home = () => {
     AOS.init();
   }, []);
   useEffect(()=>{
-   showCoursesm()
+    window.addEventListener("scroll",showCoursesm())
+   
   });
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);

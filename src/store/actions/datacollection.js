@@ -7,11 +7,12 @@ const {
   SEARCRESULTS,
   GETROOMS,
   ALLRATINGS,
-  ALLORDERS,
+  ALLORDERSD,
   BOOKROOM,
   ORDERDETAIL,
   ROOMTYPES,
   MATCHCARDS,
+ 
   API,
   GETROOM,
   VERIFIEDCARD,
@@ -40,6 +41,7 @@ export const allroomsTypes = (data) => ({
   payload: data,
 });
 
+
 export const orderDetail = (data) => ({
   type: ORDERDETAIL,
   payload: data,
@@ -51,7 +53,7 @@ export const Bookrooms = (data) => ({
 });
 
 export const Bookings = (data) => ({
-  type: ALLORDERS,
+  type: ALLORDERSD,
   payload: data,
 });
 export const allRatings = (data) => ({
@@ -267,7 +269,7 @@ export const BookRoom = (room, client, data) => {
 export const AllOrders = () => {
   return async (dispatch, getdispatch) => {
     try {
-      const newd = await axios.post(`${API}/server/all_bookings`);
+      const newd = await axios.get(`${API}/session/server/all_bookings`);
       dispatch(Bookings(newd.data));
     } catch (error) {
       console.log(error);
