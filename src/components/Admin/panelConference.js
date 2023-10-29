@@ -3,8 +3,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import RoomsDetail from "./roomsdetails";
-const PanelRoom = () => {
+import BookingsPage from "./bookingspage";
+import MeetingSpaceOrders from "./conferencebookings";
+
+const PanelMeetingOrders = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -21,17 +23,17 @@ const PanelRoom = () => {
             >
               <span>Overview</span>
             </p>
-            <p onClick={() => navigate("/admin/panel/rooms")}  style={{ backgroundColor: " white", color: "rgb(7, 1, 27) " }}>
+            <p onClick={() => navigate("/admin/panel/rooms")}>
               <span>List Rooms</span>
             </p>
 
             <p onClick={() => navigate("/admin/panel/room_type")}>
               <span>Manage rooms types</span>
             </p>
-            <p onClick={() => navigate("/admin/panel/bookings")}>
+            <p onClick={() => navigate("/admin/panel/bookings")}  >
               <span>Bookings</span>
             </p>
-            <p onClick={() => navigate("/admin/panel/meetings")}>
+            <p onClick={() => navigate("/admin/panel/meetings")} style={{ backgroundColor: " white", color: "rgb(7, 1, 27) " }}> 
               <span>Conference Room Bookings</span>
             </p>
             <p onClick={() => navigate("/client/panel/manage_testimony")}>
@@ -42,7 +44,6 @@ const PanelRoom = () => {
             </p>
           
           </div>
-
           <div className="signbtn">
             <span
               onClick={() => {
@@ -53,10 +54,10 @@ const PanelRoom = () => {
             </span>
           </div>
         </div>
-        <RoomsDetail />
+        <MeetingSpaceOrders/>
       </div>
     </div>
   );
 };
 
-export default PanelRoom;
+export default PanelMeetingOrders;

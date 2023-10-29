@@ -5,13 +5,13 @@ import { Printer } from "react-bootstrap-icons";
 
 import { useReactToPrint } from "react-to-print";
 
-const PrintDoc = (props) => {
+const PrintConference = (props) => {
   const componentRef = useRef();
   const order = props.order;
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
- 
+
   return (
     <div className="column-styles">
       <div className="row-styles-right">
@@ -27,43 +27,43 @@ const PrintDoc = (props) => {
         </div>
       </div>
       <div className="column-styles" ref={componentRef}>
-        <h3 style={{ color: "blue",marginTop:"-45px",fontSize:"15px",fontWeight:"bold" }}>
+        <h3
+          style={{
+            color: "blue",
+            marginTop: "-45px",
+            fontSize: "15px",
+            fontWeight: "bold",
+          }}
+        >
           ORDER DETAILS
         </h3>
 
-        <p style={{ color: "rgb(2, 2, 26)"}}>
-          Customer name {": "}{" "}
-          <span style={{ color: " rgb(0, 0, 0)" }}>{order.customername}</span>
-        </p>
-        <p style={{ color: "rgb(2, 2, 26)"}}>
-          Check in Date: {format(new Date(order.from), "eee dd MMM yyyy")}
-        </p>
-        <p
-        style={{ color: "rgb(2, 2, 26)"}}
-        >
-          Check out Date: {format(new Date(order.to), "eee dd MMM yyyy")}
-        </p>
-
-
         <p style={{ color: "rgb(2, 2, 26)" }}>
-          Purchased on {format(new Date(order.createdAt), "eee dd MMM yyyy")}
-        </p>
-
-        <p style={{ color: "rgb(2, 2, 26)"}}>
-          Room number{" "}
-         {order.room_number}
-        </p>
-
-        <p style={{ color: "rgb(2, 2, 26)", }}>
-          {" "}
-          ORDER ID {": "}{" "}
-          {order.orderId}
+          QUEST NAME{": "}{" "}
+          <span style={{ color: " rgb(0, 0, 0)" }}>{(order.customername).toUpperCase()}</span>
         </p>
 
         <p style={{ color: "rgb(2, 2, 26)" }}>
+          PURCHASED ON {format(new Date(order.createdAt), "eee dd MMM yyyy")}
+        </p>
+
+        <p style={{ color: "rgb(2, 2, 26)" }}>CHECK IN DATE </p>
+
+        <p style={{ fontSize: "18px",color: "rgb(2, 2, 26)"  }}>{ format(new Date(order.date), "eee dd MMM yyyy") }</p>
+        <p style={{ color: "rgb(2, 2, 26)" }}>Starts: {order.from}</p>
+        <p style={{ color: "rgb(2, 2, 26)" }}>Ends: {order.to}</p>
+
+        <p style={{ color: "rgb(2, 2, 26)" }}>
           {" "}
-          Total Account {": "}{" "}
-        GH₵ {order.price}
+          ORDER ID {": "} {(order.orderId).toUpperCase()}
+        </p>
+        <p style={{ color: "rgb(2, 2, 26)" }}>
+          {" "}
+         
+        </p>
+        <p style={{ color: "rgb(2, 2, 26)" }}>
+          {" "}
+          Total Account {": "} GH₵ {order.price}
         </p>
 
         <div
@@ -73,14 +73,15 @@ const PrintDoc = (props) => {
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            color:"dark"
+            color: "dark",
           }}
         >
-
-        <p style={{ color: "blue" }}>Customer Support</p>
-        <span style={{ color: " rgb(0, 0, 0)" }}>Contact no: 0557471572</span>
-        <span  style={{ color: " rgb(0, 0, 0)" }}>Email: rixoshotelscommunity@gmail.com</span>
-        <span  style={{ color: " rgb(0, 0, 0)" }}>Location: East legon</span>
+          <p style={{ color: "blue" }}>Customer Support</p>
+          <span style={{ color: " rgb(0, 0, 0)" }}>Contact no: 0557471572</span>
+          <span style={{ color: " rgb(0, 0, 0)" }}>
+            Email: rixoshotelscommunity@gmail.com
+          </span>
+          <span style={{ color: " rgb(0, 0, 0)" }}>Location: East legon</span>
           <img
             onClick={() => {}}
             alt=""
@@ -93,4 +94,4 @@ const PrintDoc = (props) => {
   );
 };
 
-export default PrintDoc;
+export default PrintConference;

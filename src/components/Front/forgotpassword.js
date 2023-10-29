@@ -6,10 +6,10 @@ import { Button, Form } from "react-bootstrap";
 import { CircleSpinner } from "react-spinners-kit";
 import { Avatar, IconButton, TextField } from "@mui/material";
 import LoaderView from "../utils/loaderView";
-import { SignIn, preRegister } from "../../store/actions/adminActions";
+import { SendresetLink, SignIn, preRegister } from "../../store/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer"
-const SignInUser = () => {
+const ForgottenPassword = () => {
   const notifications = useSelector((value) => value.notification);
   const [loading, setload] = useState(false);
   const navigate = useNavigate();
@@ -27,17 +27,17 @@ const SignInUser = () => {
   const Formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
+   
     },
     enableReinitialize: true,
     validationSchema: Yup.object({
-      password: Yup.string().required("field required"),
+    
       email: Yup.string().required("field required").email("email invalid!"),
     }),
     onSubmit: (value) => {
    
       setload(true);
-      dispatch(SignIn(value));
+      dispatch(SendresetLink(value));
     },
   });
 
@@ -54,7 +54,8 @@ const SignInUser = () => {
               src="https://res.cloudinary.com/dewkx66gl/image/upload/v1695980190/pngwing.com_2_n6furk.png"
               className="companyname-img "
             />{" "}
-      <p>Rixos  Login </p>
+      <p>Rixos  Hotels Support Center</p>
+      <p>Please Enter your email address, a link will be send to your inbox </p>
       <div className="formsp">
   
         <form onSubmit={Formik.handleSubmit} className="myform">
@@ -70,23 +71,7 @@ const SignInUser = () => {
             onBlur={Formik.handleBlur}
             error={Formik.touched.email && Boolean(Formik.errors.email)}
           ></TextField>
-          <p>
-            <span style={{ color: "red" }}>*</span> Password
-          </p>
-          <input
-            className="inputfield"
-            placeholder="Password"
-            type="password"
-            style={{ margin: "0px 10px 10px 0", backgroundColor: "rgb(208, 223, 247)", borderRadius:"5px"  }}
-            name="password"
-            value={Formik.values.password}
-            onChange={Formik.handleChange}
-            onBlur={Formik.handleBlur}
-            error={Formik.touched.password && Boolean(Formik.errors.password)}
-            helperText={Formik.touched.password && Formik.errors.password}
-            {...Formik.getFieldHelpers("password")}
-            label="Password"
-          ></input>
+       
 
           <div></div>
           {loading ? (
@@ -97,20 +82,7 @@ const SignInUser = () => {
             <input type="submit" className="submitinput" name="Sign" />
           )}
 
-          <div className="signin">
-            <p>
-              Don't have an account ?{" "}
-              <span onClick={() => navigate("/user/Signup")}>
-                Create account
-              </span>
-            </p>
-            <p
-              className="forgottenp"
-              onClick={() => navigate("/account/forgotten_credentials")}
-            >
-              Forgotten password ?
-            </p>
-          </div>
+        
         </form>
   
       </div>
@@ -120,4 +92,4 @@ const SignInUser = () => {
   );
 };
 
-export default SignInUser;
+export default ForgottenPassword;

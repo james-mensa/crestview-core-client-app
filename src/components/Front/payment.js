@@ -65,7 +65,7 @@ const PaymentSection = () => {
         Checkuser && Checkuser.account ? Checkuser.account._id : "",
         {
           customername:Checkuser && Checkuser.account ? Checkuser.account.fullname :"",
-          paymentoption: "Mobile Money (Mtn)",
+          paymentoption: option===1 ? "Mtn Mobile Money (momo)" : "Card Payment",
           from: start,
           to: end,
           room_number:

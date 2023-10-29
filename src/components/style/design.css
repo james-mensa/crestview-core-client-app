@@ -35,6 +35,194 @@
   margin-bottom: 100px;
 }
 
+.conference-c {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.conference-ch {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+}
+.conference-b {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgb(1, 10, 36, 0.8);
+  padding: 30px ;
+}
+.conference-bh {
+  width: 100%;
+  display: flex;
+  position: relative;
+  z-index: 100;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 100;
+  background-color: white;
+}
+.order-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: left;
+  width: 100%;
+  font-size: 15px;
+  font-family: Roboto condensed;
+  color: white;
+}
+.conference-bh {
+  padding-top: 50px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  z-index: 100;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(7, 8, 16,0.9);
+}
+
+.order-detail h1 {
+  font-size: 18px;
+  font-family: Roboto condensed;
+  color: white;
+}
+
+.order-detail p {
+  font-size: 15px;
+  font-family: Roboto condensed;
+  color: rgb(229, 231, 229) !important;
+}
+.conference-box {
+  display: flex;
+  flex-direction: column;
+background-color: transparent;
+  width: 80%;
+}
+
+.c-date {
+  width: 30%;
+
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 30px;
+  transition: 1s ease-in-out;
+}
+.c-date p {
+  font-size: 20px;
+color: chocolate;
+  font-family: Roboto condensed;
+  margin-bottom: 0px;
+}
+
+.c-duration {
+  width: 15%;
+
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 30px;
+  transition: 1s ease-in-out;
+}
+
+.c-duration p {
+  font-size: 20px;
+  color: rgb(183, 183, 183) !important;
+  font-family: Roboto condensed;
+}
+.c-btw {
+  width: 170px;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 1s ease-in-out;
+  color: rgb(64, 29, 4);
+  background-color: white;
+  font-family: Roboto condensed;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
+}
+
+.c-btw-b {
+  width: 170px;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto condensed;
+  justify-content: center;
+  align-items: center;
+  transition: 1s ease-in-out;
+  color: rgb(183, 183, 183) !important;
+  background-color: rgb(64, 29, 4);
+  border-radius: 5px;
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
+  font-weight: bold;
+  font-family: Roboto condensed;
+  font-size: 15px;
+  -webkit-animation: anim-book-btn 1s ease-in-out;
+  animation: anim-book-btn 1s ease-in-out;
+}
+
+.datepic {
+  height: 40px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 15px 3px,
+    rgba(0, 0, 0, 0.1) 0px 4px 6px 2px;
+}
+
+.c-btw p {
+  font-size: 20px;
+  color: rgb(3, 1, 11) !important;
+  font-family: Roboto condensed;
+}
+
 .main-layout {
   width: 100%;
   display: flex;
@@ -55,6 +243,12 @@
   justify-content: center;
   align-items: center;
 }
+.header-h1{
+  font-family: Roboto condensed;
+  color: rgb(205, 189, 177);
+  font-size: 50px;
+  font-weight: bold;
+}
 .payment-c {
   display: flex;
   flex-direction: row;
@@ -68,10 +262,8 @@
 }
 
 .layoutspacv {
- 
   opacity: 0;
   transition: 1s ease-in-out;
-
 }
 .showspac {
   opacity: 1 !important;
@@ -105,6 +297,15 @@
   font-size: 15px;
   background-color: rgb(5, 1, 24);
 }
+.conference-pay-options {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 500px;
+  font-family: Roboto condensed;
+  font-size: 15px;
+  background-color: transparent;
+}
 
 .pay-arrow {
   display: flex;
@@ -129,6 +330,24 @@
   justify-content: left;
   align-items: start;
   padding: 15px;
+}
+.c-pay-center {
+  display: flex;
+  flex-direction: column;
+  width: 99%;
+  min-height: 500px;
+
+  padding-right: 0px;
+  justify-content: left;
+  align-items: start;
+  padding: 15px;
+}
+.c-pay-center p {
+  font-family: Roboto condensed;
+  font-size: 15px;
+
+  color: rgb(0, 0, 7);
+  font-weight: bold;
 }
 
 .pay-center p {
@@ -340,6 +559,9 @@
   animation: anim-btn 1s ease-in-out;
   cursor: pointer;
   transition: 1s ease-in-out;
+  width: 85px;
+  height: 40px;
+  font-size: 13px;
 }
 
 .searchbtn:hover {
@@ -348,6 +570,23 @@
   color: rgb(0, 0, 0);
 
   cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.intro_header{
+  color:rgb(187, 183, 183);
+  font-size: 22px;
+  margin-top: 40px;
 }
 @keyframes anim-btn {
   0% {
@@ -500,6 +739,18 @@
   color: white;
   padding: 10px;
   font-weight: normal;
+}
+
+.btw_btn {
+  background-color: rgb(65, 55, 2);
+  border-radius: 5px;
+  color: white;
+  padding: 3px;
+  font-weight: normal;
+  font-size: 12px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .imagecover {
@@ -726,6 +977,7 @@
   color: white;
   font-family: Roboto condensed;
   padding-left: 5px;
+  
 }
 
 .align-grid {
@@ -733,6 +985,90 @@
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   width: 95%;
 }
+
+.align-grid-g{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  width: 95%;
+}
+
+.align-grid-c {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  width: 95%;
+}
+.align-grid-cx {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  width: 98%;
+}
+.option-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  border-radius: 5px;
+  height: 150px;
+  color: black !important;
+  background-color: white;
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  margin-top: 10px;
+}
+.option-box-s {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 90%;
+  border-radius: 5px;
+  height: 150px;
+  color: black !important;
+  background-color: chocolate;
+  border:1px solid rgb(213, 213, 213);
+  cursor: pointer;
+  transition: 1s ease-in-out;
+}
+
+.option-box:hover {
+  transition: 1s ease-in-out;
+  transform: scale(1.04) translateY(-3%);
+  background-color: rgb(211, 219, 222);
+}
+
+.option-box p {
+  color: black !important;
+  font-family: Roboto condensed;
+
+  font-weight: bold;
+  margin-top: 20px;
+}
+.option-box-s p {
+  color: rgb(255, 255, 255) !important;
+  font-family: Roboto condensed;
+
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+
+
+.pay-layout{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: rgba(196, 218, 227, 0.85) ;
+  position: relative;
+  z-index: 100;
+  padding: 10px;
+  font-family: Roboto condensed;
+  padding-top: 30px;
+}
+
 .Roomcard {
   transition: 2s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
@@ -779,7 +1115,7 @@
     rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
 }
 
-.card-room-img-s{
+.card-room-img-s {
   width: 90%;
   border-radius: 10px;
   height: 250px;
@@ -820,6 +1156,8 @@
   padding-left: 20px;
   font-family: Roboto condensed;
   font-size: 15px;
+  width: 100%;
+
 }
 .room-description h3 {
   font-size: 16px;
@@ -847,15 +1185,13 @@
   align-items: center;
   width: 5%;
 }
-.line{
+.line {
   display: flex;
   width: 100%;
   height: 1px;
   background-color: chocolate;
   margin-top: 10px;
-
 }
-
 
 .row-styles-card {
   display: flex;
@@ -899,6 +1235,14 @@
 
 .column-styles {
   padding: 30px;
+  width: 100%;
+}
+.column-text-style {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+  font-family: Roboto condensed;
+
   width: 100%;
 }
 .row-styles-s {
@@ -1123,9 +1467,8 @@
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  height: 100%;
   background-color: rgb(255, 255, 255);
   align-items: center;
   padding-top: 50px;
@@ -1135,13 +1478,17 @@
 .formsp {
   display: flex;
   width: 100%;
-  height: 550px;
+  min-height: 400px;
   background-color: rgb(224, 239, 242, 0);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 20px;
   border-radius: 5px;
+}
+.signin{
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 .formsp h1 {
@@ -1193,6 +1540,9 @@
   border-radius: 5px;
   padding: 10px;
   color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 .myform {
   font-family: Roboto condensed !important;
@@ -1232,8 +1582,15 @@
   position: fixed;
   z-index: 1000000;
   transition: 2s ease-in-out;
+  overflow-y: scroll;
 }
+.messagebox {
+  outline: none;
+  width: 100%;
 
+  border-radius: 5px;
+  border: 0px solid transparent;
+}
 .congrate-box {
   display: flex;
   flex-direction: column;
@@ -1247,6 +1604,8 @@
   padding-left: 50px;
   color: rgb(2, 2, 26);
   padding-bottom: 20px;
+  min-height: 500px;
+ 
 }
 .congrate-box p {
   font-family: Roboto condensed;
@@ -1383,24 +1742,22 @@
   font-size: 20px;
   font-weight: bold;
 }
-.fixed-date{
+.fixed-date {
   display: flex;
   position: absolute;
   flex-direction: column;
   left: 250px;
-
 }
 
-.b-header{
+.b-header {
   font-family: Roboto condensed;
   font-size: 14px;
   font-weight: bold;
 }
 
-.b-content{
+.b-content {
   font-family: Roboto condensed;
   font-size: 13px;
- 
 }
 
 .input-box {
@@ -1538,7 +1895,6 @@
   }
   .attraction-image-d {
     display: none;
-  ;
   }
   .Roomcard {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
@@ -1549,6 +1905,7 @@
     width: 97%;
     margin-top: 20px;
     cursor: pointer;
+    margin-left: 20px;
   }
   .about-use {
     width: 95%;
@@ -1728,6 +2085,7 @@
     justify-items: space-between;
     align-items: center;
   }
+
   .menu_right {
     display: flex;
     flex-direction: column;
@@ -1746,7 +2104,6 @@
   }
   .nav-actions span {
     background-color: rgb(233, 233, 233, 0.9);
-
     margin-right: 0px;
     margin-bottom: 15px;
   }
@@ -1799,6 +2156,13 @@
     display: none;
   }
 
+
+  .conference-box {
+    display: flex;
+    flex-direction: column;
+  background-color: transparent;
+    width: 99%;
+  }
   .filter-cbox {
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0) 0px 10px 15px -3px,
@@ -1816,6 +2180,12 @@
     font-size: 15px;
     font-weight: bold;
   }
+
+  
+  .intro_header{
+    color:rgb(187, 183, 183);
+    font-size: 15px;
+  }
   .header_search_item-c {
     position: relative;
     display: flex;
@@ -1832,7 +2202,12 @@
     width: 100%;
     padding: 20px;
   }
-
+  .header-h1{
+    font-family: Roboto condensed;
+    color: rgb(205, 189, 177);
+    font-size: 18px;
+    font-weight: bold;
+  }
   .room-details {
     display: flex;
     flex-direction: column;
@@ -1916,6 +2291,12 @@
   }
 }
 
+@keyframes anim-book-btn {
+  0% {
+    opacity: 0;
+    background-color: whites;
+  }
+}
 @keyframes anim-msg {
   0% {
     transform: translateY(20%);
@@ -1924,11 +2305,9 @@
   }
 }
 @keyframes animate-card {
-  0%{
+  0% {
     transform: translateY(10%);
-  
   }
-  
 }
 @keyframes showMenu_m {
   0% {

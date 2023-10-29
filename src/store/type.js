@@ -15,7 +15,10 @@ export const ALLORDERSD="allordersd";
 export const GETROOMS="getrooms";
 export const ADDROOM="Addroom";
 export const ORDERDETAIL="OrderDetail";
+export const ALLORDERMEETING="ALLORDERMEETING"
+export const CONFERENCEREVENUE="CONFERENCEREVENUE"
 export const API="/api";
-export const SEARCRESULTS="SEARCRESULTS"
-
-
+export const SEARCRESULTS="SEARCRESULTS";
+export const YEARMONTHSTAT="YearMonthstat"
+export const BOOKCONFERENCE="BookConference";
+export const ADMIN_DETAIL="ADMIN_DETAIL"

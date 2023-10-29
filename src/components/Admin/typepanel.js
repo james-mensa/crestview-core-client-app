@@ -17,36 +17,33 @@ const TypeDashboard = () => {
         style={{ minHeight: `${window.innerHeight}px` }}
       >
         <div className="profile-nav-admin">
-          <div className="nav-column">
-            <p onClick={() => navigate("/client/profile")}>
-              <span>Overview</span>
-            </p>
+        <div className="nav-column">
             <p
-              onClick={() => navigate("/admin/panel/rooms")}
+              onClick={() => navigate("/admin/panel/overview")}
             
             >
+              <span>Overview</span>
+            </p>
+            <p onClick={() => navigate("/admin/panel/rooms")}>
               <span>List Rooms</span>
             </p>
 
-
-            <p
-              onClick={() => navigate("/admin/panel/room_type")}
-              style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}
-            >
+            <p onClick={() => navigate("/admin/panel/room_type")}  style={{ backgroundColor: " white", color: "rgb(7, 1, 27) " }}>
               <span>Manage rooms types</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/admin/panel/bookings")}>
               <span>Bookings</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/admin/panel/meetings")}>
+              <span>Conference Room Bookings</span>
+            </p>
+            <p onClick={() => navigate("/client/panel/manage_testimony")}>
               <span>Manage Testimony</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/admin/panel/customers")}  >
               <span>Manage Customers</span>
             </p>
-            <p onClick={() => navigate("/client/panel/settings")}>
-              <span>Account Settings </span>
-            </p>
+          
           </div>
 
           <div className="signbtn">

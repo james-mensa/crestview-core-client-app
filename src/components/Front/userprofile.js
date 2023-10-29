@@ -10,6 +10,7 @@ import { format } from "date-fns";
 import MobileTopNav from "../utils/mobilenav";
 import { IconButton } from "@mui/material";
 import { enableScroll } from "../utils/reuseable";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 
 const UserPanel = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,10 @@ const UserPanel = () => {
             <p onClick={() => navigate("/client/panel/records")}>
               <ListCheck />
               <span>Order Records</span>
+            </p>
+            <p onClick={() => navigate("/client/panel/specail_orders")}>
+              <MdOutlineDashboardCustomize />
+              <span> Special Order </span>
             </p>
             <p onClick={() => navigate("/client/panel/settings")}>
               <KeyFill />
@@ -102,6 +107,10 @@ const UserPanel = () => {
               <ListCheck />
               <span>Order Records</span>
             </p>
+            <p onClick={() => navigate("/client/panel/specail_orders")}>
+              <MdOutlineDashboardCustomize />
+              <span> Special Order </span>
+            </p>
             <p onClick={() => navigate("/client/panel/settings")}>
               <KeyFill />
               <span>Account Settings </span>
@@ -125,7 +134,7 @@ const UserPanel = () => {
           <p>
             Joined Since :
             {myaccount && myaccount.account 
-              ? format(new Date(myaccount.account.createdAt), "EEEE dd yyyy")
+              ? format(new Date(myaccount.account.createdAt), "eee dd MMM yyyy")
               : ""}
           </p>
           <p>

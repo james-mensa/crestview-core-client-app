@@ -1,10 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const WhatWeDo = () => {
+  const navigate = useNavigate();
   return (
     <div className="roomType ">
-     <p  style={{fontWeight:"bold", fontSize:"18px",fontFamily:"Roboto condensed"}}>Special offers and Environment</p>
-    
+      <p
+        style={{
+          fontWeight: "bold",
+          fontSize: "18px",
+          fontFamily: "Roboto condensed",
+        }}
+      >
+        Special offers and Environment
+      </p>
+
       <div className="align-grid">
         <div className="Roomcard layoutspacv" onClick={() => {}}>
           <img
@@ -25,10 +35,16 @@ const WhatWeDo = () => {
               needs. Our professional event planning team is on hand to assist
               you in creating a seamless and memorable occasion.
             </p>
+            <span
+              className="book-now"
+              onClick={() => navigate("/client/conference/booking")}
+            >
+              Book now
+            </span>
           </div>
         </div>
 
-        <div className="Roomcard layoutspacv " onClick={() => {}} >
+        <div className="Roomcard layoutspacv " onClick={() => {}}>
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696935089/theater_w7ndvn.jpg"
@@ -39,6 +55,7 @@ const WhatWeDo = () => {
 
           <div className="room-description">
             <h3>High-End Movie Theater </h3>
+            <span>Accessible to our clients</span>
             <p>
               Indulge in the latest blockbusters and timeless classics in our
               cutting-edge, private movie theater. Immerse yourself in
@@ -59,6 +76,7 @@ const WhatWeDo = () => {
 
           <div className="room-description">
             <h3>Gourmet Dining</h3>
+            <span>Accessible to our clients</span>
             <p>
               Savor a world of culinary delights at our renowned restaurants.
               From sumptuous breakfast buffets to exquisite dinners, our
@@ -82,6 +100,7 @@ const WhatWeDo = () => {
               city from our rooftop bar. It's the perfect spot to unwind after a
               thrilling movie night.
             </p>
+            <span className="book-now">Book now</span>
           </div>
         </div>
       </div>

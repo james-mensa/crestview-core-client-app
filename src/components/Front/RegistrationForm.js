@@ -122,24 +122,14 @@ const MyForm = () => {
             password must be the same.
           </span>
 
-          <div></div>
+         
           {loading ? (
-            <div
-              style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <CircleSpinner color="aqua" />
+            <div className="submitinput">
+              <CircleSpinner color="aqua" size={13}/>
             </div>
           ) : (
-            <Button type="submit" className="btnlength">
-              Register
-            </Button>
+            <input type="submit" className="submitinput" name="Register" />
           )}
-
           <div className="signin">
             <p>
               Already a member ?{" "}

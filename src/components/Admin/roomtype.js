@@ -25,7 +25,7 @@ const RoomTypes = () => {
         onClick={() => {
           navigate("/admin/panel/newcategory");
         }}
-        className="searchbtn"
+        className="searchbtn" style={{ width:"100px"}}
       >
         Add Category
       </span>

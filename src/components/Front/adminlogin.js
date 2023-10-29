@@ -6,10 +6,10 @@ import { Button, Form } from "react-bootstrap";
 import { CircleSpinner } from "react-spinners-kit";
 import { Avatar, IconButton, TextField } from "@mui/material";
 import LoaderView from "../utils/loaderView";
-import { SignIn, preRegister } from "../../store/actions/adminActions";
+import { AdminSignIn, SignIn, preRegister } from "../../store/actions/adminActions";
 import { useNavigate } from "react-router-dom";
-import Footer from "./footer"
-const SignInUser = () => {
+import Footer from "./footer";
+const SignInAdmin = () => {
   const notifications = useSelector((value) => value.notification);
   const [loading, setload] = useState(false);
   const navigate = useNavigate();
@@ -18,11 +18,19 @@ const SignInUser = () => {
       setload(false);
 
       if (notifications.success) {
-        navigate("/");
+        navigate("/admin/panel/overview");
       }
     }
   });
-
+  const Checkuser = useSelector((item) => item.admin);
+  useEffect(() => {
+    if (Checkuser && ! Checkuser.loading) {
+      if(Checkuser.account){
+        navigate("/admin/panel/overview");
+      }
+   
+    }
+  });
   const dispatch = useDispatch();
   const Formik = useFormik({
     initialValues: {
@@ -35,17 +43,17 @@ const SignInUser = () => {
       email: Yup.string().required("field required").email("email invalid!"),
     }),
     onSubmit: (value) => {
-   
       setload(true);
-      dispatch(SignIn(value));
+      dispatch(AdminSignIn(value));
     },
   });
 
   return (
     <div
       className="mainLayout"
-      style={{ minHeight: `${window.innerHeight}px` }}
-    >      {" "}
+      style={{ minHeight: `${window.innerHeight}px`,paddingTop:"50px" }}
+    >
+      {" "}
       <img
               onClick={() => {
                 navigate("/");
@@ -54,16 +62,18 @@ const SignInUser = () => {
               src="https://res.cloudinary.com/dewkx66gl/image/upload/v1695980190/pngwing.com_2_n6furk.png"
               className="companyname-img "
             />{" "}
-      <p>Rixos  Login </p>
+      <p>Rixos Admin Dashboard </p>
       <div className="formsp">
-  
         <form onSubmit={Formik.handleSubmit} className="myform">
           <p>
             <span style={{ color: "red" }}>*</span> Email
           </p>
           <TextField
-            style={{ margin: "0px 10px 10px 0", backgroundColor: "rgb(208, 223, 247)", borderRadius:"5px"  }}
-            
+            style={{
+              margin: "0px 10px 10px 0",
+              backgroundColor: "rgb(208, 223, 247)",
+              borderRadius: "5px",
+            }}
             name="email"
             value={Formik.values.email}
             onChange={Formik.handleChange}
@@ -77,7 +87,11 @@ const SignInUser = () => {
             className="inputfield"
             placeholder="Password"
             type="password"
-            style={{ margin: "0px 10px 10px 0", backgroundColor: "rgb(208, 223, 247)", borderRadius:"5px"  }}
+            style={{
+              margin: "0px 10px 10px 0",
+              backgroundColor: "rgb(208, 223, 247)",
+              borderRadius: "5px",
+            }}
             name="password"
             value={Formik.values.password}
             onChange={Formik.handleChange}
@@ -88,7 +102,7 @@ const SignInUser = () => {
             label="Password"
           ></input>
 
-          <div></div>
+
           {loading ? (
             <div className="submitinput">
               <CircleSpinner color="aqua" size={13}/>
@@ -96,28 +110,10 @@ const SignInUser = () => {
           ) : (
             <input type="submit" className="submitinput" name="Sign" />
           )}
-
-          <div className="signin">
-            <p>
-              Don't have an account ?{" "}
-              <span onClick={() => navigate("/user/Signup")}>
-                Create account
-              </span>
-            </p>
-            <p
-              className="forgottenp"
-              onClick={() => navigate("/account/forgotten_credentials")}
-            >
-              Forgotten password ?
-            </p>
-          </div>
         </form>
-  
       </div>
-
-   <Footer/>
     </div>
   );
 };
 
-export default SignInUser;
+export default SignInAdmin;

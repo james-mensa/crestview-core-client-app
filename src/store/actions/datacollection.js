@@ -12,7 +12,10 @@ const {
   ORDERDETAIL,
   ROOMTYPES,
   MATCHCARDS,
- 
+  BOOKCONFERENCE,
+  YEARMONTHSTAT,
+  ALLORDERMEETING,
+  CONFERENCEREVENUE,
   API,
   GETROOM,
   VERIFIEDCARD,
@@ -31,6 +34,10 @@ export const newRoom = (data) => ({
   payload: data,
 });
 
+export const monthstat = (data) => ({
+  type: YEARMONTHSTAT,
+  payload: data,
+});
 export const allrooms = (data) => ({
   type: GETROOMS,
   payload: data,
@@ -40,7 +47,6 @@ export const allroomsTypes = (data) => ({
   type: ROOMTYPES,
   payload: data,
 });
-
 
 export const orderDetail = (data) => ({
   type: ORDERDETAIL,
@@ -52,8 +58,23 @@ export const Bookrooms = (data) => ({
   payload: data,
 });
 
+
+export const conferenceRev = (data) => ({
+  type: CONFERENCEREVENUE,
+  payload: data,
+});
+
+export const Bookconf = (data) => ({
+  type: BOOKCONFERENCE,
+  payload: data,
+});
+
 export const Bookings = (data) => ({
   type: ALLORDERSD,
+  payload: data,
+});
+export const ConfBookings = (data) => ({
+  type: ALLORDERMEETING,
   payload: data,
 });
 export const allRatings = (data) => ({
@@ -70,7 +91,6 @@ axios.interceptors.request.use((config) => {
 export const AddNewRoom = (data) => {
   return async (dispatch, getdispatch) => {
     try {
-      console.log(data);
       const newd = await axios.post(`${API}/session/admin/room/addroom`, data);
 
       dispatch(newRoom(newd.data));
@@ -92,7 +112,6 @@ export const AddNewRoom = (data) => {
 export const AddNewRoomFromCate = (data) => {
   return async (dispatch, getdispatch) => {
     try {
-      console.log(data);
       const newd = await axios.post(
         `${API}/session/admin/room/addfromcategory`,
         data
@@ -177,19 +196,12 @@ export const GetAllRoomTypes = (data) => {
 export const GetsearchResult = (startDate, roomtype, persons) => {
   return async (dispatch) => {
     try {
-      console.log({
-        startDate,
-        roomtype,
-        persons,
-      });
       const contents = await axios.get(
         `${API}/session/client/get_available_rooms/${startDate}/${roomtype}/${persons}`
       );
 
       dispatch(searchResult(contents.data));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -245,12 +257,77 @@ export const DeleteRoom = (id) => {
 export const BookRoom = (room, client, data) => {
   return async (dispatch, getdispatch) => {
     try {
-      console.log({room:room, client:client, data:data});
       const newd = await axios.post(
         `${API}/session/client/book/rooms/${room}/${client}`,
         data
       );
       dispatch(Bookrooms(newd.data));
+      dispatch(
+        notify.notify_success({
+          msg: "successful",
+        })
+      );
+    } catch (error) {
+      dispatch(
+        notify.notify_error({
+          msg: "failed",
+        })
+      );
+    }
+  };
+};
+
+export const CheckInClient = (id, data) => {
+  return async (dispatch, getdispatch) => {
+    try {
+      await axios.patch(
+        `${API}/session/server/rooms/booking/update/${id}`,
+        data
+      );
+      dispatch(
+        notify.notify_success({
+          msg: `Check In`,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        notify.notify_error({
+          msg: `failed !`,
+        })
+      );
+    }
+  };
+};
+export const CheckInClientMeeting = (id, data) => {
+  return async (dispatch, getdispatch) => {
+    try {
+      await axios.patch(
+        `${API}/session/server/conference/update/${id}`,
+        data
+      );
+      dispatch(
+        notify.notify_success({
+          msg: `Check In`,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        notify.notify_error({
+          msg: `failed !`,
+        })
+      );
+    }
+  };
+};
+
+export const BookConference = (user, data) => {
+  return async (dispatch, getdispatch) => {
+    try {
+      const newd = await axios.post(
+        `${API}/session/client/book/conference/${user}`,
+        data
+      );
+      dispatch(Bookconf(newd.data));
       dispatch(
         notify.notify_success({
           msg: "successful",
@@ -276,11 +353,81 @@ export const AllOrders = () => {
     }
   };
 };
+
+export const AllConferenceOrders = () => {
+  return async (dispatch, getdispatch) => {
+    try {
+      const newd = await axios.get(`${API}/session/server/conference_bookings`);
+      dispatch(ConfBookings(newd.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const FilterOrders = (
+  type,
+  room_no,
+  customer,
+  order_id,
+  s_date,
+  e_date
+) => {
+  return async (dispatch, getdispatch) => {
+    try {
+      const newd = await axios.get(
+        `${API}/session/server/bookings/filter/${type}/${room_no}/${customer}/${order_id}/${s_date}/${e_date}`
+      );
+      dispatch(Bookings(newd.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const FilterOrderConf = (customer, order_id, s_date, enddate) => {
+  return async (dispatch, getdispatch) => {
+    try {
+      const newd = await axios.get(
+        `${API}/session/server/conference/filter/${customer}/${order_id}/${s_date}/${enddate}`
+      );
+      dispatch(ConfBookings(newd.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const BookingDetail = (id) => {
   return async (dispatch) => {
     try {
       const newd = await axios.post(`${API}/server/getbooking/${id}`);
       dispatch(orderDetail(newd.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const MeetingSpaceMonthly = (year) => {
+  return async (dispatch) => {
+    try {
+      const newd = await axios.get(
+        `${API}/session/server/conference/statistics/${year}`
+      );
+      dispatch(conferenceRev(newd.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const RevenueMonthly = (year) => {
+  return async (dispatch) => {
+    try {
+      const newd = await axios.get(
+        `${API}/session/server/booking/statistics/${year}`
+      );
+      dispatch(monthstat(newd.data));
     } catch (error) {
       console.log(error);
     }
@@ -329,7 +476,39 @@ export const GetRate = () => {
     }
   };
 };
+export const conferencAvailability = (data) => {
+  return async (dispatch) => {
+    try {
+      console.log(data);
+      const newd = await axios.post(
+        `${API}/session/client/book/conference/available`,
+        data
+      );
 
+      if (newd.data) {
+        if (newd.data.msg) {
+          dispatch(
+            notify.notify_error({
+              msg: "The conference room is not available at the selected time",
+            })
+          );
+        } else if (!newd.data.msg) {
+          dispatch(
+            notify.notify_success({
+              msg: "conference room available.Book now !",
+            })
+          );
+        }
+      }
+    } catch (error) {
+      dispatch(
+        notify.notify_error({
+          msg: "server not responding",
+        })
+      );
+    }
+  };
+};
 export const CreateChat = (user_id, card_id) => {
   return async (dispatch, getdispatch) => {
     try {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 
-import { KeyFill, ListCheck, Person, XLg } from "react-bootstrap-icons";
+import { KeyFill, ListCheck, Person, X, XLg } from "react-bootstrap-icons";
 
 import { useDispatch } from "react-redux";
 
@@ -15,9 +15,12 @@ import { IconButton } from "@mui/material";
 import { enableScroll } from "../../utils/reuseable";
 import MobileTopNav from "../../utils/mobilenav";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import SpecialOrder from "./specialorder";
+import PrintConference from "./printconference";
 
-const SettingsPanel = () => {
-
+const SpecialOrderPanel = () => {
+  const [orderData, setData] = useState({});
+  const [showMsg, setMsg] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showmennu, setmenu] = useState(false);
@@ -29,6 +32,36 @@ const SettingsPanel = () => {
     <div className="desktop">
       <SectionNav/>
     </div>
+    {showMsg ? (
+              <div
+                className="congrate-msg"
+                style={{ minHeight: `${window.innerHeight}px` }}
+              >
+                <div className="congrate-box ">
+                  <div className="close-l">
+                    <IconButton
+                      onClick={() => {
+                        setMsg(false);
+                      }}
+                    >
+                      <X color="white" size={30} />
+                    </IconButton>
+                  </div>
+                  <h1
+                    style={{
+                      fontSize: "20px",
+                      marginTop: "-20px",
+                      marginLeft: "50px",
+                    }}
+                  >
+                    Payment Successfull
+                  </h1>
+                  <PrintConference order={orderData} />
+                </div>
+              </div>
+            ) : null}
+
+            
     <div className="mobile">
     <MobileTopNav  showmenu={showmenu} setmenu={setmenu}/>
     </div>
@@ -55,13 +88,14 @@ const SettingsPanel = () => {
               <ListCheck />
               <span>Order Records</span>
             </p>
-            <p onClick={() => navigate("/client/panel/specail_orders")}>
+            <p onClick={() => navigate("/client/panel/specail_orders")}
+              style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}>
               <MdOutlineDashboardCustomize />
               <span> Special Order </span>
             </p>
             <p
               onClick={() => navigate("/client/panel/settings")}
-              style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}
+          
             >
               <KeyFill />
               <span>Account Settings </span>
@@ -114,13 +148,13 @@ const SettingsPanel = () => {
               <ListCheck />
               <span>Order Records</span>
             </p>
-            <p onClick={() => navigate("/client/panel/specail_orders")}>
+            <p onClick={() => navigate("/client/panel/specail_orders")} style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}>
               <MdOutlineDashboardCustomize />
               <span> Special Order </span>
             </p>
             <p
               onClick={() => navigate("/client/panel/settings")}
-              style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}
+              
             >
               <KeyFill />
               <span>Account Settings </span>
@@ -137,7 +171,7 @@ const SettingsPanel = () => {
             </span>
           </div>
         </div>
-        <SettiingForm />
+        <SpecialOrder setData={setData} setMsg={setMsg} />
       </div>
 
       <Footer />
@@ -145,4 +179,4 @@ const SettingsPanel = () => {
   );
 };
 
-export default SettingsPanel;
+export default SpecialOrderPanel;

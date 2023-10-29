@@ -44,7 +44,7 @@ const SectionNav = (props) => {
           <>
             <div
               className="uavatar"
-              onClick={() => navigate("/user/dashboard")}
+              onClick={() => navigate("/client/profile")}
             >
               <p>
                 {" "}

@@ -2,7 +2,7 @@ import { IconButton, MenuItem, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { X, XLg } from "react-bootstrap-icons";
 import { useNavigate, useParams } from "react-router-dom";
-import { enableScroll, showToastify, stayDays } from "../utils/reuseable";
+import { PromptToastify, enableScroll, showToastify, stayDays } from "../utils/reuseable";
 import { FaCalendarAlt, FaCaretLeft, FaCaretRight, FaUserFriends } from "react-icons/fa";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,7 +57,7 @@ const SearchNav = (props) => {
   
     const SearhValues = () => {
       if(stayDays(dates[0].startDate,dates[0].endDate)===0){
-        showToastify("ERROR","Please check the date")
+        PromptToastify("Please check the date")
       }else{
         
         navigate(
@@ -113,7 +113,7 @@ const SearchNav = (props) => {
               value={roomtyp}
               onChange={(data) => {
                 setroomtype(data.target.value);
-                console.log(roomtyp);
+                
               }}
             >
               {" "}

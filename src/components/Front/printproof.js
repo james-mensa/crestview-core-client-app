@@ -24,7 +24,7 @@ const PrintProof = () => {
               </IconButton>
               <span style={{ color: "rgb(2, 2, 26)", fontWeight: "bold" }}>
                 {" "}
-                Print Proof
+                Print 
               </span>
             </div>
           </div>
@@ -35,7 +35,7 @@ const PrintProof = () => {
             </IconButton>
             <span style={{ color: "rgb(2, 2, 26)", fontWeight: "bold" }}>
               {" "}
-              Print Proof
+              Print 
             </span>
           </div>
           <div className="column-styles" ref={componentRef}>
@@ -59,30 +59,30 @@ const PrintProof = () => {
 
             <p style={{ color: "rgb(2, 2, 26)" }}>
               Purchased on{" "}
-              {format(new Date(order.data.createdAt), "EEEE dd yyyy")}
+              {format(new Date(order.data.createdAt), "eee dd MMM yyyy")}
             </p>
 
             <p style={{ color: "rgb(2, 2, 26)" }}>
               Room number{" "}
-              <span style={{ color: "  rgb(0, 0, 0)" }}>
+             
                 {order.data.room_number}
-              </span>
+             
             </p>
 
             <p style={{ color: "rgb(2, 2, 26)" }}>
               {" "}
               ORDER ID {": "}{" "}
-              <span style={{ color: " rgb(0, 0, 0)" }}>
+             
                 {order.data.orderId}
-              </span>
+             
             </p>
 
             <p style={{ color: "rgb(2, 2, 26)" }}>
               {" "}
               Total Account {": "}{" "}
-              <span style={{ color: " rgb(0, 0, 0)" }}>
+            
                 GH₵ {order.data.price}
-              </span>
+              
             </p>
 
             <div

@@ -60,7 +60,7 @@ const TopNavLog = (props) => {
       {Checkuser && Checkuser.auth ? (
           <>
           
-            <div className="uavatar" onClick={() =>navigate("/user/dashboard")}>
+            <div className="uavatar" onClick={() =>navigate("/client/profile")}>
             <img  alt=""
             style={{width:"30px",height:"30px"}}
             src="https://myportfoliocontent.s3.eu-north-1.amazonaws.com/ControllerImg/gamer.png63926.8325918976"/>

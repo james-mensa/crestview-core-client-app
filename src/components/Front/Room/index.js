@@ -2,6 +2,7 @@ import React from "react";
 
 import { BoundingBoxCircles, Cup, Person, Star } from "react-bootstrap-icons";
 import { FaBed } from "react-icons/fa";
+import { MdDinnerDining } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 function Room(props) {
@@ -25,20 +26,26 @@ function Room(props) {
             {data.alias}: {data.description}
           </p>
           <div className="row-styles">
-            <Person color="yellow" size={15} />
+            <Person  size={15} />
             <span>{data.capacity} Person</span>
             <BoundingBoxCircles />
             <span>{data.aircondition ? "Air condition" : "no available"}</span>
           </div>
 
           <div className="row-styles">
-            <Cup color="yellow" size={15} />
+            <Cup  size={15} />
             <span> {data.meals}</span>
             <FaBed />
             <span>{data.mattress}</span>
           </div>
+          {data.room_type === "Excecutive suite" ? (
+            <div className="row-styles">
+              <MdDinnerDining  size={15} />
+              <span> Access to rooftop Bar</span>
+            </div>
+          ) : null}
         </div>
-        <div className="row-styles-b" style={{marginTop:"30px"}}>
+        <div className="row-styles-b" style={{ marginTop: "30px" }}>
           <p
             className="book-now"
             onClick={() =>

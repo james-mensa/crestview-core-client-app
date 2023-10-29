@@ -15,9 +15,9 @@ import RoomBox from "./roombox";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  AllOrders,
-  CheckInClient,
-  FilterOrders,
+  AllConferenceOrders,
+  CheckInClientMeeting,
+  FilterOrderConf,
   GetAllRooms,
 } from "../../store/actions/datacollection";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -26,7 +26,7 @@ import { DateRange } from "react-date-range";
 import { MdNumbers } from "react-icons/md";
 import { ReturnOrderByType, checkDueDate } from "../utils/reuseable";
 import { CircleSpinner } from "react-spinners-kit";
-const BookingsPage = () => {
+const MeetingSpaceOrders = () => {
   const dispatch = useDispatch();
   const [SelectedOrderRevenue, setRevenue] = useState(0);
   let totalRevenue = 0;
@@ -58,22 +58,22 @@ const BookingsPage = () => {
     }
   };
   useEffect(() => {
-    dispatch(AllOrders());
+    dispatch(AllConferenceOrders());
   }, [dispatch]);
-  const all_orders = useSelector((data) => data.orders);
+  const all_orders = useSelector((data) => data.meetingOrders);
   const [OrderData, setOrderData] = useState([]);
   const notifications = useSelector((value) => value.notification);
 
   useEffect(() => {
     if (notifications && notifications.notice) {
       setLoadingbtn(false);
-      dispatch(AllOrders());
+      dispatch(AllConferenceOrders());
     }
   });
 
   return (
     <div className="panel_detail">
-      <p className="header-p">Bookings</p>
+      <p className="header-p">Conference Room Reservation </p>
       <p className="row-styles">
         <Filter /> <span>Filter</span>{" "}
       </p>
@@ -112,18 +112,7 @@ const BookingsPage = () => {
           )}
         </div>
         <div className="row-styles">
-      
           <div className="row-styles">
-            <input
-              className="input-box"
-              type="number"
-              name="room_number"
-              placeholder="room number"
-              onChange={(data) => {
-                setroom_no(data.target.value);
-              }}
-              min="1"
-            />
             <input
               className="input-box"
               style={{ width: "150px" }}
@@ -148,7 +137,14 @@ const BookingsPage = () => {
             <span
               className="searchbtn"
               onClick={() => {
-                dispatch(FilterOrders(roomtype, room_no, clientname, orderID,dates[0].startDate,dates[0].endDate));
+                dispatch(
+                  FilterOrderConf(
+                    clientname,
+                    orderID,
+                    dates[0].startDate,
+                    dates[0].endDate
+                  )
+                );
               }}
             >
               search
@@ -171,7 +167,7 @@ const BookingsPage = () => {
         <div className="row-styles-h" style={{ marginRight: "10px" }}>
           {" "}
           <MdNumbers size={20} color="chocolate" />{" "}
-          <span className="b-header">Room number </span>
+          <span className="b-header">Date </span>
         </div>
         <div className="row-styles-h" style={{ marginRight: "10px" }}>
           {" "}
@@ -224,7 +220,9 @@ const BookingsPage = () => {
                 </div>
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
-                  <span className="b-content">{item.room_number} </span>
+                  <span className="b-content">
+                    {format(new Date(item.date), "eee dd MMM yyyy")}{" "}
+                  </span>
                 </div>
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
@@ -233,15 +231,11 @@ const BookingsPage = () => {
 
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
-                  <span className="b-content">
-                    {format(new Date(item.from), "eee dd MMM yyyy")}
-                  </span>
+                  <span className="b-content">{item.from}</span>
                 </div>
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
-                  <span className="b-content">
-                    {format(new Date(item.to), "eee dd MMM yyyy")}
-                  </span>
+                  <span className="b-content">{item.to}</span>
                 </div>
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
@@ -249,7 +243,7 @@ const BookingsPage = () => {
                 </div>
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
-                  {checkDueDate(item.from) ? (
+                  {checkDueDate(item.date) ? (
                     <>
                       {item.status === "Checked In" ? (
                         <>
@@ -258,7 +252,7 @@ const BookingsPage = () => {
                               className="searchbtn"
                               onClick={() => {
                                 dispatch(
-                                  CheckInClient(item._id, {
+                                  CheckInClientMeeting(item._id, {
                                     status: "Checked Out",
                                   })
                                 );
@@ -268,14 +262,14 @@ const BookingsPage = () => {
                             </span>
                           ) : (
                             <>
-                              {checkDueDate(item.to) ? (
+                              {checkDueDate(item.date) ? (
                                 <span
                                   style={{ backgroundColor: "green" }}
                                   className="searchbtn"
                                   onClick={() => {
                                     setLoadingbtn(true);
                                     dispatch(
-                                      CheckInClient(item._id, {
+                                      CheckInClientMeeting(item._id, {
                                         status: "Checked Out",
                                       })
                                     );
@@ -292,7 +286,7 @@ const BookingsPage = () => {
                                   onClick={() => {
                                     setLoadingbtn(true);
                                     dispatch(
-                                      CheckInClient(item._id, {
+                                      CheckInClientMeeting(item._id, {
                                         status: "Checked In",
                                       })
                                     );
@@ -323,7 +317,7 @@ const BookingsPage = () => {
                                   className="searchbtn"
                                   onClick={() => {
                                     dispatch(
-                                      CheckInClient(item._id, {
+                                      CheckInClientMeeting(item._id, {
                                         status: "Checked In",
                                       })
                                     );
@@ -337,7 +331,7 @@ const BookingsPage = () => {
                                   onClick={() => {
                                     setLoadingbtn(true);
                                     dispatch(
-                                      CheckInClient(item._id, {
+                                      CheckInClientMeeting(item._id, {
                                         status: "Checked In",
                                       })
                                     );
@@ -402,4 +396,4 @@ const BookingsPage = () => {
   );
 };
 
-export default BookingsPage;
+export default MeetingSpaceOrders;

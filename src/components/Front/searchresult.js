@@ -19,7 +19,7 @@ import TopNav from "../utils/pagenav";
 import { useDispatch, useSelector } from "react-redux";
 import { Clear_SearchBox, GetsearchResult } from "../../store/actions/datacollection";
 import BookRoomBox from "./Room/bookroom";
-import { enableScroll, showToastify, stayDays } from "../utils/reuseable";
+import { PromptToastify, enableScroll, showToastify, stayDays } from "../utils/reuseable";
 import MobileTopNav from "../utils/mobilenav";
 import SkeletonLoading from "../skeletonLoading/SkeletonLoading";
 import SkeletonLoadingCards from "../skeletonLoading/SkeletonLoadingCards";
@@ -73,7 +73,7 @@ const SearchResult = () => {
 
   const SearhValues = () => {
     if (stayDays(dates[0].startDate, dates[0].endDate) === 0) {
-      showToastify("ERROR", "Please check the date");
+      PromptToastify("Please check the date");
     } else {
       navigate(
         `/rooms/search-results/${dates[0].startDate}/${dates[0].endDate}/${roomtyp}/${options}`
@@ -341,7 +341,7 @@ const SearchResult = () => {
               value={roomtyp}
               onChange={(data) => {
                 setroomtype(data.target.value);
-                console.log(roomtyp);
+             
               }}
             >
               {" "}

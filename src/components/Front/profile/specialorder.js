@@ -1,7 +1,8 @@
 import React from "react";
-import RoomBox from "./roombox";
+
 import { useDispatch, useSelector } from "react-redux";
-const BookingsRecord = (props) => {
+import ConferenceBox from "./conferencebox";
+const SpecialOrder = (props) => {
   const myAccount = useSelector((data) => data.authuser);
   return (
     <div className="bookingd">
@@ -10,15 +11,13 @@ const BookingsRecord = (props) => {
         {myAccount &&
         myAccount.account &&
         myAccount.account.bookings.length > 0 ? (
-          myAccount.account.bookings.map((book, index) => {
+          myAccount.account.conference.map((book, index) => {
             return (
               <div key={index}>
-                <RoomBox 
+                <ConferenceBox
                   data={book}
                   setData={props.setData}
                   setMsg={props.setMsg}
-                  setroom={props.setroom} setcontact={props.setcontact}
-                  setorderid={props.setorderid} setRefund={props.setRefund}
                 />
               </div>
             );
@@ -31,4 +30,4 @@ const BookingsRecord = (props) => {
   );
 };
 
-export default BookingsRecord;
+export default SpecialOrder;

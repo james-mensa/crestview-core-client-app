@@ -13,9 +13,16 @@ import orders from "./orders";
 import orderdetail from "./orderdetail";
 import roomtypes from "./roomtypes";
 import searchRooms from "./searccards";
+import conference_order from "./confer_order";
+import monthlyIncome from "./monthrevenue";
+import meetingOrders from "./conferencebookings"
+import conferenceIncome from "./conferenceRev";
+import admin from "./adminauth";
 
 const appReducers = combineReducers({
   personal,
+  admin,
+  conferenceIncome,
   authuser,
   clients,
   notification,
@@ -26,7 +33,10 @@ const appReducers = combineReducers({
   rooms,
   orderdetail,
   searchRooms,
- 
+  conference_order,
+  monthlyIncome,
+  meetingOrders
+ ,
 roomtypes
 });
 

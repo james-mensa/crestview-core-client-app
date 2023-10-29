@@ -16,6 +16,7 @@ import Resetpasspage from "./components/Front/resetpassword";
 import ConfirmAccount from "./components/Front/confirmAccount";
 import PaymentSection from "./components/Front/payment";
 import {
+  AdminLogin,
   AutoLogin,
   CheckLogin,
   getAllUsers,
@@ -33,11 +34,20 @@ import BookingsPanel from "./components/Front/profile/bookingnav";
 import AdminDashboard from "./components/Admin/panel";
 import PanelRoom from "./components/Admin/panelroom";
 import AddRoom from "./components/Admin/addrooms";
-import  TypeDashboard from "./components/Admin/typepanel"
+import TypeDashboard from "./components/Admin/typepanel";
 import AddRoomTypes from "./components/Admin/addroomtype";
 import AddRoomCategory from "./components/Admin/addromfromcategory";
 import Location from "./components/utils/location";
 import PanelBook from "./components/Admin/panelbooks";
+import PanelMeetingOrders from "./components/Admin/panelConference";
+import PanelCustomer from "./components/Admin/panelcustomers";
+import ConferenceBook from "./components/Front/bookconference";
+import ConferenceCheckout from "./components/Front/checkoutconference";
+import SpecialOrderPanel from "./components/Front/profile/specialordernav";
+import SignInAdmin from "./components/Front/adminlogin";
+import Admincontainer from "./components/utils/authadmin";
+import ForgottenPassword from "./components/Front/forgotpassword";
+
 function App() {
   const notifications = useSelector((value) => value.notification);
   const dispatch = useDispatch();
@@ -50,6 +60,9 @@ function App() {
 
   useEffect(() => {
     dispatch(AutoLogin());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(AdminLogin());
   }, [dispatch]);
 
   useEffect(() => {
@@ -73,6 +86,8 @@ function App() {
 
         <Route path="/account/verification" element={<ConfirmAccount />} />
         <Route path="/account/passwordreset" element={<Resetpasspage />} />
+        <Route path="/account/forgotten_credentials" element={<ForgottenPassword />} />
+        
         <Route
           path="/rooms/search-results/:startDate/:endDate/:roomtype/:person"
           element={<SearchResult />}
@@ -80,20 +95,71 @@ function App() {
 
         <Route path="/user/login" element={<SignInUser />}></Route>
         <Route path="/user/Signup" element={<MyForm />}></Route>
-        <Route path="/room/payment/:id/:start/:end" element={<PaymentSection />}></Route>
-        <Route path="/client/profile" element={<UserPanel />} />
-        <Route path="/client/panel/records" element={<BookingsPanel />} />
-        <Route path="/admin/panel/bookings" element={<PanelBook />} />
-        <Route path="/client/panel/settings" element={<SettingsPanel />} />
-        <Route path="/admin/panel/overview" element={<AdminDashboard />} />
-        <Route path="/admin/panel/rooms" element={<PanelRoom/>} />
-        <Route path="/admin/panel/addroom" element={<AddRoom/>} />
-        <Route path="/admin/panel/room_type" element={<TypeDashboard/>} />
-        <Route path="/admin/panel/newcategory" element={<AddRoomTypes/>} />
-        <Route path="/admin/panel/newroom_from_category" element={<AddRoomCategory/>} />
-        <Route path="/rixos/location" element={<Location/>} />
-       
-        
+        <Route
+          path="/room/payment/:id/:start/:end"
+          element={
+            <Authcontainer>
+              <PaymentSection />
+            </Authcontainer>
+          }
+        ></Route>
+        <Route
+          path="/client/conference/checkout/:startTime/:endDTime/:startD"
+          element={
+            <Authcontainer>
+              <ConferenceCheckout />
+            </Authcontainer>
+          }
+        ></Route>
+        <Route
+          path="/client/profile"
+          element={
+            <Authcontainer>
+              <UserPanel />
+            </Authcontainer>
+          }
+        />
+        <Route
+          path="/client/panel/records"
+          element={
+            <Authcontainer>
+              {" "}
+              <BookingsPanel />
+            </Authcontainer>
+          }
+        />
+        <Route path="/admin/panel/bookings" element={<Admincontainer><PanelBook /></Admincontainer> } />
+        <Route path="/admin/panel/meetings" element={ <Admincontainer><PanelMeetingOrders /></Admincontainer>} />
+        <Route
+          path="/client/panel/settings"
+          element={
+            <Authcontainer>
+              <SettingsPanel />
+            </Authcontainer>
+          }
+        />
+        <Route path="/admin/panel/overview" element={ <Admincontainer><AdminDashboard /></Admincontainer>} />
+        <Route path="/admin/panel/rooms" element= {<Admincontainer><PanelRoom /></Admincontainer>} />
+        <Route path="/admin/panel/addroom" element={<Admincontainer><AddRoom /></Admincontainer>} />
+        <Route path="/client/conference/booking" element={<ConferenceBook />} />
+        <Route
+          path="/client/panel/specail_orders"
+          element={
+            <Authcontainer>
+              <SpecialOrderPanel />
+            </Authcontainer>
+          }
+        />
+        <Route path="/admin/panel/customers" element={<Admincontainer><PanelCustomer /></Admincontainer>} />
+        <Route path="/admin/dashboard" element={<SignInAdmin />} />
+
+        <Route path="/admin/panel/room_type" element={ <Admincontainer><TypeDashboard /></Admincontainer>} />
+        <Route path="/admin/panel/newcategory" element={<Admincontainer><AddRoomTypes /></Admincontainer>} />
+        <Route
+          path="/admin/panel/newroom_from_category"
+          element={<Admincontainer><AddRoomCategory /></Admincontainer>}
+        />
+        <Route path="/rixos/location" element={<Location />} />
       </Routes>
       <Toaster />
     </BrowserRouter>

@@ -3,9 +3,9 @@ import React from "react";
 import { BoundingBoxCircles, Cup, Person, Star } from "react-bootstrap-icons";
 import { FaBed } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { showToastify } from "../../utils/reuseable";
+import { PromptToastify, showToastify } from "../../utils/reuseable";
 import { useSelector } from "react-redux";
-
+import { MdDinnerDining } from "react-icons/md";
 function BookRoomBox(props) {
   const navigate = useNavigate();
   const data = props.data;
@@ -28,49 +28,43 @@ function BookRoomBox(props) {
           {data.alias}: {data.description}
         </p>
         <div className="row-styles">
-          <Person color="yellow" size={15} />
+          <Person size={15} />
           <span>{data.capacity} Person</span>
           <BoundingBoxCircles />
           <span>{data.aircondition ? "Air condition" : "no available"}</span>
         </div>
 
         <div className="row-styles">
-          <Cup color="yellow" size={15} />
+          <Cup size={15} />
           <span> {data.meals}</span>
           <FaBed />
           <span>{data.mattress}</span>
         </div>
+        {data.room_type === "Excecutive suite" ? (
+          <div className="row-styles">
+            <MdDinnerDining size={15} />
+            <span> Access to rooftop Bar</span>
+          </div>
+        ) : null}
         <div className="row-styles-b">
           {props.valid ? (
             <>
-              {myaccount && myaccount.account ? (
-                <p
-                  className="book-now"
-                  onClick={() =>
-                    navigate(
-                      `/room/payment/${data._id}/${props.start}/${props.end}`
-                    )
-                  }
-                >
-                  Book now
-                </p>
-              ) : (
-                <p
-                  className="book-now"
-                  onClick={() => {
-                    showToastify("ERROR", "Login ");
-                    navigate(`/user/login`);
-                  }}
-                >
-                  Book now
-                </p>
-              )}
+              <p
+                className="book-now"
+                onClick={() =>
+                  navigate(
+                    `/room/payment/${data._id}/${props.start}/${props.end}`
+                  )
+                }
+              >
+                Book now
+              </p>
             </>
           ) : (
             <p
               className="book-now"
               onClick={() => {
-                showToastify("ERROR", "Please select booking date");
+                PromptToastify("Please select booking date");
               }}
             >
               Book now
