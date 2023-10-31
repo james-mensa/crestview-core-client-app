@@ -38,7 +38,7 @@ const CustomerPage = (props) => {
     <div className="panel_detail">
     
 
-      <p className="header-p">Bookings</p>
+      <p className="header-p">Customers Panel</p>
       <p className="row-styles">
         <Filter /> <span>Filter</span>{" "}
       </p>
@@ -145,6 +145,7 @@ const CustomerPage = (props) => {
                     onClick={() => {
                       props.setbprompt(true);
                         props.setuserid(item._id)
+                       
 
                     }}
                   >

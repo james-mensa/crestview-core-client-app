@@ -8,13 +8,17 @@ const {
   PRE_REGISTER,
   API,
   ADMIN_DETAIL,
+  ADMINACCOUNT,
 } = require("../type");
 
 export const get_users = (detail) => ({
   type: USERS,
   payload: detail,
 });
-
+export const adminEmployees = (account) => ({
+  type: ADMINACCOUNT,
+  payload: account,
+});
 export const pre_register = (data) => ({
   type: PRE_REGISTER,
   payload: data,
@@ -68,7 +72,6 @@ export const QuestRefunds = (data, id) => {
   };
 };
 
-
 export const sendMsgClient = (data) => {
   return async (dispatch) => {
     try {
@@ -81,6 +84,25 @@ export const sendMsgClient = (data) => {
     } catch (error) {}
   };
 };
+
+
+
+export const BlockEmployees = (id,admin) => {
+  return async (dispatch) => {
+    try {
+      await axios.patch(`${API}/admin/adminstrator/blockuser/${id}/${admin}`);
+      dispatch(
+        notify.notify_success({
+          msg: "Successfull",
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(notify.notify_error({ msg: "Failed" }));
+    }
+  };
+};
+
 
 export const Blockuser = (id) => {
   return async (dispatch) => {
@@ -99,6 +121,24 @@ export const Blockuser = (id) => {
   };
 };
 
+
+
+export const UnBlockEmployee = (id,admin) => {
+  return async (dispatch) => {
+    try {
+      await axios.patch(`${API}/admin/adminstrator/unblockuser/${id}/${admin}`);
+
+      dispatch(
+        notify.notify_success({
+          msg: "Successfull",
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(notify.notify_error({ msg: "Failed" }));
+    }
+  };
+};
 export const UnBlockuser = (id) => {
   return async (dispatch) => {
     try {
@@ -160,6 +200,27 @@ export const updateAccount = (data, id) => {
   };
 };
 
+export const AddAdminAccount = (data, id) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(`${API}/admin/adminstrator/newaccount/${id}`, data);
+      dispatch(notify.notify_success({ msg: "Account added" }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const AllAdminAccount = (id) => {
+  return async (dispatch) => {
+    try {
+      const adminAccount = await axios.get(
+        `${API}/admin/adminstrator/accounts/${id}`,
+        
+      );
+      dispatch(adminEmployees(adminAccount.data));
+    } catch (error) {}
+  };
+};
 export const UpdatePass = (data, id) => {
   return async (dispatch) => {
     try {
@@ -223,8 +284,8 @@ export const Signout = () => {
   };
 };
 
-let token = Getusercookie();
 
+let token = Getusercookie();
 const config = {
   headers: {
     authuser: token,

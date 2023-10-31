@@ -117,6 +117,22 @@ export const showToastify = (type, message) => {
       return null;
   }
 };
+export const shownewEmployeeP = (target, div) => {
+  const showdiv = document.querySelector(`.${div}`);
+  showdiv.classList.add("emploee_add_show");
+  setTimeout(() => {
+    showdiv.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, 500);
+};
+export const hideEmployeeP = (target, div) => {
+  const showdiv = document.querySelector(`.${div}`);
+  showdiv.classList.remove("emploee_add_show");
+  setTimeout(() => {
+    window.scrollTo(0,0)
+  }, 500);
+};
 
 export const CheckTopAds = (ads) => {
   const div = document.querySelectorAll(".categorytem");
@@ -351,11 +367,9 @@ export function checkDueDate(targetDate) {
 }
 export function ReturnOrderByType(target, data) {
   const filterD = data.filter(
-    (data) =>
-    
-      data.room.room_type.charAt(0) === target.charAt(0)
+    (data) => data.room.room_type.charAt(0) === target.charAt(0)
   );
-  
-console.log(filterD);
+
+  console.log(filterD);
   return filterD;
 }

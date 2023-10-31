@@ -176,9 +176,7 @@ const AdminOverview = () => {
   const [statData, setSetData] = useState({});
   const [growIndicator, setGrowthrate] = useState({});
 
-  const [roompayemntoption, setpaymentoption] = useState({
-  
-  });
+  const [roompayemntoption, setpaymentoption] = useState({});
 
   useEffect(() => {
     setpaymentoption({
@@ -533,27 +531,24 @@ const AdminOverview = () => {
         </div>
         <div style={{ width: "90%", marginLeft: "40px" }}>
           {RevenueD && RevenueD.data ? (
-            <Bar type="bar" data={statData} options={options} />
+            <Bar type="bar" data={statData} />
           ) : null}
         </div>
       </div>
 
       <div style={{ width: "90%", marginLeft: "40px" }}>
-        {RevenueD && RevenueD.data ? (
-          <Line data={growIndicator} options={options} />
-        ) : null}
+        {RevenueD && RevenueD.data ? <Line data={growIndicator} /> : null}
       </div>
 
-      <div className="align-grid-g " style={{marginTop:"80px"}}>
-      <div style={{marginTop:"20px",marginRight:"40px"}}> {RevenueD && RevenueD.data ? (
-          <Pie data={roompayemntoption} options={options} />
-        ) : null}</div> 
+      <div className="align-grid-g " style={{ marginTop: "80px" }}>
+        <div style={{ marginTop: "20px", marginRight: "40px" }}>
+          {" "}
+          {RevenueD && RevenueD.data ? <Pie data={roompayemntoption} /> : null}
+        </div>
         <div>
-          {
-            ConferenceRev && ConferenceRev.data ?
-            <Pie data={conferencepaymentoption} options={options} />:null
-
-          }
+          {ConferenceRev && ConferenceRev.data ? (
+            <Pie data={conferencepaymentoption} options={options} />
+          ) : null}
         </div>
       </div>
       <div className="row-styles" style={{ marginTop: "50px" }}>
@@ -617,12 +612,12 @@ const AdminOverview = () => {
       </div>
       <div style={{ width: "90%", marginLeft: "40px" }}>
         {ConferenceRev && ConferenceRev.data ? (
-          <Bar type="bar" data={ConferenceData} options={options} />
+          <Bar type="bar" data={ConferenceData} />
         ) : null}
       </div>
       <div style={{ width: "90%", marginLeft: "40px" }}>
         {ConferenceRev && ConferenceRev.data ? (
-          <Line type="bar" data={growIndicatorM} options={options} />
+          <Line type="bar" data={growIndicatorM} />
         ) : null}
       </div>
     </div>

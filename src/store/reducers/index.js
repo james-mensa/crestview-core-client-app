@@ -18,9 +18,11 @@ import monthlyIncome from "./monthrevenue";
 import meetingOrders from "./conferencebookings"
 import conferenceIncome from "./conferenceRev";
 import admin from "./adminauth";
+import adminaccounts from "./adminaccounts";
 
 const appReducers = combineReducers({
   personal,
+  adminaccounts,
   admin,
   conferenceIncome,
   authuser,

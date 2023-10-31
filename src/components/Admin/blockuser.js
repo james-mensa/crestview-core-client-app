@@ -2,7 +2,12 @@ import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Blockuser, getAllUsers, sendMsg } from "../../store/actions/adminActions";
+import {
+  BlockEmployees,
+  Blockuser,
+  getAllUsers,
+  sendMsg,
+} from "../../store/actions/adminActions";
 import { showToastify } from "../utils/reuseable";
 import { CircleSpinner } from "react-spinners-kit";
 
@@ -16,9 +21,8 @@ const BlockCustomer = (props) => {
     if (notifications && notifications.notice) {
       setloading(false);
       props.setbprompt(false);
-  
-        dispatch(getAllUsers());
-     
+
+      dispatch(getAllUsers());
     }
   });
   return (
@@ -42,7 +46,13 @@ const BlockCustomer = (props) => {
             type="submit"
             onClick={() => {
               setloading(true);
-              dispatch(Blockuser(props.customerid));
+              if (props.bemploy) {
+                dispatch(BlockEmployees(props.customerid,props.adminid));
+              }
+              else{
+                dispatch(Blockuser(props.customerid));
+              }
+            
             }}
             className="submitinput"
           />

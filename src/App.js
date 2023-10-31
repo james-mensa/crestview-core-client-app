@@ -47,6 +47,8 @@ import SpecialOrderPanel from "./components/Front/profile/specialordernav";
 import SignInAdmin from "./components/Front/adminlogin";
 import Admincontainer from "./components/utils/authadmin";
 import ForgottenPassword from "./components/Front/forgotpassword";
+import EmployeeDashboard from "./components/Admin/employeepanel";
+import AdminRestriction from "./components/utils/adminrestrction";
 
 function App() {
   const notifications = useSelector((value) => value.notification);
@@ -138,9 +140,10 @@ function App() {
             </Authcontainer>
           }
         />
-        <Route path="/admin/panel/overview" element={ <Admincontainer><AdminDashboard /></Admincontainer>} />
-        <Route path="/admin/panel/rooms" element= {<Admincontainer><PanelRoom /></Admincontainer>} />
-        <Route path="/admin/panel/addroom" element={<Admincontainer><AddRoom /></Admincontainer>} />
+        <Route path="/admin/panel/overview" element={ <Admincontainer><AdminRestriction><AdminDashboard /></AdminRestriction></Admincontainer>} />
+        <Route path="/admin/panel/rooms" element= {<Admincontainer><AdminRestriction><PanelRoom /></AdminRestriction></Admincontainer>} />
+        <Route path="/admin/panel/addroom" element={<Admincontainer><AdminRestriction><AddRoom /></AdminRestriction></Admincontainer>} />
+        <Route path="/admin/panel/employee/management" element={ <Admincontainer><AdminRestriction><EmployeeDashboard/></AdminRestriction></Admincontainer>}/>
         <Route path="/client/conference/booking" element={<ConferenceBook />} />
         <Route
           path="/client/panel/specail_orders"

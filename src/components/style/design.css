@@ -65,7 +65,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   background-color: rgb(1, 10, 36, 0.8);
-  padding: 30px ;
+  padding: 30px;
 }
 .conference-bh {
   width: 100%;
@@ -106,7 +106,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(7, 8, 16,0.9);
+  background-color: rgb(7, 8, 16, 0.9);
 }
 
 .order-detail h1 {
@@ -123,7 +123,7 @@
 .conference-box {
   display: flex;
   flex-direction: column;
-background-color: transparent;
+  background-color: transparent;
   width: 80%;
 }
 
@@ -140,7 +140,7 @@ background-color: transparent;
 }
 .c-date p {
   font-size: 20px;
-color: chocolate;
+  color: chocolate;
   font-family: Roboto condensed;
   margin-bottom: 0px;
 }
@@ -243,7 +243,7 @@ color: chocolate;
   justify-content: center;
   align-items: center;
 }
-.header-h1{
+.header-h1 {
   font-family: Roboto condensed;
   color: rgb(205, 189, 177);
   font-size: 50px;
@@ -559,7 +559,7 @@ color: chocolate;
   animation: anim-btn 1s ease-in-out;
   cursor: pointer;
   transition: 1s ease-in-out;
-  width: 85px;
+  min-width: 85px;
   height: 40px;
   font-size: 13px;
 }
@@ -572,19 +572,8 @@ color: chocolate;
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-.intro_header{
-  color:rgb(187, 183, 183);
+.intro_header {
+  color: rgb(187, 183, 183);
   font-size: 22px;
   margin-top: 40px;
 }
@@ -641,6 +630,18 @@ color: chocolate;
   font-family: Roboto condensed;
   font-size: 15px;
   font-weight: bold;
+}
+
+.admin_indentity {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: Roboto condensed;
+  margin-top: 50px;
+  font-size: 17px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
 }
 .result-box {
   width: 65%;
@@ -836,6 +837,19 @@ color: chocolate;
   -webkit-animation: cname_anim 1s ease-in-out;
 }
 
+.emploee_add {
+  flex-direction: column;
+  width: 100%;
+  margin-top: 80px;
+  display: none;
+}
+
+.emploee_add_show {
+  display: flex;
+  -webkit-animation: show_anim_admin 3s ease-in-out;
+  animation: show_anim_admin 3s ease-in-out;
+}
+
 .companyname-img {
   -webkit-animation: cimg_anim 1s ease-in-out;
   animation: cimg_anim 1s ease-in-out;
@@ -977,7 +991,6 @@ color: chocolate;
   color: white;
   font-family: Roboto condensed;
   padding-left: 5px;
-  
 }
 
 .align-grid {
@@ -986,7 +999,7 @@ color: chocolate;
   width: 95%;
 }
 
-.align-grid-g{
+.align-grid-g {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   width: 95%;
@@ -1027,7 +1040,7 @@ color: chocolate;
   height: 150px;
   color: black !important;
   background-color: chocolate;
-  border:1px solid rgb(213, 213, 213);
+  border: 1px solid rgb(213, 213, 213);
   cursor: pointer;
   transition: 1s ease-in-out;
 }
@@ -1053,15 +1066,13 @@ color: chocolate;
   margin-top: 20px;
 }
 
-
-
-.pay-layout{
+.pay-layout {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  background-color: rgba(196, 218, 227, 0.85) ;
+  background-color: rgba(196, 218, 227, 0.85);
   position: relative;
   z-index: 100;
   padding: 10px;
@@ -1157,7 +1168,6 @@ color: chocolate;
   font-family: Roboto condensed;
   font-size: 15px;
   width: 100%;
-
 }
 .room-description h3 {
   font-size: 16px;
@@ -1486,7 +1496,7 @@ color: chocolate;
   margin: 20px;
   border-radius: 5px;
 }
-.signin{
+.signin {
   cursor: pointer;
   margin-top: 20px;
 }
@@ -1497,7 +1507,7 @@ color: chocolate;
   margin-top: 50px;
 }
 .myform {
-  width: 85%;
+  width: 95%;
   display: flex;
   background-color: transparent;
   padding-bottom: 50px;
@@ -1513,7 +1523,13 @@ color: chocolate;
   color: rgb(3, 2, 11);
   font-weight: bold;
 }
-
+.errorspan {
+  visibility: hidden;
+}
+.showerror {
+  visibility: visible;
+  color: red;
+}
 .input-check {
   outline: none;
   width: 20px;
@@ -1605,7 +1621,6 @@ color: chocolate;
   color: rgb(2, 2, 26);
   padding-bottom: 20px;
   min-height: 500px;
- 
 }
 .congrate-box p {
   font-family: Roboto condensed;
@@ -2156,11 +2171,10 @@ color: chocolate;
     display: none;
   }
 
-
   .conference-box {
     display: flex;
     flex-direction: column;
-  background-color: transparent;
+    background-color: transparent;
     width: 99%;
   }
   .filter-cbox {
@@ -2181,9 +2195,8 @@ color: chocolate;
     font-weight: bold;
   }
 
-  
-  .intro_header{
-    color:rgb(187, 183, 183);
+  .intro_header {
+    color: rgb(187, 183, 183);
     font-size: 15px;
   }
   .header_search_item-c {
@@ -2202,7 +2215,7 @@ color: chocolate;
     width: 100%;
     padding: 20px;
   }
-  .header-h1{
+  .header-h1 {
     font-family: Roboto condensed;
     color: rgb(205, 189, 177);
     font-size: 18px;
@@ -2313,5 +2326,14 @@ color: chocolate;
   0% {
     opacity: 0.6;
     transform: translateX(-50%);
+  }
+}
+
+@keyframes show_anim_admin {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
   }
 }
