@@ -5,7 +5,7 @@ const WhatWeDo = () => {
   const navigate = useNavigate();
   return (
     <div className="roomType ">
-      <p
+      <p id="serviceoder"
         style={{
           fontWeight: "bold",
           fontSize: "18px",

@@ -28,11 +28,21 @@ const Footer=()=>{
         </div>
         <div className="about-use">
         <h3 style={{marginTop:"50px"}}>Usefull Links</h3>
-        <p className="row-styles" style={{color:"chocolate"}}><FaCaretRight/> <span >Home</span></p>
-        <p className="row-styles" style={{color:"chocolate"}}><FaCaretRight/> <span >Our services</span></p>
-        <p className="row-styles" style={{color:"chocolate"}}><FaCaretRight/> <span >Testimonies</span></p>
+        <p className="row-styles" style={{color:"chocolate"}}><FaCaretRight onClick={()=>navigate("/")}/> <span >Home</span></p>
+        <p className="row-styles" style={{color:"chocolate"}}><FaCaretRight/> <span  
+             onClick={() => {
+              document
+                .getElementById("serviceoder")
+                .scrollIntoView({ behavior: "smooth" });
+            }}>Our services</span></p>
+        <p
+         onClick={() => {
+              document
+                .getElementById("imageclient")
+                .scrollIntoView({ behavior: "smooth" });
+            }} className="row-styles" style={{color:"chocolate"}}><FaCaretRight/> <span >Testimonies</span></p>
         <p className="row-styles" style={{color:"chocolate"}}><FaCaretRight/> <span >Privacy Policy</span></p>
-      
+       
       
         
 

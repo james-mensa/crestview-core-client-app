@@ -16,7 +16,7 @@ const Testimones = () => {
       className="align-grid"
       style={{ minHeight: `${window.innerHeight}px`,marginBottom:"50px",marginTop:"50px" }}
     >
-      <div className="image-client layoutspacv">
+      <div  id="imageclient" className="image-client layoutspacv">
         <img
           src={
             "https://res.cloudinary.com/dewkx66gl/image/upload/v1696001677/testi_o7krpm.jpg"
