@@ -97,10 +97,10 @@ const WhatWeDo = () => {
             <h3>Rooftop Bar</h3>
             <p>
               Sip on signature cocktails while enjoying panoramic views of the
-              city from our rooftop bar. It's the perfect spot to unwind after a
+              city from our rooftop bar with comes with our Excecutive suite rooms. It's the perfect spot to unwind after a
               thrilling movie night.
             </p>
-            <span className="book-now">Book now</span>
+            
           </div>
         </div>
       </div>
