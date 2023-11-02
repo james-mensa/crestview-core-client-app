@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  AllAdminAccount,
   BlockEmployees,
   Blockuser,
+  TerminateUserAccount,TerminateAdminAccount,
   getAllUsers,
   sendMsg,
 } from "../../store/actions/adminActions";
@@ -21,16 +23,21 @@ const BlockCustomer = (props) => {
     if (notifications && notifications.notice) {
       setloading(false);
       props.setbprompt(false);
-
-      dispatch(getAllUsers());
+      dispatch(AllAdminAccount(props.adminid));
     }
   });
   return (
     <div style={{ width: "90%" }}>
       <div className="row-styles" style={{ marginBottom: "20px" }}>
-        <span style={{ color: "chocolate", fontSize: "16px" }}>
-          Are you sure you want to block user ?
-        </span>{" "}
+        {props.deleteaction ? (
+          <span style={{ color: "chocolate", fontSize: "16px" }}>
+            Are you sure you want to DELECT this account ?
+          </span>
+        ) : (
+          <span style={{ color: "chocolate", fontSize: "16px" }}>
+            Are you sure you want to BLOCK user ?
+          </span>
+        )}
       </div>
 
       {loading ? (
@@ -41,21 +48,39 @@ const BlockCustomer = (props) => {
         </>
       ) : (
         <>
-          <input
-            name="Yes"
-            type="submit"
-            onClick={() => {
-              setloading(true);
-              if (props.bemploy) {
-                dispatch(BlockEmployees(props.customerid,props.adminid));
-              }
-              else{
-                dispatch(Blockuser(props.customerid));
-              }
-            
-            }}
-            className="submitinput"
-          />
+          {props.deleteaction ? (
+            <span
+              onClick={() => {
+                setloading(true);
+                if (props.bemploy) {
+                  dispatch(
+                    TerminateAdminAccount(props.customerid, props.adminid)
+                  );
+                } else {
+                  dispatch(TerminateUserAccount(props.customerid));
+                }
+              }}
+              className="searchbtn"
+              style={{ width: "70px" }}
+            >
+              YES
+            </span>
+          ) : (
+            <span
+              onClick={() => {
+                setloading(true);
+                if (props.bemploy) {
+                  dispatch(BlockEmployees(props.customerid, props.adminid));
+                } else {
+                  dispatch(Blockuser(props.customerid));
+                }
+              }}
+              className="searchbtn"
+              style={{ width: "70px" }}
+            >
+              YES
+            </span>
+          )}
         </>
       )}
     </div>

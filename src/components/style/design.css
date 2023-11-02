@@ -64,7 +64,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: rgb(1, 10, 36, 0.8);
+  background-color: rgb(1, 10, 36, 0.9);
   padding: 30px;
 }
 .conference-bh {
@@ -478,6 +478,14 @@
   width: 100%;
 }
 
+.testimony-style{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+ 
+  
+}
+
 .instruction-layout h3 {
   color: rgb(8, 66, 190);
   font-weight: bold;
@@ -675,6 +683,11 @@
 
 .footer {
   margin-top: 100px;
+  width: 100%;
+  background-color: rgb(17, 14, 32);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .closebtnn {
@@ -1079,6 +1092,17 @@
   font-family: Roboto condensed;
   padding-top: 30px;
 }
+.deletebtn {
+  border-radius: 20px;
+  padding: 10px;
+  background-color: red;
+  transition: 1s ease-in-out;
+}
+.deletebtn:hover {
+  background-color: rgb(248, 240, 240);
+  transition: 1s ease-in-out;
+  cursor: pointer;
+}
 
 .Roomcard {
   transition: 2s ease-in-out;
@@ -1091,6 +1115,7 @@
   width: 98%;
   margin-top: 20px;
   cursor: pointer;
+  height: 500px;
 }
 
 .Roomcard-a {
@@ -1121,7 +1146,7 @@
 .card-room-img {
   width: 45%;
   border-radius: 10px;
-  height: 80%;
+  height: 250px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
 }
@@ -1147,8 +1172,8 @@
   font-size: 18px;
 }
 .card-room-img-w {
-  width: 35%;
-  height: 100px;
+  width: 40%;
+  height: 200px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
@@ -1383,8 +1408,7 @@
   width: 100%;
 }
 .image-client {
-  width: 90%;
-
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1440,7 +1464,7 @@
 .clientRate {
   display: flex;
   position: relative;
-  width: 90%;
+  width: 50%;
 }
 
 .testimoy-l {
@@ -2312,9 +2336,8 @@
 }
 @keyframes anim-msg {
   0% {
-    transform: translateY(20%);
+    transform: translateY(5%);
     opacity: 0.96;
-    width: 69%;
   }
 }
 @keyframes animate-card {

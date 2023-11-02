@@ -13,7 +13,7 @@ import { Person, Quote } from "react-bootstrap-icons";
 const Testimones = () => {
   return (
     <div
-      className="align-grid"
+      className="testimony-style"
       style={{ minHeight: `${window.innerHeight}px`,marginBottom:"50px",marginTop:"50px" }}
     >
       <div  id="imageclient" className="image-client layoutspacv">
@@ -46,15 +46,13 @@ const Testimones = () => {
                   <Quote color="chocolate" size={40} />
                 </span>
                 <span>
-                we pride ourselves on delivering impeccable service that goes
-                beyond your expectations. Whether you're here for business or
-                leisure, we aim to make your stay with us truly exceptional
+                Rixos takes dining to a whole new level. Each restaurant on the property offered a culinary adventure that delighted my taste buds. From the finest international cuisine to delectable local specialties, every meal was an exquisite journey.
                 </span>
                 </div>
               <p className="row-styles">
                 <Person size={30} />{" "}
                 <span style={{ marginLeft: "10px", color: "chocolate" }}>
-                  James mensah
+                Kofi Adams
                 </span>{" "}
               </p>
             </div>
@@ -66,10 +64,7 @@ const Testimones = () => {
                 <span>
                   <Quote color="chocolate" size={40} />
                 </span>
-                we pride ourselves on delivering impeccable service that goes
-                beyond your expectations. Whether you're here for business or
-                leisure, we aim to make your stay with us truly exceptional
-             
+                I recently had the pleasure of staying at Rixos Hotels, and I can confidently say that it was an experience I'll cherish forever. From the moment I arrived, I was greeted with warm smiles and exceptional hospitality that set the tone for an unforgettable stay.
               </p>
               <p className="row-styles">
                 <Person size={30} />{" "}

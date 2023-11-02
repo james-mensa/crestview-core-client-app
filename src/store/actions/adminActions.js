@@ -85,9 +85,7 @@ export const sendMsgClient = (data) => {
   };
 };
 
-
-
-export const BlockEmployees = (id,admin) => {
+export const BlockEmployees = (id, admin) => {
   return async (dispatch) => {
     try {
       await axios.patch(`${API}/admin/adminstrator/blockuser/${id}/${admin}`);
@@ -103,6 +101,41 @@ export const BlockEmployees = (id,admin) => {
   };
 };
 
+export const TerminateAdminAccount = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${API}/admin/adminstrator/deluser/${id}`);
+
+      dispatch(
+        notify.notify_success({
+          msg: "Successfull",
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(notify.notify_error({ msg: "Failed" }));
+    }
+  };
+};
+export const TerminateUserAccount = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${API}/user/deluser/${id}`);
+
+      const content = await axios.get(`${API}/user/getallusers`);
+      dispatch(get_users(content.data));
+
+      dispatch(
+        notify.notify_success({
+          msg: "Successfull",
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(notify.notify_error({ msg: "Failed" }));
+    }
+  };
+};
 
 export const Blockuser = (id) => {
   return async (dispatch) => {
@@ -121,9 +154,7 @@ export const Blockuser = (id) => {
   };
 };
 
-
-
-export const UnBlockEmployee = (id,admin) => {
+export const UnBlockEmployee = (id, admin) => {
   return async (dispatch) => {
     try {
       await axios.patch(`${API}/admin/adminstrator/unblockuser/${id}/${admin}`);
@@ -214,8 +245,7 @@ export const AllAdminAccount = (id) => {
   return async (dispatch) => {
     try {
       const adminAccount = await axios.get(
-        `${API}/admin/adminstrator/accounts/${id}`,
-        
+        `${API}/admin/adminstrator/accounts/${id}`
       );
       dispatch(adminEmployees(adminAccount.data));
     } catch (error) {}
@@ -284,7 +314,6 @@ export const Signout = () => {
   };
 };
 
-
 let token = Getusercookie();
 const config = {
   headers: {
@@ -304,8 +333,9 @@ export const CheckLogin = () => {
 export const AutoLogin = () => {
   return async (dispatch) => {
     try {
+    
       const profiledetail = await axios.get(`${API}/user/getprofile`);
-
+      alert("Ok");
       dispatch(
         userDetail({ account: profiledetail.data, auth: true, loading: false })
       );

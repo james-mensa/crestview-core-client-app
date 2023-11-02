@@ -63,6 +63,15 @@ const MyForm = () => {
       className="mainLayout"
       style={{ minHeight: `${window.innerHeight}px` }}
     >
+
+<img
+              onClick={() => {
+                navigate("/");
+              }}
+              alt=""
+              src="https://res.cloudinary.com/dewkx66gl/image/upload/v1695980190/pngwing.com_2_n6furk.png"
+              className="companyname-img "
+            />{" "}
       <h1>Join Us</h1>
 
       <div className="formsp">

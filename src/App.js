@@ -60,13 +60,13 @@ function App() {
     dispatch(CheckLogin());
   }, []);
 
-  useEffect(() => {
-    dispatch(AutoLogin());
-  }, [dispatch]);
+
   useEffect(() => {
     dispatch(AdminLogin());
   }, [dispatch]);
-
+  useEffect(() => {
+    dispatch(AutoLogin());
+  }, [dispatch]);
   useEffect(() => {
     if (notifications && notifications.notice) {
       if (notifications.success) {

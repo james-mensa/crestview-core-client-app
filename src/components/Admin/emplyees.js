@@ -23,7 +23,7 @@ import { AllOrders, GetAllRooms } from "../../store/actions/datacollection";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
-import { MdEmail, MdNumbers, MdSecurity } from "react-icons/md";
+import { MdDelete, MdEmail, MdNumbers, MdSecurity } from "react-icons/md";
 import {
   UnBlockuser,
   getAllUsers,
@@ -214,6 +214,7 @@ const EmployeePage = (props) => {
                       className="btw_btn"
                       type="button"
                       onClick={() => {
+                        props.setaction(false)
                         props.setbprompt(true);
                         props.setuserid(item._id);
                       }}
@@ -255,6 +256,11 @@ const EmployeePage = (props) => {
                   >
                     Message
                   </button>
+                  <span onClick={()=>{
+                       props.setaction(true)
+                       props.setbprompt(true);
+                       props.setuserid(item._id);
+                  }} className="deletebtn"><MdDelete/></span>
                 </div>
               </div>
             );

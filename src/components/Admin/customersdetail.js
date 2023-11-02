@@ -19,7 +19,7 @@ import { AllOrders, GetAllRooms } from "../../store/actions/datacollection";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
-import { MdEmail, MdNumbers, MdSecurity } from "react-icons/md";
+import { MdDelete, MdEmail, MdNumbers, MdSecurity } from "react-icons/md";
 import { UnBlockuser, getAllUsers } from "../../store/actions/adminActions";
 import { enableScroll } from "../utils/reuseable";
 import MessageCustomer from "./messagecustomer";
@@ -177,6 +177,11 @@ const CustomerPage = (props) => {
                   >
                     Message
                   </button>
+                  <span onClick={()=>{
+                       props.setaction(true)
+                       props.setbprompt(true);
+                       props.setuserid(item._id);
+                  }} className="deletebtn"><MdDelete/></span>
                 </div>
               </div>
             );

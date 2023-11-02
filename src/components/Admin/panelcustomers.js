@@ -15,12 +15,13 @@ const PanelCustomer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showMsg, setMsg] = useState(false);
-  
-  const [showbloc,setbprompt]=useState(false);
+
+  const [showbloc, setbprompt] = useState(false);
   const [selectedEmail, setemail] = useState("");
-  const [customerid,setuserid]=useState("");
-  const bemploy=false;
+  const [customerid, setuserid] = useState("");
+  const bemploy = false;
   const admindetails = useSelector((data) => data.admin);
+  const [deleteaction, setaction] = useState(null);
   return (
     <div className="main-layout">
       <div
@@ -49,8 +50,6 @@ const PanelCustomer = () => {
           </div>
         ) : null}
 
-
-
         {showbloc ? (
           <div
             className="congrate-msg"
@@ -68,17 +67,21 @@ const PanelCustomer = () => {
                 </IconButton>
               </div>
 
-              <BlockCustomer customerid={customerid} setbprompt={setbprompt} bemploy={bemploy} />
+              <BlockCustomer
+                customerid={customerid}
+                setbprompt={setbprompt}
+                bemploy={bemploy}
+                deleteaction={deleteaction}
+              />
             </div>
           </div>
         ) : null}
         <div className="profile-nav-admin">
-        {admindetails && admindetails.account && admindetails.account.role === "admin" ? (
+          {admindetails &&
+          admindetails.account &&
+          admindetails.account.role === "admin" ? (
             <div className="nav-column">
-              <p
-                onClick={() => navigate("/admin/panel/overview")}
-              
-              >
+              <p onClick={() => navigate("/admin/panel/overview")}>
                 <span>Overview</span>
               </p>
               <p onClick={() => navigate("/admin/panel/rooms")}>
@@ -91,60 +94,61 @@ const PanelCustomer = () => {
               <p onClick={() => navigate("/admin/panel/bookings")}>
                 <span>Bookings</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/meetings")}  >
+              <p onClick={() => navigate("/admin/panel/meetings")}>
                 <span>Conference Room Bookings</span>
               </p>
               <p onClick={() => navigate("/admin/panel/employee/management")}>
                 <span>Employee Management</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/customers")} style={{ backgroundColor: " white", color: "rgb(7, 1, 27) " }}>
+              <p
+                onClick={() => navigate("/admin/panel/customers")}
+                style={{ backgroundColor: " white", color: "rgb(7, 1, 27) " }}
+              >
                 <span>Manage Customers</span>
               </p>
               <div className="admin_indentity">
-              <span>
-                {admindetails && admindetails.account && admindetails.account.role === "admin" ? (
-                  <RiAdminFill color="rgb(7, 1, 27)" size={35} />
-                ) : (
-                  <RiCustomerService2Line color="rgb(7, 1, 27)" size={35} />
-                )}
-              </span>
-              <span>
-                {admindetails && admindetails.account
-                  ? admindetails.account.role.toUpperCase()
-                  : "null "}
-              </span>
-            </div>
+                <span>
+                  {admindetails &&
+                  admindetails.account &&
+                  admindetails.account.role === "admin" ? (
+                    <RiAdminFill color="rgb(7, 1, 27)" size={35} />
+                  ) : (
+                    <RiCustomerService2Line color="rgb(7, 1, 27)" size={35} />
+                  )}
+                </span>
+                <span>
+                  {admindetails && admindetails.account
+                    ? admindetails.account.role.toUpperCase()
+                    : "null "}
+                </span>
+              </div>
             </div>
           ) : (
             <div className="nav-column">
-          
-           
-
               <p onClick={() => navigate("/admin/panel/bookings")}>
                 <span>Bookings</span>
               </p>
               <p onClick={() => navigate("/admin/panel/meetings")}>
                 <span>Conference Room Bookings</span>
               </p>
-       
-       
+
               <div className="admin_indentity">
-              <span>
-                {admindetails && admindetails.account && admindetails.account.role === "admin" ? (
-                  <RiAdminFill color="rgb(7, 1, 27)" size={35} />
-                ) : (
-                  <RiCustomerService2Line color="rgb(7, 1, 27)" size={35} />
-                )}
-              </span>
-              <span>
-                {admindetails && admindetails.account
-                  ? admindetails.account.role.toUpperCase()
-                  : "null "}
-              </span>
+                <span>
+                  {admindetails &&
+                  admindetails.account &&
+                  admindetails.account.role === "admin" ? (
+                    <RiAdminFill color="rgb(7, 1, 27)" size={35} />
+                  ) : (
+                    <RiCustomerService2Line color="rgb(7, 1, 27)" size={35} />
+                  )}
+                </span>
+                <span>
+                  {admindetails && admindetails.account
+                    ? admindetails.account.role.toUpperCase()
+                    : "null "}
+                </span>
+              </div>
             </div>
-       
-            </div>
-            
           )}
 
           <div className="signbtn">
@@ -152,14 +156,20 @@ const PanelCustomer = () => {
               onClick={() => {
                 dispatch(Signout());
                 navigate("/");
-             
               }}
             >
               Sign out
             </span>
           </div>
         </div>
-        <CustomerPage setemail={setemail} setSmg={setMsg} setbprompt={setbprompt} setuserid={setuserid} bemploy={bemploy} />
+        <CustomerPage
+          setemail={setemail}
+          setSmg={setMsg}
+          setbprompt={setbprompt}
+          setuserid={setuserid}
+          bemploy={bemploy}
+          setaction={setaction}
+        />
       </div>
     </div>
   );

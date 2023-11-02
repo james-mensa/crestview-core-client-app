@@ -21,6 +21,7 @@ const EmployeeDashboard = () => {
   const [selectedEmail, setemail] = useState("");
   const [customerid, setuserid] = useState("");
   const [adminid, setadminid] = useState("");
+  const [deleteaction,setaction]=useState(null)
   const bemploy = true;
   const admindetails = useSelector((data) => data.admin);
   return (
@@ -56,7 +57,7 @@ const EmployeeDashboard = () => {
             className="congrate-msg"
             style={{ minHeight: `${window.innerHeight}px` }}
           >
-            <div className="congrate-box ">
+            <div className="congrate-box" style={{width:"35%",minHeight:"300px"}}>
               <div className="close-l">
                 <IconButton
                   onClick={() => {
@@ -73,6 +74,8 @@ const EmployeeDashboard = () => {
                 setbprompt={setbprompt}
                 bemploy={bemploy}
                 adminid={adminid}
+                deleteaction={deleteaction}
+               
               />
             </div>
           </div>
@@ -170,6 +173,7 @@ const EmployeeDashboard = () => {
           setMsg={setMsg}
           setuserid={setuserid}
           setadminid={setadminid}
+          setaction={setaction}
         />
       </div>
     </div>
