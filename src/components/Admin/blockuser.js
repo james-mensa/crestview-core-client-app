@@ -25,7 +25,7 @@ const BlockCustomer = (props) => {
       props.setbprompt(false);
       dispatch(AllAdminAccount(props.adminid));
     }
-  });
+  },[notifications]);
   return (
     <div style={{ width: "90%" }}>
       <div className="row-styles" style={{ marginBottom: "20px" }}>

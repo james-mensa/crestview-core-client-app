@@ -153,7 +153,10 @@ const BookingsPage = () => {
             >
               search
             </span>
-            <span className="searchbtn">reset</span>
+            <span 
+            onClick={()=> {
+              dispatch(AllOrders())}}
+            className="searchbtn">reset</span>
           </div>
         </div>
       </div>

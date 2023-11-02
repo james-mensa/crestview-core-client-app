@@ -23,6 +23,7 @@ import { MdDelete, MdEmail, MdNumbers, MdSecurity } from "react-icons/md";
 import { UnBlockuser, getAllUsers } from "../../store/actions/adminActions";
 import { enableScroll } from "../utils/reuseable";
 import MessageCustomer from "./messagecustomer";
+import { CircleSpinner } from "react-spinners-kit";
 const CustomerPage = (props) => {
   const dispatch = useDispatch();
 
@@ -32,12 +33,17 @@ const CustomerPage = (props) => {
   }, [dispatch]);
 
   const [openDate, setOpenDate] = useState(false);
+  const [activatebtn, setactivebtn] = useState(false);
   const navigate = useNavigate();
- 
+  const notifications = useSelector((value) => value.notification);
+  useEffect(() => {
+    if (notifications && notifications.notice) {
+      setactivebtn(false);
+    }
+  }, [notifications]);
+  
   return (
     <div className="panel_detail">
-    
-
       <p className="header-p">Customers Panel</p>
       <p className="row-styles">
         <Filter /> <span>Filter</span>{" "}
@@ -70,7 +76,7 @@ const CustomerPage = (props) => {
           <MdSecurity size={20} color="chocolate" />{" "}
           <span className="b-header">status</span>
         </div>
-      <div className="row-styles-h" style={{ marginRight: "10px" }}>
+        <div className="row-styles-h" style={{ marginRight: "10px" }}>
           {" "}
           <Person size={20} color="chocolate" />{" "}
           <span className="b-header">client name </span>
@@ -114,7 +120,12 @@ const CustomerPage = (props) => {
                 </div>
                 <div className="row-styles-hn" style={{ marginRight: "10px" }}>
                   {" "}
-                  <span className="b-content" style={{ color: "green",fontWeight:"bold" }} >{item.active ? "Active" :"Blocked"} </span>
+                  <span
+                    className="b-content"
+                    style={{ color: "green", fontWeight: "bold" }}
+                  >
+                    {item.active ? "Active" : "Blocked"}{" "}
+                  </span>
                 </div>
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
@@ -137,51 +148,58 @@ const CustomerPage = (props) => {
 
                 <div className="row-styles-h" style={{ marginRight: "10px" }}>
                   {" "}
-                  {
-                    item.active ?
+                  {item.active ? (
                     <button
-                    className="btw_btn"
-                    type="button"
-                    onClick={() => {
-                      props.setbprompt(true);
-                        props.setuserid(item._id)
-                       
-
-                    }}
-                  >
-
-                    Block
-                  </button>:
+                      className="btw_btn"
+                      type="button"
+                      onClick={() => {
+                        props.setbprompt(true);
+                        props.setuserid(item._id);
+                      }}
+                    >
+                      Block
+                    </button>
+                  ) : (
+                    <>
+                      {activatebtn ? (
+                        <div className="btw_btn">
+                          <CircleSpinner size={13} color="white" />
+                        </div>
+                      ) : (
+                        <button
+                          className="btw_btn"
+                          type="button"
+                          onClick={() => {
+                            setactivebtn(true);
+                            dispatch(UnBlockuser(item._id));
+                            dispatch(getAllUsers());
+                          }}
+                        >
+                          Activate
+                        </button>
+                      )}
+                    </>
+                  )}
                   <button
                     className="btw_btn"
                     type="button"
                     onClick={() => {
-                      dispatch(UnBlockuser(item._id))
-                      dispatch(getAllUsers());  
-                    }}
-                  >
-
-                    UnBlock
-                  </button>
-
-                  }
-                
-                  <button
-                    className="btw_btn"
-                    type="button"
-                    onClick={() => {
-                        props.setemail(item.email);
-                        props.setSmg(true)
-                      
+                      props.setemail(item.email);
+                      props.setSmg(true);
                     }}
                   >
                     Message
                   </button>
-                  <span onClick={()=>{
-                       props.setaction(true)
-                       props.setbprompt(true);
-                       props.setuserid(item._id);
-                  }} className="deletebtn"><MdDelete/></span>
+                  <span
+                    onClick={() => {
+                      props.setaction(true);
+                      props.setbprompt(true);
+                      props.setuserid(item._id);
+                    }}
+                    className="deletebtn"
+                  >
+                    <MdDelete />
+                  </span>
                 </div>
               </div>
             );

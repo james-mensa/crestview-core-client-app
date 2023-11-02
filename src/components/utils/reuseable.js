@@ -370,6 +370,6 @@ export function ReturnOrderByType(target, data) {
     (data) => data.room.room_type.charAt(0) === target.charAt(0)
   );
 
-  console.log(filterD);
+ 
   return filterD;
 }

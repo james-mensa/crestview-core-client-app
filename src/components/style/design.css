@@ -478,12 +478,10 @@
   width: 100%;
 }
 
-.testimony-style{
+.testimony-style {
   display: flex;
   flex-direction: row;
   width: 100%;
- 
-  
 }
 
 .instruction-layout h3 {
@@ -694,6 +692,12 @@
   background-color: chocolate;
   border-radius: 30px;
   margin: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .header_search_item {
   display: flex;
@@ -765,6 +769,11 @@
   margin-right: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imagecover {
@@ -1786,6 +1795,13 @@
   position: absolute;
   flex-direction: column;
   left: 250px;
+  background-color: rgb(136, 133, 133);
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+  rgba(0, 0, 0, 0.15) 0px 4px 6px -2px;
 }
 
 .b-header {

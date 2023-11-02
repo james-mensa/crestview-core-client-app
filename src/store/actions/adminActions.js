@@ -89,6 +89,10 @@ export const BlockEmployees = (id, admin) => {
   return async (dispatch) => {
     try {
       await axios.patch(`${API}/admin/adminstrator/blockuser/${id}/${admin}`);
+      const adminAccount = await axios.get(
+        `${API}/admin/adminstrator/accounts/${admin}`
+      );
+      dispatch(adminEmployees(adminAccount.data));
       dispatch(
         notify.notify_success({
           msg: "Successfull",
@@ -141,7 +145,8 @@ export const Blockuser = (id) => {
   return async (dispatch) => {
     try {
       await axios.patch(`${API}/user/suspenduser/${id}`);
-
+      const content = await axios.get(`${API}/user/getallusers`);
+      dispatch(get_users(content.data));
       dispatch(
         notify.notify_success({
           msg: "Successfull",
@@ -159,6 +164,11 @@ export const UnBlockEmployee = (id, admin) => {
     try {
       await axios.patch(`${API}/admin/adminstrator/unblockuser/${id}/${admin}`);
 
+      const adminAccount = await axios.get(
+        `${API}/admin/adminstrator/accounts/${admin}`
+      );
+      dispatch(adminEmployees(adminAccount.data));
+
       dispatch(
         notify.notify_success({
           msg: "Successfull",
@@ -174,7 +184,8 @@ export const UnBlockuser = (id) => {
   return async (dispatch) => {
     try {
       await axios.patch(`${API}/user/unblockuser/${id}`);
-
+      const content = await axios.get(`${API}/user/getallusers`);
+      dispatch(get_users(content.data));
       dispatch(
         notify.notify_success({
           msg: "Successfull",
@@ -235,9 +246,15 @@ export const AddAdminAccount = (data, id) => {
   return async (dispatch) => {
     try {
       await axios.post(`${API}/admin/adminstrator/newaccount/${id}`, data);
+
+      const adminAccount = await axios.get(
+        `${API}/admin/adminstrator/accounts/${id}`
+      );
+      dispatch(adminEmployees(adminAccount.data));
+
       dispatch(notify.notify_success({ msg: "Account added" }));
     } catch (error) {
-      console.log(error);
+      dispatch(notify.notify_error({ msg: error.response.data.msg }));
     }
   };
 };
@@ -303,14 +320,23 @@ export const AdminSignIn = (data) => {
 
 export const Signout = () => {
   return async (dispatch) => {
-    cookie.remove("authuser");
-    dispatch(userDetail({ account: {}, auth: false, loading: false }));
-    dispatch(adminDetail({ account: {}, auth: false, loading: false }));
-    dispatch(
-      notify.notify_success({
-        msg: ` Hope to see you back !!`,
-      })
-    );
+    try{
+
+      await axios.post(`${API}/admin/auth/signout`)
+      dispatch(userDetail({ account: {}, auth: false, loading: false }));
+      dispatch(adminDetail({ account: {}, auth: false, loading: false }));
+      dispatch(
+        notify.notify_success({
+          msg: ` Hope to see you back !!`,
+        })
+      );
+    }
+
+
+    catch(error){
+      console.log(error)
+    }
+ 
   };
 };
 
@@ -333,9 +359,8 @@ export const CheckLogin = () => {
 export const AutoLogin = () => {
   return async (dispatch) => {
     try {
-    
       const profiledetail = await axios.get(`${API}/user/getprofile`);
-      alert("Ok");
+
       dispatch(
         userDetail({ account: profiledetail.data, auth: true, loading: false })
       );

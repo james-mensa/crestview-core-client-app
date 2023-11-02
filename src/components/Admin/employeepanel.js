@@ -168,6 +168,7 @@ const EmployeeDashboard = () => {
           </div>
         </div>
         <EmployeePage
+        
           setbprompt={setbprompt}
           setemail={setemail}
           setMsg={setMsg}

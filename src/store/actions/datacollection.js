@@ -375,8 +375,9 @@ export const FilterOrders = (
 ) => {
   return async (dispatch, getdispatch) => {
     try {
+
       const newd = await axios.get(
-        `${API}/session/server/bookings/filter/${type}/${room_no}/${customer}/${order_id}/${s_date}/${e_date}`
+        `${API}/session/server/bookings/filter/${room_no}/${customer}/${order_id}/${s_date}/${e_date}`
       );
       dispatch(Bookings(newd.data));
     } catch (error) {

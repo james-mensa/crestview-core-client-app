@@ -60,7 +60,7 @@ const AddRoomTypes = () => {
        setloading(false);
     
     }
-  })
+  },[notifications])
   return (
     <div className="main-layout-l">
       <SectionNav />

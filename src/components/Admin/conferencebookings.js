@@ -149,7 +149,13 @@ const MeetingSpaceOrders = () => {
             >
               search
             </span>
-            <span className="searchbtn">reset</span>
+            <span
+
+            onClick={()=>{
+              dispatch(AllConferenceOrders());
+            }}
+            
+             className="searchbtn">reset</span>
           </div>
         </div>
       </div>

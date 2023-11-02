@@ -47,6 +47,13 @@ const EmployeePage = (props) => {
 
   const [accountType, setAccountType] = useState("employee");
   const admindetails = useSelector((data) => data.admin);
+  const [activatebtn, setactivebtn] = useState(false);
+
+  useEffect(() => {
+    if (notifications && notifications.notice) {
+      setactivebtn(false);
+    }
+  }, [notifications]);
 
   const Formik = useFormik({
     initialValues: {
@@ -98,6 +105,11 @@ const EmployeePage = (props) => {
     );
   }, [dispatch]);
 
+  useEffect(() => {
+    if (notifications && notifications.notice) {
+      setload(false);
+    }
+  }, [notifications]);
   return (
     <div
       className="panel_detail"
@@ -214,7 +226,7 @@ const EmployeePage = (props) => {
                       className="btw_btn"
                       type="button"
                       onClick={() => {
-                        props.setaction(false)
+                        props.setaction(false);
                         props.setbprompt(true);
                         props.setuserid(item._id);
                       }}
@@ -222,45 +234,52 @@ const EmployeePage = (props) => {
                       Block
                     </button>
                   ) : (
-                    <button
-                      className="btw_btn"
-                      type="button"
-                      onClick={() => {
-                        dispatch(
-                          UnBlockEmployee(
-                            item._id,
-                            admindetails && admindetails.account
-                              ? admindetails.account._id
-                              : null
-                          )
-                        );
-                        dispatch(
-                          AllAdminAccount(
-                            admindetails && admindetails.account
-                              ? admindetails.account._id
-                              : null
-                          )
-                        );
-                      }}
-                    >
-                      UnBlock
-                    </button>
+                    <>
+                      {activatebtn ? (
+                        <div className="btw_btn">
+                          <CircleSpinner size={13} color="white" />
+                        </div>
+                      ) : (
+                        <button
+                          className="btw_btn"
+                          type="button"
+                          onClick={() => {
+                            setactivebtn(true)
+                            dispatch(
+                              UnBlockEmployee(
+                                item._id,
+                                admindetails && admindetails.account
+                                  ? admindetails.account._id
+                                  : null
+                              )
+                            );
+                          }}
+                        >
+                          Activate
+                        </button>
+                      )}
+                    </>
                   )}
                   <button
                     className="btw_btn"
                     type="button"
                     onClick={() => {
                       props.setemail(item.email);
-                      props.setSmg(true);
+                      props.setMsg(true);
                     }}
                   >
                     Message
                   </button>
-                  <span onClick={()=>{
-                       props.setaction(true)
-                       props.setbprompt(true);
-                       props.setuserid(item._id);
-                  }} className="deletebtn"><MdDelete/></span>
+                  <span
+                    onClick={() => {
+                      props.setaction(true);
+                      props.setbprompt(true);
+                      props.setuserid(item._id);
+                    }}
+                    className="deletebtn"
+                  >
+                    <MdDelete />
+                  </span>
                 </div>
               </div>
             );
