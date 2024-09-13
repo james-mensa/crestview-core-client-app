@@ -12,17 +12,17 @@ const WhatWeDo = () => {
           fontFamily: "Roboto condensed",
         }}
       >
-        Special offers and Environment
+        Special offers and Environment .
       </p>
 
       <div className="align-grid">
-        <div className="Roomcard layoutspacv" style={{  height: "330px"}} >
+        <div className="Roomcard layoutspacv" >
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696000598/conference_eumktz.jpg"
             }
             alt=""
-            className="card-room-img-w "
+            className="card-room-img"
           />
 
           <div className="room-description">
@@ -44,13 +44,13 @@ const WhatWeDo = () => {
           </div>
         </div>
 
-        <div className="Roomcard layoutspacv " style={{  height: "330px"}} >
+        <div className="Roomcard layoutspacv" >
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696935089/theater_w7ndvn.jpg"
             }
             alt=""
-            className="card-room-img-w "
+            className="card-room-img"
           />
 
           <div className="room-description">
@@ -65,13 +65,13 @@ const WhatWeDo = () => {
           </div>
         </div>
 
-        <div className="Roomcard layoutspacv"  style={{  height: "330px"}} >
+        <div className="Roomcard layoutspacv" >
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696935577/dinning_kdplek.jpg"
             }
             alt=""
-            className="card-room-img-w "
+            className="card-room-img"
           />
 
           <div className="room-description">
@@ -84,13 +84,13 @@ const WhatWeDo = () => {
             </p>
           </div>
         </div>
-        <div className="Roomcard layoutspacv" onClick={() => {}} style={{  height: "330px"}} >
+        <div className="Roomcard layoutspacv" onClick={() => {}} >
           <img
             src={
               "https://res.cloudinary.com/dewkx66gl/image/upload/v1696935325/rooftop_nl4ccv.jpg"
             }
             alt=""
-            className="card-room-img-w "
+            className="card-room-img"
           />
 
           <div className="room-description">

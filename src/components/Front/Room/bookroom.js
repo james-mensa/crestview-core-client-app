@@ -3,7 +3,7 @@ import React from "react";
 import { BoundingBoxCircles, Cup, Person, Star } from "react-bootstrap-icons";
 import { FaBed } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { PromptToastify, showToastify } from "../../utils/reuseable";
+import { PromptToastify } from "../../utils/reuseable";
 import { useSelector } from "react-redux";
 import { MdDinnerDining } from "react-icons/md";
 function BookRoomBox(props) {

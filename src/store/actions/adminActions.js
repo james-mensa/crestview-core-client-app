@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as notify from "./notification";
-import { Axiosinstance, Getusercookie } from "./usercookie";
-import cookie from "react-cookies";
+import { Getusercookie } from "./usercookie";
+
 const {
   USER_DETAIL,
   USERS,

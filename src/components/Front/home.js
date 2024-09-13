@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import HomePageSkeleton from "../skeletonLoading/HomePageSkeleton";
 import SearchBox from "./searchbar";
 import TopNav from "../utils/pagenav";
 
@@ -16,6 +15,7 @@ import MobileSearchBox from "./mobilesearc";
 import MobileTopNav from "../utils/mobilenav";
 import MenuNav from "./menunav";
 import { showCoursesm } from "../utils/reuseable";
+import PageBase from "../PageBase.js";
 
 const Home = () => {
   const [showmennu, setmenu] = useState(false);
@@ -39,7 +39,7 @@ const Home = () => {
           className="front_home"
           style={{
             backgroundImage:
-              "url(https://res.cloudinary.com/dewkx66gl/image/upload/v1695897589/view_wy0gvb.jpg)",
+              `url("/assets/images/background.jpeg")`,
             minHeight: `${window.innerHeight - 200}px`,
           }}
         >
@@ -68,7 +68,7 @@ const Home = () => {
           className="front_home"
           style={{
             backgroundImage:
-              "url(https://res.cloudinary.com/dewkx66gl/image/upload/v1695897589/view_wy0gvb.jpg)",
+              `url("/assets/images/background.jpeg")`,
             minHeight: `${window.innerHeight}px`,
           }}
         >
@@ -85,12 +85,16 @@ const Home = () => {
         </div>
       </div>
 
-      <Rooms />
-      <Attention />
-      <WhatWeDo />
+<PageBase>
+<Rooms />
+
+<WhatWeDo />
+</PageBase>
+{/* <Attention /> */}
+   
       <Testimones />
 
-      <Footer />
+<Footer /> 
     </div>
   );
 };

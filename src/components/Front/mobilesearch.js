@@ -220,7 +220,7 @@ const SearchNav = (props) => {
                 className="header_search_icon_first"
               />
 
-              <span style={{ marginLeft: "10px" }}>People</span>
+              <span style={{ marginLeft: "10px" }}>Guests</span>
               <div className="choosepeople">
                 <IconButton onClick={() => handleOptionBtn("minus")}>
                   <FaCaretLeft color="chocolate" />

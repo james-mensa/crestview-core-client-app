@@ -57,7 +57,7 @@ const TopNav = (props) => {
                 .scrollIntoView({ behavior: "smooth" });
             }}
           >
-            All Rooms
+            Rooms
           </span>
           <span>Contact</span>
           <span 

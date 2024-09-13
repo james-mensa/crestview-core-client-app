@@ -4,34 +4,35 @@ import { BoundingBoxCircles, Cup, Person, Star } from "react-bootstrap-icons";
 import { FaBed } from "react-icons/fa";
 import { MdDinnerDining } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+import './style.scss'
 function Room(props) {
   const navigate = useNavigate();
   const data = props.data;
   return (
     <div className="Roomcard layoutspacv" onClick={() => {}}>
       <img src={data.image} alt="" className="card-room-img" />
-      <div className="spaces-btw">
-        {" "}
         <div className="room-description">
           <h3>{data.room_type}</h3>
 
           <div className="row-styles">
-            <span>{data.price} / per Night</span>
-            <Star size={15} color="yellow" /> <Star size={15} color="yellow" />{" "}
-            <Star size={15} color="yellow" />
+            <span className="price">GH₵ {data.price} / per Night</span>
+            <Star size={15} color="rgb(199, 81, 31)" /> <Star size={15} color="rgb(199, 81, 31)" />{" "}
+            <Star size={15} color="rgb(199, 81, 31)" />
           </div>
 
-          <p>
+          <p className="room-card-detail">
             {data.alias}: {data.description}
           </p>
-          <div className="row-styles">
+          <div className="room-card-action">
+
+<div className="left-content">
+
+<div className="row-styles">
             <Person  size={15} />
             <span>{data.capacity} Person</span>
             <BoundingBoxCircles />
             <span>{data.aircondition ? "Air condition" : "no available"}</span>
           </div>
-
           <div className="row-styles">
             <Cup  size={15} />
             <span> {data.meals}</span>
@@ -44,20 +45,29 @@ function Room(props) {
               <span> Access to rooftop Bar</span>
             </div>
           ) : null}
-        </div>
-        <div className="row-styles-b" style={{ marginTop: "30px" }}>
-          <p
+          
+</div>
+<span
             className="book-now"
             onClick={() =>
               navigate(`/rooms/search-results/any/any/${data.room_type}/1`)
             }
           >
-            Book now
-          </p>
+            check availability
+          </span>
+      
+
+          </div>
+        
+
+     
         </div>
-      </div>
+ 
+   
+     
     </div>
   );
 }
 
 export default Room;
+

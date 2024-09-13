@@ -37,9 +37,9 @@ const Testimones = () => {
             clickable: true,
           }}
           modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
+        
         >
-          <SwiperSlide>
+          <SwiperSlide   className="mySwiper">
             <div className="testimoy-l">
               <div className="testimony-p">
                 <span>
@@ -58,7 +58,7 @@ const Testimones = () => {
             </div>
           </SwiperSlide>
 
-          <SwiperSlide>
+          <SwiperSlide  className="mySwiper">
             <div className="testimoy-l">
               <p className="testimony-p">
                 <span>

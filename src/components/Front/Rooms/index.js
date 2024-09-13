@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import Room from '../Room/index';
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,6 @@ function Rooms() {
   
     const room_types = useSelector((item) => item.roomtypes);
 
-    const [rooms, setRooms] = useState([]);
     useEffect(()=>{
         window.addEventListener("scroll",showCoursesm())
        
@@ -22,7 +21,7 @@ function Rooms() {
    
     return (
         <div className='roomType' id='roomsCat'>
-        <h3 className='header-style'> Our Rooms and Rate</h3>
+        <h3 className='header-style'> Featured rooms and rate .</h3>
         <div className='align-grid'>
         {room_types && room_types.data ? 
             room_types.data.map((item,index)=>{

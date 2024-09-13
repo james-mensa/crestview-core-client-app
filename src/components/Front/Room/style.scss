@@ -5,6 +5,7 @@
   cursor: pointer;
 }
 
+
 main {
   .card {
     &:hover,
@@ -41,7 +42,34 @@ main {
   }
 }
 
+.room-card-detail{
+  font-size: 15px;
+}
+.price{
+    color:rgb(199, 81, 31);
+    margin-right: 5px;
+}
+.room-card-action{
+  display: flex;
+  flex-direction: row;
+  width: 97%;
+  justify-content: space-between;
+  align-items:flex-end;
+  
+}
 @media only screen and (max-width: 567px) {
+  .room-card-detail{
+    font-size: 12px;
+  }
+  .room-card-action{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap:10px
+ 
+  }
   main .card {
     flex-direction: column !important;
     margin-top: 60px;
