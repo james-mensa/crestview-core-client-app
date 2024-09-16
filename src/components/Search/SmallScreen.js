@@ -5,7 +5,6 @@ import { Box, Button, IconButton} from "@mui/material";
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNavigate } from "react-router-dom";
 import { BaseCalender } from "../BaseCalender";
-import { Divider } from "../Divider";
 import { Label } from "../Label";
 import { ColorTheme } from "../style/ColorTheme";
 
