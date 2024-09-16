@@ -1,7 +1,7 @@
 export const Checkhover=(element,subcats)=>
 {
 
-const mainlayout=document.getElementById("maincatloyout")
+
 const maincat=document.getElementById("maincat")
 const catbtn=document.getElementById("catbtnid")
 const layouthover=document.querySelectorAll(".presshover")

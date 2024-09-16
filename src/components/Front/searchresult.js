@@ -15,7 +15,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import TopNav from "../utils/pagenav";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Clear_SearchBox, GetsearchResult } from "../../store/actions/datacollection";
 import BookRoomBox from "./Room/bookroom";
@@ -203,11 +203,11 @@ const SearchResult = () => {
               </Select>
 
               <div
-                className="header_search_item-c"
+                className="search_item-c"
                 style={{ marginTop: "30px", width: "85%" }}
               >
                 <p>Stay Duration</p>
-                <div className="header_search_item-d">
+                <div className="search_item-d">
                   <FaCalendarAlt
                     color="chocolate"
                     className="header_search_icon"
@@ -260,7 +260,7 @@ const SearchResult = () => {
                 ) : null}
               </div>
               <div
-                className="header_search_item"
+                className="search_item"
                 onClick={CloseCalender}
                 style={{
                   marginTop: "30px",
@@ -400,9 +400,9 @@ const SearchResult = () => {
               </MenuItem>
             </Select>
 
-            <div className="header_search_item-c" style={{ marginTop: "30px" }}>
+            <div className="search_item-c" style={{ marginTop: "30px" }}>
               <p>Stay Duration</p>
-              <div className="header_search_item-d">
+              <div className="search_item-d">
                 <FaCalendarAlt
                   color="chocolate"
                   className="header_search_icon"
@@ -439,7 +439,7 @@ const SearchResult = () => {
               </div>
             </div>
             <div
-              className="header_search_item"
+              className="search_item"
               onClick={CloseCalender}
               style={{ marginTop: "30px" }}
             >
@@ -461,7 +461,7 @@ const SearchResult = () => {
             </div>
 
             <div
-              className="header_search_item"
+              className="search_item"
               onClick={CloseCalender}
               style={{ marginTop: "30px" }}
             >

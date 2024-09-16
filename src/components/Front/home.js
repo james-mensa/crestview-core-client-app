@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import SearchBox from "./searchbar";
+
 import TopNav from "../utils/pagenav";
 
 import Rooms from "./Rooms/index";
@@ -11,18 +9,15 @@ import Attention from "./attention";
 import WhatWeDo from "./whatwedo";
 import Testimones from "./testimonies";
 import Footer from "./footer.js";
-import MobileSearchBox from "./mobilesearc";
 import MobileTopNav from "../utils/mobilenav";
 import MenuNav from "./menunav";
 import { showCoursesm } from "../utils/reuseable";
 import PageBase from "../PageBase.js";
+import { DesktopSearch, MobileSearch } from "../Search/index.js";
 
 const Home = () => {
   const [showmennu, setmenu] = useState(false);
   const showmenu=true
-  useEffect(() => {
-    AOS.init();
-  }, []);
   useEffect(()=>{
     window.addEventListener("scroll",showCoursesm())
    
@@ -49,10 +44,9 @@ const Home = () => {
           >
             {" "}
             <TopNav />
-            <div className="front_form">
-              {" "}
-              <SearchBox />
-            </div>
+           
+              <DesktopSearch />
+          
           </div>
         </div>
       </div>
@@ -79,7 +73,7 @@ const Home = () => {
             {" "}
             <MobileTopNav setmenu={setmenu} showmenu={showmenu}/>
             <div className="mobileboxs">
-              <MobileSearchBox />
+              <MobileSearch />
             </div>
           </div>
         </div>

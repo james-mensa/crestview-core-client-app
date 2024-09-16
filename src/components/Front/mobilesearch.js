@@ -172,9 +172,9 @@ const SearchNav = (props) => {
               </MenuItem>
             </Select>
 
-            <div className="header_search_item-c" style={{ marginTop: "30px" }}>
+            <div className="search_item-c" style={{ marginTop: "30px" }}>
               <p>Stay Duration</p>
-              <div className="header_search_item-d">
+              <div className="search_item-d">
                 <FaCalendarAlt
                   color="chocolate"
                   className="header_search_icon"
@@ -211,7 +211,7 @@ const SearchNav = (props) => {
               </div>
             </div>
             <div
-              className="header_search_item"
+              className="search_item"
               onClick={CloseCalender}
               style={{ marginTop: "30px" }}
             >
@@ -233,7 +233,7 @@ const SearchNav = (props) => {
             </div>
 
             <div
-              className="header_search_item"
+              className="search_item"
               onClick={CloseCalender}
               style={{ marginTop: "30px" }}
             >

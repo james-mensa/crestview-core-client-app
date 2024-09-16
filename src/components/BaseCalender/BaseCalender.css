@@ -1,0 +1,28 @@
+.calender-container{
+    top: 0;
+    left: 0;
+    display: flex;
+    position:fixed ;
+    width: 100% ;
+    height: 100vh ;
+    background-color: rgba(29, 30, 31,0.4);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.calender-close{
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    justify-items: flex-end;
+    background-color: white;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+.calender{
+    width: 400px;
+    /* border-radius: 5px; */
+}

@@ -1,3 +1,26 @@
+@font-face {
+  font-family: 'Manrope';
+  src: url('./fonts/Manrope-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./fonts/Manrope-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('./fonts/ClashGrotesk-Variable.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 .mainLayoutb {
   display: flex;
   flex-direction: column;
@@ -10,9 +33,8 @@
   background-color: #f1f1fb;
 }
 
-.main-content{
+.main-content {
   max-width: 1200px;
-
 }
 .front_home {
   width: 100%;
@@ -661,21 +683,9 @@
   padding: 20px;
 }
 .front_form {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 5px;
-  width: 55%;
-  border-radius: 5px;
-  height: 80px;
-  background-color: rgb(255, 255, 255);
-  /* margin-left: 20px; */
-  margin-bottom: -50px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-  -webkit-animation: 2s animate-search ease-in-out;
-
-  animation: 2s animate-search ease-in-out;
+  -webkit-animation: 0.4s animate-search ease-in-out;
+  animation: 0.4s animate-search ease-in-out;
+  z-index: 100;
 }
 
 .front_form-search {
@@ -684,6 +694,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  padding:0px 10px
 }
 
 .footer {
@@ -706,20 +717,13 @@
   justify-content: center;
   align-items: center;
 }
-.header_search_item {
+.search_item {
   display: flex;
-  flex-direction: row;
-  font-family: Roboto condensed;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: rgb(243, 240, 240, 0.5);
-  border-radius: 5px;
+  flex-direction: column;
   cursor: pointer;
+  background-color: red;
 }
-.header_search_item-c {
+.search_item-c {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -727,10 +731,9 @@
   font-weight: bold;
   user-select: none;
   cursor: pointer;
-  z-index: 1000;
 }
 
-.header_search_item-d {
+.search_item-d {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -757,15 +760,6 @@
 .choosepeople {
   margin-left: 10px;
 }
-
-.header_search_btn {
-  background-color: rgb(65, 55, 2);
-  border-radius: 5px;
-  color: white;
-  padding: 10px;
-  font-weight: normal;
-}
-
 .btw_btn {
   background-color: rgb(65, 55, 2);
   border-radius: 5px;
@@ -789,7 +783,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   width: 100%;
   -webkit-animation: 2s animate-cover ease-in-out;
 }
@@ -815,8 +809,6 @@
   background-color: transparent;
   width: 100%;
   z-index: 100;
-  -webkit-animation: navanim 1s ease-in-out;
-  animation: navanim 1s ease-in-out;
 }
 
 .navbar-p {
@@ -827,8 +819,6 @@
   background-color: transparent;
   width: 100%;
   z-index: 1002;
-  -webkit-animation: navanim 1s ease-in-out;
-  animation: navanim 1s ease-in-out;
   background-color: red;
 }
 .navcontainer {
@@ -863,7 +853,6 @@
   font-size: 15px;
   font-weight: bold;
   color: rgb(66, 66, 63);
-  -webkit-animation: cname_anim 1s ease-in-out;
 }
 
 .emploee_add {
@@ -1007,7 +996,7 @@
 
 .nav-actions span:hover {
   transition: 0.1s ease-in-out;
-  background-color: rgba(125, 132, 138,0.4);
+  background-color: rgba(125, 132, 138, 0.4);
   color: rgb(255, 255, 255);
 }
 .footer-s {
@@ -1123,17 +1112,16 @@
   border-radius: 10px;
   display: flex;
   flex-direction: row;
-  gap:20px;
+  gap: 20px;
   width: 98%;
   margin-top: 20px;
   cursor: pointer;
   background-color: white;
-
 }
 
 .Roomcard-a {
   transition: 2s ease-in-out;
- 
+
   border-radius: 10px;
   padding: 25px;
   display: flex;
@@ -1158,12 +1146,10 @@
 .card-room-img {
   width: 280px;
   height: auto;
-  object-fit:fill;
+  object-fit: fill;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-
-
 
 .bookingd {
   display: flex;
@@ -1456,7 +1442,7 @@
   position: relative;
   width: 50%;
 }
-.mySwiper{
+.mySwiper {
   background-color: transparent;
 }
 .testimoy-l {
@@ -1784,7 +1770,7 @@
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-  rgba(0, 0, 0, 0.15) 0px 4px 6px -2px;
+    rgba(0, 0, 0, 0.15) 0px 4px 6px -2px;
 }
 
 .b-header {
@@ -1869,7 +1855,7 @@
 .mobile {
   display: none;
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 800px) {
   .mobile {
     display: flex;
     width: 100%;
@@ -1878,10 +1864,9 @@
     display: none;
   }
 
-
-.header-style {
-display: none;
-}
+  .header-style {
+    display: none;
+  }
 
   .attention {
     flex-direction: column;
@@ -1942,13 +1927,12 @@ display: none;
   }
   .Roomcard {
     padding: 5px;
-    gap:5px;
+    gap: 5px;
     display: flex;
     flex-direction: column;
     width: 97%;
     cursor: pointer;
     background-color: transparent;
-    
   }
   .about-use {
     width: 95%;
@@ -2004,7 +1988,7 @@ display: none;
     width: 100%;
     padding-left: 20px;
   }
-  .header_search_item {
+  .search_item {
     display: flex;
     flex-direction: row;
     font-family: Roboto condensed;
@@ -2020,7 +2004,7 @@ display: none;
     cursor: pointer;
     margin-bottom: 20px;
   }
-  .header_search_item-s {
+  .search_item-s {
     display: flex;
     flex-direction: column;
     width: 70%;
@@ -2223,7 +2207,6 @@ display: none;
     font-weight: bold;
   }
   .book-now {
-
     height: 35px;
     font-size: 12px;
     color: #fff8ff;
@@ -2238,7 +2221,7 @@ display: none;
     color: rgb(187, 183, 183);
     font-size: 15px;
   }
-  .header_search_item-c {
+  .search_item-c {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -2302,7 +2285,7 @@ display: none;
     align-items: center;
     width: 100%;
   }
-  .testimony-p span{
+  .testimony-p span {
     font-size: 18px;
   }
   .row-styles-card {
@@ -2358,34 +2341,34 @@ display: none;
 }
 
 @keyframes anim-book-btn {
-  0% {
+  /* 0% {
     opacity: 0;
     background-color: whites;
-  }
+  } */
 }
 @keyframes anim-msg {
-  0% {
+  /* 0% {
     transform: translateY(5%);
     opacity: 0.96;
-  }
+  } */
 }
 @keyframes animate-card {
-  0% {
+  /* 0% {
     transform: translateY(10%);
-  }
+  } */
 }
 @keyframes showMenu_m {
-  0% {
+  /* 0% {
     opacity: 0.6;
     transform: translateX(-50%);
-  }
+  } */
 }
 
 @keyframes show_anim_admin {
-  0% {
+  /* 0% {
     opacity: 0;
   }
   60% {
     opacity: 1;
-  }
+  } */
 }

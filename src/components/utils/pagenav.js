@@ -17,9 +17,6 @@ const TopNav = (props) => {
     CheckTopAds(props.topads);
   });
 
-  const handlesearchbox = (event) => {
-    setSearchValue(event.target.value);
-  };
 
   return (
     <div className="navbar">

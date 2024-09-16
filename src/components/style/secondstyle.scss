@@ -76,7 +76,7 @@
       box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
         rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
-      .header_search_item {
+      .search_item {
         color: rgb(165, 163, 163);
         display: flex;
         align-items: center;
@@ -193,7 +193,7 @@
         align-items: center;
         justify-content: space-around;
         grid-gap: 25px;
-        .header_search_item {
+        .search_item {
           .search_options {
             position: absolute;
             top: 120px;
@@ -267,7 +267,7 @@
         position: absolute;
         bottom: -200px;
 
-        .header_search_item {
+        .search_item {
           .header_search_calender {
             position: absolute;
             top: 120px;
