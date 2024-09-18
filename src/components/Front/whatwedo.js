@@ -1,20 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const WhatWeDo = () => {
   const navigate = useNavigate();
   return (
     <div className="roomType ">
-      <p id="serviceoder"
-        style={{
-          fontWeight: "bold",
-          fontSize: "18px",
-          fontFamily: "Roboto condensed",
-        }}
-      >
-        Special offers and Environment .
-      </p>
 
+      <h3 className='header-style'>  Special offers and Environment .</h3>
+      <Typography sx={styles.subtitle}>Embrace the Perfect Blend of Modern Comfort and Natural Serenity in Our Exquisite Spaces.</Typography>
       <div className="align-grid">
         <div className="Roomcard layoutspacv" >
           <img
@@ -109,3 +103,9 @@ const WhatWeDo = () => {
 };
 
 export default WhatWeDo;
+
+const styles={
+  subtitle:{
+      fontFamily: 'Manrope',
+  }
+}

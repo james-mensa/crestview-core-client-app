@@ -154,7 +154,7 @@ const styles={
     padding: '10px',
     [theme.breakpoints.down('sm')]: {
       padding:1,
-      width:'90%',
+      width:'100%',
     },
     [theme.breakpoints.up('sm')]: {
       width:'60%',

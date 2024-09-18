@@ -13,7 +13,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { RoomType } from "../RoomType";
 import { formatDate } from "../utils/common";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
-
 export const LargeScreen = () => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
