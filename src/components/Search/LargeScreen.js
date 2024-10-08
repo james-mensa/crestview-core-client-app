@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { format } from "date-fns";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { Box, IconButton } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { BaseCalender } from "../BaseCalender";
 import { Divider } from "../Divider";
@@ -12,7 +11,8 @@ import { ColorTheme } from "../style/ColorTheme";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { RoomType } from "../RoomType";
 import { formatDate } from "../utils/common";
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { Filter } from "../Filter";
+import { formatDateShort, serializeFilter } from "../../libs/common";
 export const LargeScreen = () => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
@@ -25,34 +25,36 @@ export const LargeScreen = () => {
       key: "selection",
     },
   );
-
-  const [options, setOptions] = useState(1);
-
-
-  const handleOptionBtn = (operation) => {
-    if (operation === "minus") {
-      if (options >= 2) {
-        setOptions(options - 1);
-      }
-    }
-    if (operation === "plus") {
-      if (options <= 3) {
-        setOptions(options + 1);
-      }
-    }
-  };
+  const [filter,setFilter]=useState({
+    rooms:1,
+    adults:2,
+    children:0
+  })
 
   const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
   const handleCalenderModal = () => {
-    console.log({date})
+
     setIsCalenderModalOpen(!isCalenderModalOpen);
   };
 
 
   const [roomType, setRoomType] = useState("Any Room type");
   const SearhValues = ()=>{
-    navigate(`/rooms/search-results/${date.startDate}/${date.endDate}/${roomType}/${options}`
+    const userSelection={
+      checkOut:formatDateShort(date.endDate),
+      checkIn:formatDateShort(date.startDate),
+      ...filter,
+      type:roomType
+    }
+    const filterString = serializeFilter(userSelection)
+    navigate(`/rooms/results/${filterString}`
     )
+  }
+
+ 
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const handleFilter=()=>{
+    setIsFilterVisible(!isFilterVisible);
   }
   return (
     <Box sx={styles.container}>
@@ -83,28 +85,25 @@ export const LargeScreen = () => {
       </Box>
       <Divider/>
       <Box sx={styles.searchItem} >
-
       <Label sx={styles.label}>Guests</Label>
-        <Box sx={styles.guestWrapper}>
-          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("minus")}>
-            <FaCaretLeft color={ColorTheme.button.dark} />
-          </IconButton>
-          <span>{options}</span>
-          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("plus")}>
-            <FaCaretRight color={ColorTheme.button.dark} />
-          </IconButton>
+        <Box sx={styles.guestWrapper} onClick={handleFilter}>
+       <Stack direction={'row'} alignItems={"center"} spacing={1} >
+        <Label  sx={styles.title}>{`${filter.adults + filter.children} Guests,`}</Label>
+       </Stack>
+       <Stack direction={'row'} alignItems={"center"} spacing={1}>
+       <Label sx={styles.title}>{`${filter.rooms} Room${filter.rooms >1 ?'s':''}`}</Label>
+       </Stack>
         </Box>
+      <Filter value={filter} setValues={setFilter} isVisible={isFilterVisible} onClose={handleFilter}/>
       </Box>
 
     
         <button
           style={styles.searchBtn}
           type="button"
-          onClick={() => {
-            SearhValues()
-          }}
+          onClick={SearhValues}
         >
-          Search
+          Explore rooms
         </button>
    
     </Box>
@@ -121,6 +120,7 @@ const styles={
         gap:6,
         padding:'0px 15px',
         height: '80px',
+        justifyContent:'space-between',
         backgroundColor: ColorTheme.background.light,
         marginBottom: '-50px',
         boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
@@ -136,7 +136,6 @@ const styles={
     fontFamily: "Manrope",
     fontWeight: '700',
     color:ColorTheme.text.label,
-   
   },
   title:{
     cursor:'pointer',
@@ -155,8 +154,9 @@ const styles={
     flexDirection:'row',
     gap:1,
     alignItems:'center',
-    marginLeft:-1
-
+    marginLeft:-1,
+    width:'170px',
+    cursor:'pointer',
   },
   searchBtn: {
     backgroundColor: ColorTheme.button.dark,

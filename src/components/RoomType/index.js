@@ -44,8 +44,7 @@ const styles={
         color:ColorTheme.text.label
     },
 container:{
-    minWidth: "160px",
-   
+    width: "205px",
     height: "40px",
     fontFamily: "Manrope",
     fontWeight: '700',

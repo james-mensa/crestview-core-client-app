@@ -1,73 +1,148 @@
 import React from "react";
 
-import { BoundingBoxCircles, Cup, Person, Star } from "react-bootstrap-icons";
-import { FaBed } from "react-icons/fa";
-import { MdDinnerDining } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import {Person, StarFill } from "react-bootstrap-icons";
+import HotelIcon from '@mui/icons-material/Hotel';
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
+import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
+import HvacIcon from '@mui/icons-material/Hvac';
+import PersonIcon from '@mui/icons-material/Person';
 import './style.scss'
+import { Box } from '@mui/material';
+import { Label } from "../../Label";
+import { ColorTheme } from "../../style/ColorTheme";
+import { AppButton } from "../../Button";
 function Room(props) {
-  const navigate = useNavigate();
   const data = props.data;
+  console.log({ dataSource:data });
+
+
   return (
-    <div className="Roomcard layoutspacv" onClick={() => {}}>
-      <img src={data.image} alt="" className="card-room-img" />
-        <div className="room-description">
-          <h3>{data.room_type}</h3>
+    <Box sx={styles.container} onClick={() => {}}>
+      <img src={data.image} alt="" className="card-room-img"  />
+        <Box sx={styles.details} className="room-description">
+          <Label sx={styles.roomName}>{data.room_type}</Label>
+          <Box className="row-styles">
+           {
+            [1,2,3].map(()=>{
+              return <StarFill size={14} color={ColorTheme.info[100]} />
+            })
+           }
+          </Box>
 
-          <div className="row-styles">
-            <span className="price">GH₵ {data.price} / per Night</span>
-            <Star size={15} color="rgb(199, 81, 31)" /> <Star size={15} color="rgb(199, 81, 31)" />{" "}
-            <Star size={15} color="rgb(199, 81, 31)" />
-          </div>
+          <Box className="room-card-action">
 
-          <p className="room-card-detail">
-            {data.alias}: {data.description}
-          </p>
-          <div className="room-card-action">
+<Box className="left-content">
 
-<div className="left-content">
-
-<div className="row-styles">
-            <Person  size={15} />
-            <span>{data.capacity} Person</span>
-            <BoundingBoxCircles />
-            <span>{data.aircondition ? "Air condition" : "no available"}</span>
-          </div>
-          <div className="row-styles">
-            <Cup  size={15} />
-            <span> {data.meals}</span>
-            <FaBed />
-            <span>{data.mattress}</span>
-          </div>
+<Box className="row-styles">
+           <Box> <PersonIcon  fontSize={"small"} /> </Box>
+            <Label sx={styles.indicator}>{data.capacity} Person</Label>
+            <HvacIcon fontSize={"small"} />
+            <Label sx={styles.indicator}>{data.aircondition ? "Air condition" : "no available"}</Label>
+          </Box>
+          <Box className="row-styles">
+            <FreeBreakfastIcon fontSize={"small"} />
+            <Label sx={styles.indicator}> {data.meals}</Label>
+<HotelIcon fontSize={"small"}/>
+            <Label sx={styles.indicator}>{data.mattress}</Label>
+          </Box>
           {data.room_type === "Excecutive suite" ? (
-            <div className="row-styles">
-              <MdDinnerDining  size={15} />
-              <span> Access to rooftop Bar</span>
-            </div>
+            <Box className="row-styles">
+              <DinnerDiningIcon fontSize={"small"}/>
+              <Label sx={styles.indicator}> Access to rooftop Bar</Label>
+            </Box>
           ) : null}
           
-</div>
-<span
-            className="book-now"
-            onClick={() =>
-              navigate(`/rooms/search-results/any/any/${data.room_type}/1`)
-            }
-          >
-            check availability
-          </span>
+</Box>
+<Box sx={styles.rightCard}>
+<Label sx={styles.price}>
+GH₵ {data.price} 
+</Label>
+<Label sx={styles.guest}>
+for {1} room, {2} nights, {2} guests
+</Label>
+<Label sx={styles.tax}>
+including taxes and fees
+</Label>
       
 
-          </div>
+      <AppButton onClick={props.onClick} label={'View details'}/>
+</Box>
+
+
+          </Box>
         
 
      
-        </div>
- 
-   
-     
-    </div>
+        </Box>
+    </Box>
   );
 }
 
 export default Room;
 
+
+const styles={
+  container:(theme)=>({
+    borderTopLeftRadius: '10px',
+    borderBottomLeftRadius: '10px',
+    borderWidth:'1px',
+    borderStyle:'solid',
+    backgroundColor: ColorTheme.background.light,
+    display:'flex', 
+    [theme.breakpoints.down('md')]: {
+      flexDirection:'column',
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderRadius: '10px',
+    },
+    margin:'10px 0',
+    gap:2
+  }),
+
+roomName:{
+ fontWeight:'700',
+ fontSize:'20px'
+  },
+  cardRoomImg: {
+    width: '280px',
+    height: 'auto',
+    objectFit: 'fill',
+  },
+  details:{
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '15px',
+    width: '100%',
+    padding: '10px',
+    justifyContent: 'space-between',
+  },
+  rightCard:(theme)=>({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    },
+    
+  }),
+  price:{
+    fontWeight:'700',
+    fontSize:'20px'
+  },
+  guest:{
+    fontSize:'14px',
+    fontWeight:'700'
+
+  },
+  tax:{
+   fontSize:'14px',
+    fontWeight:'400'
+  }
+  ,
+  indicator:{
+    fontSize:'14px',
+    fontWeight:'700'
+  }
+}

@@ -49,6 +49,7 @@ import Admincontainer from "./components/utils/authadmin";
 import ForgottenPassword from "./components/Front/forgotpassword";
 import EmployeeDashboard from "./components/Admin/employeepanel";
 import AdminRestriction from "./components/utils/adminrestrction";
+import AuthPage from "./components/Front/auth";
 
 function App() {
   const notifications = useSelector((value) => value.notification);
@@ -91,11 +92,11 @@ function App() {
         <Route path="/account/forgotten_credentials" element={<ForgottenPassword />} />
         
         <Route
-          path="/rooms/search-results/:startDate/:endDate/:roomtype/:person"
+          path="/rooms/results/:startDate/:endDate/:roomtype/:person"
           element={<SearchResult />}
         />
 
-        <Route path="/user/login" element={<SignInUser />}></Route>
+        <Route path="/user/login" element={<AuthPage />}></Route>
         <Route path="/user/Signup" element={<MyForm />}></Route>
         <Route
           path="/room/payment/:id/:start/:end"

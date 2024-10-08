@@ -5,10 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetAllRoomTypes } from '../../../store/actions/datacollection';
 import SkeletonLoadingCards from '../../skeletonLoading/SkeletonLoadingCards';
 import { showCoursesm } from '../../utils/reuseable';
-import { Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import RoomSkeleton from '../Room/skeleton';
+import { useNavigate } from 'react-router-dom';
+import { Label } from '../../Label';
+import { HorizontalDivider } from '../../Divider';
 
 function Rooms() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(GetAllRoomTypes());
@@ -24,16 +28,31 @@ function Rooms() {
 
       return (
         <div className='roomType' id='roomsCat'>
-            <h3 className='header-style'> Featured rooms and rate.</h3>
-            <Typography sx={styles.subtitle} className='header-style'>
+            <Label sx={styles.headerStyle}> Our Suits</Label>
+            <Label sx={styles.subtitle} className='header-style'>
                 Discover Your Perfect Stay: Explore Our Top-Rated Rooms and Exclusive Rates for Unforgettable Comfort!
-            </Typography>
-            <div className='align-grid'>
+            </Label>
+            <Stack 
+            direction={"column"}
+            spacing={2.5}
+            sx={styles.list}
+            >
                 {room_types && room_types.data ? (
                     room_types.data.map((item, index) => (
-                        <div key={index}>
-                            <Room data={item} /> 
-                        </div>
+                        <Stack 
+                        spacing={2.5}
+                        direction={"column"}
+                        key={index}>
+                            <Room 
+                            data={item}
+                            onClick={()=> navigate(`/rooms/results/undefined/undefined/${item.room_type}/1`)}
+                             /> 
+                             {
+                                index !==room_types.data.length-1 &&
+                                <HorizontalDivider/>
+                             }
+                             
+                        </Stack>
                     ))
                 ) : (
                     // Render loading skeletons
@@ -43,14 +62,25 @@ function Rooms() {
                         </div>
                     ))
                 )}
-            </div>
+            </Stack>
         </div>
     );
 }
 export default Rooms
 
 const styles={
+    headerStyle:{
+fontWeight:'700',
+fontSize:30,
+width:'95%'
+
+    },
     subtitle:{
-        fontFamily: 'Manrope',
+      marginBottom:3,
+      width:'95%'
+    },
+    list:{
+width:'95%',
+justifyContent:"center",
     }
 }

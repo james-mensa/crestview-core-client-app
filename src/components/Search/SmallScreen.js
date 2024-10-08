@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { Box, Button, IconButton} from "@mui/material";
+import { Box, Button, IconButton, Stack} from "@mui/material";
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNavigate } from "react-router-dom";
 import { BaseCalender } from "../BaseCalender";
@@ -12,6 +12,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { RoomType } from "../RoomType";
 import { formatDate } from "../utils/common";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { Filter } from "../Filter";
 export const SmallScreen = () => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
@@ -50,8 +51,19 @@ export const SmallScreen = () => {
 
   const [roomType, setRoomType] = useState("Any Room type");
   const SearhValues = ()=>{
-    navigate(`/rooms/search-results/${date.startDate}/${date.endDate}/${roomType}/${options}`
+    navigate(`/rooms/results/${date.startDate}/${date.endDate}/${roomType}/${options}`
     )
+  }
+
+
+  const [filter,setFilter]=useState({
+    rooms:1,
+    adults:1,
+    children:0
+  })
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const handleFilter=()=>{
+    setIsFilterVisible(!isFilterVisible);
   }
   return (
     <Box sx={styles.container}>
@@ -73,15 +85,15 @@ export const SmallScreen = () => {
 
       <Box sx={styles.searchItem} >
       <Label sx={styles.label}>Guests</Label>
-        <Box sx={styles.guestWrapper}>
-          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("minus")}>
-            <FaCaretLeft color={ColorTheme.button.dark} />
-          </IconButton>
-          <span>{options}</span>
-          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("plus")}>
-            <FaCaretRight color={ColorTheme.button.dark} />
-          </IconButton>
+        <Box sx={styles.guestWrapper} onClick={handleFilter}>
+        <Stack direction={'row'} alignItems={"center"} spacing={1} >
+        <Label  sx={styles.title}>{`${filter.adults + filter.children} Guests,`}</Label>
+       </Stack>
+       <Stack direction={'row'} alignItems={"center"} spacing={1}>
+       <Label sx={styles.title}>{`${filter.rooms} Room${filter.rooms >1 ?'s':''}`}</Label>
+       </Stack>
         </Box>
+        <Filter value={filter} setValues={setFilter} isVisible={isFilterVisible} onClose={handleFilter}/>
       </Box>
 
     
@@ -142,7 +154,6 @@ const styles={
     flexDirection:'row',
     gap:1,
     alignItems:'center',
-    marginLeft:-1
 
   },
   searchBtn:(theme)=>( {

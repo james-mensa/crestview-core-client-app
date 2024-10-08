@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Room from "./Room";
 import Footer from "./footer";
-import { IconButton, MenuItem, Select } from "@mui/material";
-import { Filter, X, XLg } from "react-bootstrap-icons";
-import { DateRange } from "react-date-range";
-import { format } from "date-fns";
+import { Box, Container, IconButton} from "@mui/material";
+import { Filter, XLg } from "react-bootstrap-icons";
+
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {
-  FaCalendarAlt,
   FaCaretLeft,
   FaCaretRight,
-  FaUserFriends,
 } from "react-icons/fa";
 
 import { useParams } from "react-router-dom";
@@ -18,11 +15,18 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Clear_SearchBox, GetsearchResult } from "../../store/actions/datacollection";
-import BookRoomBox from "./Room/bookroom";
-import { PromptToastify, enableScroll, showToastify, stayDays } from "../utils/reuseable";
+import { PromptToastify, enableScroll, stayDays } from "../utils/reuseable";
 import MobileTopNav from "../utils/mobilenav";
-import SkeletonLoading from "../skeletonLoading/SkeletonLoading";
+
 import SkeletonLoadingCards from "../skeletonLoading/SkeletonLoadingCards";
+import { Label } from "../Label";
+import { ColorTheme } from "../style/ColorTheme";
+import { RoomType } from "../RoomType";
+import { HorizontalDivider } from "../Divider";
+import { BaseCalender } from "../BaseCalender";
+import { formatDate } from "../utils/common";
+import Room from "./Room";
+import { AppButton } from "../Button";
 const SearchResult = () => {
   const dispatch = useDispatch();
   const { startDate, endDate, roomtype, person } = useParams();
@@ -31,21 +35,18 @@ const SearchResult = () => {
   const room_type = decodeURIComponent(roomtype);
   const people = decodeURIComponent(person);
   const searchroombox = useSelector((item) => item.searchRooms);
+
   let currentDate =new Date(Date.now());
   const tomorrowD = new Date(currentDate);
   tomorrowD.setDate(currentDate.getDate() + 1);
-  const [dates, setDates] = useState([
+  const [date, setDate] = useState(
     {
-      startDate: start_date !== "any" ? new Date(start_date) : Date.now(),
-      endDate: end_Date !== "any" ? new Date(end_Date) :  Date.now(),
+      startDate: start_date? new Date(start_date) : Date.now(),
+      endDate: end_Date ? new Date(end_Date) :  tomorrowD,
       key: "selection",
     },
-  ]);
-
-  const [openDate, setOpenDate] = useState(false);
-  const [openOption, setOpenOption] = useState(false);
+  );
   const [options, setOptions] = useState(parseInt(people));
-
   const handleOptionBtn = (operation) => {
     if (operation === "minus") {
       if (options >= 2) {
@@ -59,31 +60,24 @@ const SearchResult = () => {
     }
   };
 
-  const OpenCalender = () => {
-    setOpenDate(true);
-  };
-  const CloseCalender = () => {
-    if (openDate) {
-      setOpenDate(false);
-    }
-  };
   const navigate = useNavigate();
 
-  const [roomtyp, setroomtype] = useState(room_type);
 
+  const [roomType, setRoomType] = useState(room_type);
   const SearhValues = () => {
-    if (stayDays(dates[0].startDate, dates[0].endDate) === 0) {
+    dispatch(Clear_SearchBox())
+    if (stayDays(date.startDate, date.endDate) === 0) {
       PromptToastify("Please check the date");
     } else {
       navigate(
-        `/rooms/search-results/${dates[0].startDate}/${dates[0].endDate}/${roomtyp}/${options}`
+        `/rooms/results/${date.startDate}/${date.endDate}/${roomType}/${options}`
       );
     }
 
     dispatch(
       GetsearchResult(
-        start_date === "any" ? "any" : dates[0].startDate,
-        roomtyp,
+        start_date === "any" ? "any" : date.startDate,
+        roomType,
         options
       )
     );
@@ -92,19 +86,31 @@ const SearchResult = () => {
   useEffect(() => {
     dispatch(
       GetsearchResult(
-        start_date === "any" ? "any" : dates[0].startDate,
-        roomtyp,
+        start_date === "any" ? "any" : date.startDate,
+        roomType,
         options
       )
     );
-  }, [dispatch]);
+  }, [date, dispatch, options, roomType, start_date]);
   const [showmenu, setmenu] = useState(false);
+
+  const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
+  const handleCalenderModal = () => {
+    setIsCalenderModalOpen(!isCalenderModalOpen);
+  };
+
+
+  if(!searchroombox){
+    return <SkeletonLoadingCards />;
+  }
+
+  console.log({seletedRoom:roomType})
   return (
-    <>
-      {searchroombox && searchroombox.data ?
-        <div className="main-layout">
+        <Container className="main-layout">
+               <BaseCalender onChange={setDate} value={date} show={isCalenderModalOpen} handleClose={handleCalenderModal}/>
+
       <MobileTopNav />
-      <div
+      <Box
         className="mobile"
         style={{ fontFamily: "Roboto condensed", fontSize: "12px" ,flexDirection:"row",alignItems:"center"}}
       >
@@ -112,182 +118,64 @@ const SearchResult = () => {
           <Filter />
         </IconButton>
         Search Option
-      </div>
+      </Box>
       {showmenu ? (
-        <div
+        <Box
           className="mainmenu"
           style={{
             minHeight: `${window.innerHeight + 100}px`,
             width: `${window.innerWidth}px`,
           }}
         >
-          <div
+          <Box
             className="menu_left"
             style={{ minHeight: `${window.innerHeight}px` }}
           >
-            <div className="filter-cbox">
-              <p>Room Type</p>
-
-              <Select
-                style={{
-                  width: "85%",
-                  height: "40px",
-                  fontSize: "14px",
-                  fontFamily: "Roboto condensed",
-                  fontWeight: "bold",
-                  color: "rgb(6, 8, 29)",
-                  backgroundColor: "white",
-                }}
-                name="type"
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={roomtyp}
-                onChange={(data) => {
-                  setroomtype(data.target.value);
-                }}
-              >
-                {" "}
-                <MenuItem
-                  className="roomtype"
-                  value="Any Room type"
-                  style={{
-                    fontSize: "14px",
-                    fontFamily: "Roboto condensed",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Any Room type
-                </MenuItem>
-                <MenuItem
-                  value="Family room"
-                  style={{
-                    fontSize: "14px",
-                    fontFamily: "Roboto condensed",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Family room
-                </MenuItem>
-                <MenuItem
-                  value="Standard suite room"
-                  style={{
-                    fontSize: "14px",
-                    fontFamily: "Roboto condensed",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Standard suite room
-                </MenuItem>
-                <MenuItem
-                  value="Excecutive suite"
-                  style={{
-                    fontSize: "14px",
-                    fontFamily: "Roboto condensed",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {" "}
-                  Excecutive suite
-                </MenuItem>
-                <MenuItem
-                  value="Low budget Room"
-                  style={{
-                    fontSize: "14px",
-                    fontFamily: "Roboto condensed",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {" "}
-                  Low budget Room
-                </MenuItem>
-              </Select>
-
-              <div
-                className="search_item-c"
-                style={{ marginTop: "30px", width: "85%" }}
-              >
-                <p>Stay Duration</p>
-                <div className="search_item-d">
-                  <FaCalendarAlt
-                    color="chocolate"
-                    className="header_search_icon"
-                  />
-                  <span
-                    style={{ marginLeft: "10px" }}
-                    onClick={OpenCalender}
-                    className="header_search_date"
-                  >
-                    {`${format(dates[0].startDate, "EE dd yyyy")} to ${format(
-                      dates[0].endDate,
-                      "EE dd yyyy"
-                    )}`}
-                  </span>
-                </div>
-
-                {openDate ? (
-                  <div className="fixdate_s" id="calender-id">
-                    <div
-                      style={{
-                        backgroundColor: "white",
-                        width: "100%",
-                        height: "50px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      {" "}
-                      <span
-                        className="closebtnn"
-                        style={{ height: "40px", width: "40px",paddingLeft:"3px",paddingTop:"3px" }}
-                      >
-                        <IconButton onClick={CloseCalender}>
-                          <X color="white" size={20} />
-                        </IconButton>
-                      </span>
-                    </div>
-
-                    <DateRange
-                      editableDateInputs
-                      onChange={(item) => setDates([item.selection])}
-                      moveRangeOnFirstSelection={false}
-                      ranges={dates}
-                      className="header_search_calender"
-                      minDate={new Date()}
-                    />
-                  </div>
-                ) : null}
-              </div>
-              <div
-                className="search_item"
-                onClick={CloseCalender}
-                style={{
-                  marginTop: "30px",
-                  backgroundColor: "white",
-                  width: "85%",
-                }}
-              >
-                <FaUserFriends
-                  color="chocolate"
-                  className="header_search_icon_first"
-                />
-
-                <span style={{ marginLeft: "10px" }}>Guests</span>
-                <div className="choosepeople">
-                  <IconButton onClick={() => handleOptionBtn("minus")}>
-                    <FaCaretLeft color="chocolate" />
-                  </IconButton>
-                  <span>{options}</span>
-                  <IconButton onClick={() => handleOptionBtn("plus")}>
-                    <FaCaretRight color="chocolate" />
-                  </IconButton>
-                </div>
-              </div>
-
+            <Box className="filter-cbox">
+         
+          
            
+           
+            <Box sx={styles.searchItem}>
+               <Label sx={styles.label}>Room type</Label>
+               <RoomType onchange={setRoomType} value={roomType}/>
+           </Box>
+           <HorizontalDivider/>
+
+           <Box sx={styles.searchItem} onClick={handleCalenderModal}>
+        <Label sx={styles.label}>CheckIn</Label>
+        <Label sx={styles.title}>
+              {formatDate(date.startDate)}
+              <KeyboardArrowDownIcon color={'action'} /> 
+        </Label>       
+      </Box>
+      <Box sx={styles.searchItem} onClick={handleCalenderModal}>
+        <Label sx={styles.label}>CheckOut</Label>
+        <Label sx={styles.title}>
+              {formatDate(date.endDate)}
+              <KeyboardArrowDownIcon color={'action'} /> 
+        </Label>       
+      </Box>
+           
+           <HorizontalDivider/>
+          
+           <Box sx={styles.searchItem} >
+      <Label sx={styles.label}>Guests</Label>
+        <Box sx={styles.guestWrapper}>
+          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("minus")}>
+            <FaCaretLeft color={ColorTheme.button.dark} />
+          </IconButton>
+          <span>{options}</span>
+          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("plus")}>
+            <FaCaretRight color={ColorTheme.button.dark} />
+          </IconButton>
+        </Box>
+      </Box>
+      
+
+     
                 <button
-                  className="header_search_btn"
+                   style={styles.searchBtn}
                   type="button"
                   onClick={() => {
                     dispatch(Clear_SearchBox())
@@ -296,16 +184,16 @@ const SearchResult = () => {
                     enableScroll()
                   }}
                 >
-                  Check availaility
+                   Explore rooms
                 </button>
               
-            </div>
-          </div>
-          <div
+            </Box>
+          </Box>
+          <Box
             className="menu_right"
             style={{ minHeight: `${window.innerHeight}px` }}
           >
-            <div className="menu_right_span">
+            <Box className="menu_right_span">
               <IconButton
                 onClick={() => {
                   setmenu(false);
@@ -314,183 +202,72 @@ const SearchResult = () => {
               >
                 <XLg color="white" size={18} />{" "}
               </IconButton>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       ) : null}
 
-      <div
+      <Box
         className="roomType-s"
         style={{ minHeight: `${window.innerHeight}px` }}
       >
-        <div className="filter-c">
-          <div className="filter-cbox">
-            <p>Room Type</p>
-            <Select
-              style={{
-                minWidth: "160px",
-                height: "40px",
-                fontSize: "14px",
-                fontFamily: "Roboto condensed",
-                fontWeight: "bold",
-                color: "rgb(6, 8, 29)",
-              }}
-              name="type"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={roomtyp}
-              onChange={(data) => {
-                setroomtype(data.target.value);
-             
-              }}
-            >
-              {" "}
-              <MenuItem
-                className="roomtype"
-                value="Any Room type"
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Roboto condensed",
-                  fontWeight: "bold",
-                }}
-              >
-                Any Room type
-              </MenuItem>
-              <MenuItem
-                value="Family room"
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Roboto condensed",
-                  fontWeight: "bold",
-                }}
-              >
-                Family room
-              </MenuItem>
-              <MenuItem
-                value="Standard suite room"
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Roboto condensed",
-                  fontWeight: "bold",
-                }}
-              >
-                Standard suite room
-              </MenuItem>
-              <MenuItem
-                value="Excecutive suite"
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Roboto condensed",
-                  fontWeight: "bold",
-                }}
-              >
-                {" "}
-                Excecutive suite
-              </MenuItem>
-              <MenuItem
-                value="Low budget Room"
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Roboto condensed",
-                  fontWeight: "bold",
-                }}
-              >
-                {" "}
-                Low budget Room
-              </MenuItem>
-            </Select>
+          <Box sx={styles.dasktopFilterContainer}>
+           <Box sx={styles.searchItem}>
+               <Label sx={styles.label}>Room type</Label>
+               <RoomType onchange={setRoomType} value={roomType}/>
+           </Box>
+           <HorizontalDivider/>
 
-            <div className="search_item-c" style={{ marginTop: "30px" }}>
-              <p>Stay Duration</p>
-              <div className="search_item-d">
-                <FaCalendarAlt
-                  color="chocolate"
-                  className="header_search_icon"
-                />
-                <span
-                  style={{ marginLeft: "10px" }}
-                  onClick={OpenCalender}
-                  className="header_search_date"
-                >
-                  {`${format(dates[0].startDate, "EE dd yyyy")} to ${format(
-                    dates[0].endDate,
-                    "EE dd yyyy"
-                  )}`}
-                </span>
-                {openDate ? (
-                  <span className="closebtnn" style={{ marginLeft: "40px" }}>
-                    <IconButton onClick={CloseCalender}>
-                      <X color="white" size={20} />
-                    </IconButton>
-                  </span>
-                ) : null}
-              </div>
-              <div id="calender-id">
-                {openDate && (
-                  <DateRange
-                    editableDateInputs
-                    onChange={(item) => setDates([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={dates}
-                    className="header_search_calender"
-                    minDate={new Date()}
-                  />
-                )}
-              </div>
-            </div>
-            <div
-              className="search_item"
-              onClick={CloseCalender}
-              style={{ marginTop: "30px" }}
-            >
-              <FaUserFriends
-                color="chocolate"
-                className="header_search_icon_first"
-              />
+           <Box sx={styles.searchItem} onClick={handleCalenderModal}>
+        <Label sx={styles.label}>CheckIn</Label>
+        <Label sx={styles.title}>
+              {formatDate(date.startDate)}
+              <KeyboardArrowDownIcon color={'action'} /> 
+        </Label>       
+      </Box>
+      <Box sx={styles.searchItem} onClick={handleCalenderModal}>
+        <Label sx={styles.label}>CheckOut</Label>
+        <Label sx={styles.title}>
+              {formatDate(date.endDate)}
+              <KeyboardArrowDownIcon color={'action'} /> 
+        </Label>       
+      </Box>
+           
+           <HorizontalDivider/>
+          
+           <Box sx={styles.searchItem} >
+      <Label sx={styles.label}>Guests</Label>
+        <Box sx={styles.guestWrapper}>
+          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("minus")}>
+            <FaCaretLeft color={ColorTheme.button.dark} />
+          </IconButton>
+          <span>{options}</span>
+          <IconButton sx={styles.guestSelector} onClick={() => handleOptionBtn("plus")}>
+            <FaCaretRight color={ColorTheme.button.dark} />
+          </IconButton>
+        </Box>
+      </Box>
+      
 
-              <span style={{ marginLeft: "10px" }}>Guests</span>
-              <div className="choosepeople">
-                <IconButton onClick={() => handleOptionBtn("minus")}>
-                  <FaCaretLeft color="chocolate" />
-                </IconButton>
-                <span>{options}</span>
-                <IconButton onClick={() => handleOptionBtn("plus")}>
-                  <FaCaretRight color="chocolate" />
-                </IconButton>
-              </div>
-            </div>
+<AppButton onClick={ SearhValues} label={"Explore rooms"}/>
 
-            <div
-              className="search_item"
-              onClick={CloseCalender}
-              style={{ marginTop: "30px" }}
-            >
-              <button
-                className="header_search_btn"
-                type="button"
-                onClick={() => {
-                  dispatch(Clear_SearchBox())
-                  SearhValues();
-                }}
-              >
-                Check availaility
-              </button>
-            </div>
-          </div>
-        </div>
+         
+          </Box>
+      
 
-        <div className="result-box">
+        <Box className="result-box">
           {searchroombox && searchroombox.data ? (
             searchroombox.data.map((data, index) => {
               return (
-                <div key={index}>
-                  <BookRoomBox
+                <Box key={index}>
+                  <Room
                     data={data}
-                    valid={start_date === "any" ? false : true}
-                    start={dates[0].startDate}
-                    end={dates[0].endDate}
+                    onClick={()=>navigate(
+                      `/room/payment/${data._id}/${date.startDate}/${date.endDate}`
+                    )}
                   />
-                </div>
+                  
+                </Box>
               );
             })
           ) : (
@@ -504,17 +281,69 @@ const SearchResult = () => {
               No rooms available
             </p>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
       <Footer />
-    </div>:
+    </Container>
    
-    <SkeletonLoadingCards/>
 
-      }
-    </>
   
   );
 };
 
 export default SearchResult;
+
+
+const styles={
+  container:{
+
+  },
+  dasktopFilterContainer:(theme)=>({
+    borderRadius:5,
+    borderWidth:1,
+    padding:3,
+    gap:2,
+    display:'flex',
+    flexDirection:'column',
+    width:260,
+    [theme.breakpoints.down('md')]: {
+      display:'none'
+    },
+
+  }),
+  label:{
+    fontFamily: "Manrope",
+    fontWeight: '700',
+    color:ColorTheme.text.label,
+   
+  },
+  title:{
+    cursor:'pointer',
+    fontFamily: "Manrope",
+    fontWeight: '700'
+
+  },
+  searchItem:{
+
+  },
+  guestSelector:{
+    width:'20px',
+    height:'20px',
+    padding:0
+    },
+  guestWrapper:{
+    display:'flex',
+    flexDirection:'row',
+    gap:1,
+    alignItems:'center',
+    marginLeft:-1
+  },
+  searchBtn: {
+    backgroundColor: ColorTheme.button.dark,
+    borderRadius: '5px',
+    color: 'white',
+    padding: '10px',
+    fontWeight: 'normal',
+    marginTop:10
+  },
+}

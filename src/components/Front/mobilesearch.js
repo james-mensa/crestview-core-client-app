@@ -2,7 +2,7 @@ import { IconButton, MenuItem, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { X, XLg } from "react-bootstrap-icons";
 import { useNavigate, useParams } from "react-router-dom";
-import { PromptToastify, enableScroll, showToastify, stayDays } from "../utils/reuseable";
+import { PromptToastify, enableScroll, stayDays } from "../utils/reuseable";
 import { FaCalendarAlt, FaCaretLeft, FaCaretRight, FaUserFriends } from "react-icons/fa";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,7 +61,7 @@ const SearchNav = (props) => {
       }else{
         
         navigate(
-          `/rooms/search-results/${dates[0].startDate}/${dates[0].endDate}/${roomtyp}/${options}`
+          `/rooms/results/${dates[0].startDate}/${dates[0].endDate}/${roomtyp}/${options}`
         );
       }
      

@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Room from "./Room";
 import Footer from "./footer";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
-import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import dayjs from "dayjs";
 import { format } from "date-fns";
 import { MobileTimePicker } from "@mui/x-date-pickers/MobileTimePicker";
-import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-import TopNav from "../utils/pagenav";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  Clear_SearchBox,
-  GetsearchResult,
   conferencAvailability,
 } from "../../store/actions/datacollection";
-import BookRoomBox from "./Room/bookroom";
 import {
   DueTime,
   defaultDueTime,
-  enableScroll,
-  showToastify,
-  stayDays,
 } from "../utils/reuseable";
 import MobileTopNav from "../utils/mobilenav";
 
@@ -41,7 +29,6 @@ const ConferenceBook = () => {
   const [start_date, set_dates] = useState(new Date(Date.now()));
   const [duetim, set_duetim] = useState(defaultDueTime());
   const navigate = useNavigate();
-  const [showmenu, setmenu] = useState(false);
   const [loading, setbtnloading] = useState(false);
   const [bookbtm, setbookbtm] = useState(false);
 
