@@ -13,7 +13,7 @@ import { RoomType } from "../RoomType";
 import { formatDate } from "../utils/common";
 import { Filter } from "../Filter";
 import { formatDateShort, serializeFilter } from "../../libs/common";
-export const LargeScreen = () => {
+export const LargeScreen = ({showType=false}) => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
   const tomorrowD = new Date(currentDate);
@@ -44,7 +44,8 @@ export const LargeScreen = () => {
       checkOut:formatDateShort(date.endDate),
       checkIn:formatDateShort(date.startDate),
       ...filter,
-      type:roomType
+      ...(showType && { type: roomType }),
+
     }
     const filterString = serializeFilter(userSelection)
     navigate(`/rooms/results/${filterString}`
@@ -60,12 +61,14 @@ export const LargeScreen = () => {
     <Box sx={styles.container}>
          <BaseCalender onChange={setDate} value={date} show={isCalenderModalOpen} handleClose={handleCalenderModal}/>
 
-      
+      {
+        showType && 
       <Box sx={styles.searchItem}>
       <Label sx={styles.roomTypeLabel}>Room type</Label>
         <RoomType onchange={setRoomType} value={roomType}/>
       </Box>
-<Divider/>
+      }
+{  showType && <Divider/> }
       <Box sx={styles.searchItem} onClick={handleCalenderModal}>
         <Label sx={styles.label}>CheckIn</Label>
         <Label sx={styles.title}>
