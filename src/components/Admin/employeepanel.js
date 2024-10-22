@@ -10,7 +10,7 @@ import { enableScroll } from "../utils/reuseable";
 import BlockCustomer from "./blockuser";
 import { Person, X } from "react-bootstrap-icons";
 import MessageCustomer from "./messagecustomer";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../services/actions/adminActions";
 import { RiCustomerService2Line, RiAdminFill } from "react-icons/ri";
 const EmployeeDashboard = () => {
   const dispatch = useDispatch();

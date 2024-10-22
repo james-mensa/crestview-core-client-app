@@ -3,20 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Search } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { CheckProfile } from "./responsehover";
-import { CheckTopAds } from "./reuseable";
 
 const TopNavLog = (props) => {
   const navigate = useNavigate();
   const [searchvalue, setSearchValue] = useState("");
   const Checkuser = useSelector((item) => item.authuser);
-  useEffect(() => {
-   // CheckProfile(props.setprofile);
-  });
-  useEffect(() => {
-    CheckTopAds(props.topads);
-  });
- 
+
   const handlesearchbox = (event) => {
     setSearchValue(event.target.value);
   };
@@ -60,7 +52,7 @@ const TopNavLog = (props) => {
       {Checkuser && Checkuser.auth ? (
           <>
           
-            <div className="uavatar" onClick={() =>navigate("/client/profile")}>
+            <div className="uavatar" onClick={() =>navigate("/dashboard/overview")}>
             <img  alt=""
             style={{width:"30px",height:"30px"}}
             src="https://myportfoliocontent.s3.eu-north-1.amazonaws.com/ControllerImg/gamer.png63926.8325918976"/>
@@ -84,7 +76,7 @@ const TopNavLog = (props) => {
             </div>
             <div className="logincss">
               {" "}
-              <span style={{marginLeft:"15px"}} onClick={() => navigate("/user/login")}>Login</span>
+              <span style={{marginLeft:"15px"}} onClick={() => navigate("/auth")}>Login</span>
             </div>
           </div>
         )}

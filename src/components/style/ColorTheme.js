@@ -1,7 +1,8 @@
 const ColorTheme={
     background:{
        light:'rgb(255, 255, 255)',
-       150:'#f7f7f7'
+       150:'#f7f7f7',
+       160:'rgba(109, 154, 252,0.4)'
     },
     text:{
        label:"#b8babf",

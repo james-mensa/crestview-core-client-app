@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import RoomsDetail from "./roomsdetails";
 import { RiAdminFill, RiCustomerService2Line } from "react-icons/ri";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../services/actions/adminActions";
 const PanelRoom = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

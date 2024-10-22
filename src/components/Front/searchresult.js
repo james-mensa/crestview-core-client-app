@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { Clear_SearchBox, GetsearchResult } from "../../store/actions/datacollection";
+import { Clear_SearchBox, GetsearchResult } from "../../services/actions/datacollection";
 import { PromptToastify, enableScroll, stayDays } from "../utils/reuseable";
 import MobileTopNav from "../utils/mobilenav";
 
@@ -25,8 +25,8 @@ import { RoomType } from "../RoomType";
 import { HorizontalDivider } from "../Divider";
 import { BaseCalender } from "../BaseCalender";
 import { formatDate } from "../utils/common";
-import Room from "./Room";
 import { AppButton } from "../Button";
+import Room from "../Room";
 const SearchResult = () => {
   const dispatch = useDispatch();
   const { startDate, endDate, roomtype, person } = useParams();

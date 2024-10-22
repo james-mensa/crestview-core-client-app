@@ -30,7 +30,7 @@ export const InputText = ({
         placeholder={placeholder}
         sx={styles.input}
       />
-      {error && <Label sx={styles.errorMessage}>{errorMessage}</Label>}
+     <Label sx={styles.errorMessage}>{error && errorMessage}</Label>
     </FormControl>
   );
 };

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   conferencAvailability,
-} from "../../store/actions/datacollection";
+} from "../../services/actions/datacollection";
 import {
   DueTime,
   defaultDueTime,

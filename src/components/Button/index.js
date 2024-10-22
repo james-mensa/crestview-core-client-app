@@ -45,7 +45,7 @@ export const AuthButton=({onClick,label,loading})=>{
        onClick={onClick}
      >
           {loading ? 
-          <CircularProgress size={20} />
+          <CircularProgress size={20} sx={{color:ColorTheme.background[150]}}/>
             :
        <Label sx={styles.label}> {label}</Label>
           }

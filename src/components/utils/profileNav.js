@@ -3,19 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Search, Person, List } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { CheckProfile } from "./responsehover";
-import { CheckTopAds } from "./reuseable";
 
 const ProfileNav = (props) => {
   const navigate = useNavigate();
   const [searchvalue, setSearchValue] = useState("");
   const Checkuser = useSelector((item) => item.authuser);
-  useEffect(() => {
-    // CheckProfile(props.setprofile);
-  });
-  useEffect(() => {
-    CheckTopAds(props.topads);
-  });
 
   const handlesearchbox = (event) => {
     setSearchValue(event.target.value);
@@ -51,7 +43,7 @@ const ProfileNav = (props) => {
             
               {Checkuser && Checkuser.account ? <>
                 <p className="presshoverAv">
-                  {Checkuser.account.fullname.toUpperCase()}
+                  {Checkuser.account.fullname}
                 </p>
                 <p className="presshoverAvmobile">
                 <List size={22} />

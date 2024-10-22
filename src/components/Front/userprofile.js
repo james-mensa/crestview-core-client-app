@@ -4,7 +4,7 @@ import Footer from "./footer";
 import { KeyFill, ListCheck, Person, XLg } from "react-bootstrap-icons";
 import SectionNav from "../utils/sectionnav";
 import { useDispatch, useSelector } from "react-redux";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../services/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import MobileTopNav from "../utils/mobilenav";
@@ -47,15 +47,15 @@ const UserPanel = () => {
             <p style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}>
               <Person /> <span>Profile</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/dashboard/records")}>
               <ListCheck />
               <span>Order Records</span>
             </p>
-            <p onClick={() => navigate("/client/panel/specail_orders")}>
+            <p onClick={() => navigate("/dashboard/specail_orders")}>
               <MdOutlineDashboardCustomize />
               <span> Special Order </span>
             </p>
-            <p onClick={() => navigate("/client/panel/settings")}>
+            <p onClick={() => navigate("/dashboard/settings")}>
               <KeyFill />
               <span>Account Settings </span>
             </p>
@@ -103,15 +103,15 @@ const UserPanel = () => {
             <p style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}>
               <Person /> <span>Profile</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/dashboard/records")}>
               <ListCheck />
               <span>Order Records</span>
             </p>
-            <p onClick={() => navigate("/client/panel/specail_orders")}>
+            <p onClick={() => navigate("/dashboard/specail_orders")}>
               <MdOutlineDashboardCustomize />
               <span> Special Order </span>
             </p>
-            <p onClick={() => navigate("/client/panel/settings")}>
+            <p onClick={() => navigate("/dashboard/settings")}>
               <KeyFill />
               <span>Account Settings </span>
             </p>

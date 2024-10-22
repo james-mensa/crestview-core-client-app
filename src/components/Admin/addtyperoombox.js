@@ -1,6 +1,4 @@
-import { IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-
 import { BoundingBoxCircles, Cup, Person, Star } from "react-bootstrap-icons";
 import { FaBed } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { CircleSpinner } from "react-spinners-kit";
 import {
   AddNewRoomFromCate,
-  DeleteRoom,
   GetAllRooms,
-} from "../../store/actions/datacollection";
+} from "../../services/actions/datacollection";
 import { useFormik } from "formik";
 
 function AddRoomTypeBox(props) {

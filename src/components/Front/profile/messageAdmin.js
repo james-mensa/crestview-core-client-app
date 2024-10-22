@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 import { CircleSpinner } from "react-spinners-kit";
-import { sendMsgClient } from "../../../store/actions/adminActions";
+import { sendMsgClient } from "../../../services/actions/adminActions";
 import { PromptToastify } from "../../utils/reuseable";
 
 const QuestMessage = (props) => {

@@ -3,23 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Search, Person } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { CheckProfile } from "./responsehover";
-import { CheckTopAds } from "./reuseable";
 
 const SectionNav = (props) => {
   const navigate = useNavigate();
-  const [searchvalue, setSearchValue] = useState("");
-  const Checkuser = useSelector((item) => item.authuser);
-  useEffect(() => {
-    // CheckProfile(props.setprofile);
-  });
-  useEffect(() => {
-    CheckTopAds(props.topads);
-  });
-  const handlesearchbox = (event) => {
-    setSearchValue(event.target.value);
 
-  };
+  const Checkuser = useSelector((item) => item.authuser);
+
+
   return (
     <div className="navbar">
       <div className="navcontainer">
@@ -40,11 +30,11 @@ const SectionNav = (props) => {
       </div>
       <div className="navcontainerlog">
 
-      {Checkuser && Checkuser.auth ? (
+      {/* {Checkuser && Checkuser.auth ? (
           <>
             <div
               className="uavatar"
-              onClick={() => navigate("/client/profile")}
+              onClick={() => navigate("/dashboard/overview")}
             >
               <p>
                 {" "}
@@ -69,13 +59,13 @@ const SectionNav = (props) => {
               {" "}
               <span
                 style={{ marginLeft: "15px" }}
-                onClick={() => navigate("/user/login")}
+                onClick={() => navigate("/auth")}
               >
                 Login
               </span>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { Button, Form } from "react-bootstrap";
 import { CircleSpinner } from "react-spinners-kit";
 import { Avatar, IconButton, TextField } from "@mui/material";
 import LoaderView from "../utils/loaderView";
-import { SignIn, preRegister } from "../../store/actions/adminActions";
+import { SignIn, preRegister } from "../../services/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 
 const LoginReset = () => {
@@ -91,7 +91,7 @@ const LoginReset = () => {
               <p>
                 Don't have an account ? <span onClick={()=>navigate("/user/Signup")}>Create account</span>
               </p>
-              <p className="forgottenp" onClick={()=>navigate("/user/login/forgottenpassword")}>Forgotten password ?</p>
+              <p className="forgottenp" onClick={()=>navigate("/auth/login/forgottenpassword")}>Forgotten password ?</p>
             </div>
           </form>
         </div>

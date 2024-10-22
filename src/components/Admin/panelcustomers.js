@@ -9,7 +9,7 @@ import { enableScroll } from "../utils/reuseable";
 import { IconButton } from "@mui/material";
 import BlockCustomer from "./blockuser";
 import { RiAdminFill, RiCustomerService2Line } from "react-icons/ri";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../services/actions/adminActions";
 
 const PanelCustomer = () => {
   const dispatch = useDispatch();

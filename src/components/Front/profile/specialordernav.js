@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import SettiingForm from "./settings";
 import Footer from "../footer";
 import SectionNav from "../../utils/sectionnav";
-import { Signout } from "../../../store/actions/adminActions";
+import { Signout } from "../../../services/actions/adminActions";
 import { IconButton } from "@mui/material";
 import { enableScroll } from "../../utils/reuseable";
 import MobileTopNav from "../../utils/mobilenav";
@@ -81,20 +81,20 @@ const SpecialOrderPanel = () => {
           
           <div className="profile-nav">
           <div>
-            <p onClick={() => navigate("/client/profile")}>
+            <p onClick={() => navigate("/dashboard/overview")}>
               <Person /> <span>Profile</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/dashboard/records")}>
               <ListCheck />
               <span>Order Records</span>
             </p>
-            <p onClick={() => navigate("/client/panel/specail_orders")}
+            <p onClick={() => navigate("/dashboard/specail_orders")}
               style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}>
               <MdOutlineDashboardCustomize />
               <span> Special Order </span>
             </p>
             <p
-              onClick={() => navigate("/client/panel/settings")}
+              onClick={() => navigate("/dashboard/settings")}
           
             >
               <KeyFill />
@@ -141,19 +141,19 @@ const SpecialOrderPanel = () => {
       >
         <div className="profile-nav desktop">
           <div>
-            <p onClick={() => navigate("/client/profile")}>
+            <p onClick={() => navigate("/dashboard/overview")}>
               <Person /> <span>Profile</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/dashboard/records")}>
               <ListCheck />
               <span>Order Records</span>
             </p>
-            <p onClick={() => navigate("/client/panel/specail_orders")} style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}>
+            <p onClick={() => navigate("/dashboard/specail_orders")} style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}>
               <MdOutlineDashboardCustomize />
               <span> Special Order </span>
             </p>
             <p
-              onClick={() => navigate("/client/panel/settings")}
+              onClick={() => navigate("/dashboard/settings")}
               
             >
               <KeyFill />

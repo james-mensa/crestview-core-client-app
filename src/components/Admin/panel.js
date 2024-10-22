@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AdminOverview from "./adminoverview";
 import { useNavigate } from "react-router-dom";
 import { RiAdminFill, RiCustomerService2Line } from "react-icons/ri";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../services/actions/adminActions";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();

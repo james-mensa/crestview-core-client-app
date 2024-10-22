@@ -7,7 +7,7 @@ import { AiOutlineRollback } from "react-icons/md";
 import { Select, MenuItem, TextField } from "@mui/material";
 import { CircleSpinner } from "react-spinners-kit";
 import { useDispatch, useSelector } from "react-redux";
-import { AddNewRoom } from "../../store/actions/datacollection";
+import { AddNewRoom } from "../../services/actions/datacollection";
 const AddRoom = () => {
 
   const notifications = useSelector((value) => value.notification);

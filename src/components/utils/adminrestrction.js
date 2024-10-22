@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AutoLogin, getAllUsers } from "../../store/actions/adminActions";
+import { AutoLogin, getAllUsers } from "../../services/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import LoaderView from "./loaderView";
 
@@ -27,6 +27,7 @@ navigate("/admin/panel/bookings")
       ) : (
         <LoaderView />
       )}
+         {/* <div>{props.children}</div> */}
     </>
   );
 };

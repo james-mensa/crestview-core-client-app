@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Form } from "react-bootstrap";
+
 import { CircleSpinner } from "react-spinners-kit";
-import { Avatar, IconButton, TextField } from "@mui/material";
-import LoaderView from "../utils/loaderView";
-import { SignIn, preRegister } from "../../store/actions/adminActions";
+import {TextField } from "@mui/material";
+
+import { SignIn } from "../../services/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer"
 const SignInUser = () => {
@@ -121,3 +121,22 @@ const SignInUser = () => {
 };
 
 export default SignInUser;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

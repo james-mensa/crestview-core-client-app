@@ -41,6 +41,7 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-spinners-kit": "^1.9.1",
+    "react-swipeable": "^7.0.1",
     "react-time-picker": "^6.2.0",
     "react-to-print": "^2.14.15",
     "react-toastify": "^9.1.3",

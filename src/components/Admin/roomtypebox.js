@@ -6,7 +6,7 @@ import { FaBed } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CircleSpinner } from "react-spinners-kit";
-import { DeleteRoom, GetAllRooms } from "../../store/actions/datacollection";
+import { DeleteRoom, GetAllRooms } from "../../services/actions/datacollection";
 
 function RoomTypeBox(props) {
   const [loading, setloading] = useState(false);

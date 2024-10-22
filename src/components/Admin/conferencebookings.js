@@ -19,7 +19,7 @@ import {
   CheckInClientMeeting,
   FilterOrderConf,
   GetAllRooms,
-} from "../../store/actions/datacollection";
+} from "../../services/actions/datacollection";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";

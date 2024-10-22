@@ -1,21 +1,13 @@
 import { IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Search, Person } from "react-bootstrap-icons";
+import { Person } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { CheckProfile } from "./responsehover";
-import { CheckTopAds } from "./reuseable";
+
 
 const TopNav = (props) => {
   const navigate = useNavigate();
-  const [searchvalue, setSearchValue] = useState("");
   const Checkuser = useSelector((item) => item.authuser);
-  useEffect(() => {
-    // CheckProfile(props.setprofile);
-  });
-  useEffect(() => {
-    CheckTopAds(props.topads);
-  });
 
 
   return (
@@ -37,6 +29,9 @@ const TopNav = (props) => {
       </div>
       <div className="navcontainerlog">
         <div className="nav-actions">
+          <IconButton>
+            {/* <Label></Label> */}
+          </IconButton>
           <span
             onClick={() => {
               window.scroll({
@@ -57,6 +52,7 @@ const TopNav = (props) => {
             Rooms
           </span>
           <span>Contact</span>
+  
           <span 
           onClick={()=>{
             navigate("/rixos/location")
@@ -66,7 +62,7 @@ const TopNav = (props) => {
           <>
             <div
               className="uavatar"
-              onClick={() => navigate("/client/profile")}
+              onClick={() => navigate("/dashboard/overview")}
             >
               <p>
                 {" "}
@@ -91,7 +87,7 @@ const TopNav = (props) => {
               {" "}
               <span
                 style={{ marginLeft: "15px" }}
-                onClick={() => navigate("/user/login")}
+                onClick={() => navigate("/auth")}
               >
                 Login
               </span>

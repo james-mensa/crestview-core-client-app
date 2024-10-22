@@ -4,7 +4,7 @@ import { Filter } from "react-bootstrap-icons";
 import RoomBox from "./roombox";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GetAllRoomTypes, GetAllRooms } from "../../store/actions/datacollection";
+import { GetAllRoomTypes, GetAllRooms } from "../../services/actions/datacollection";
 import RoomTypeBox from "./roomtypebox";
 
 const RoomTypes = () => {

@@ -64,7 +64,7 @@ const Testimones = () => {
                 <span>
                   <Quote color="chocolate" size={40} />
                 </span>
-                I recently had the pleasure of staying at Rixos Hotels, and I can confidently say that it was an experience I'll cherish forever. From the moment I arrived, I was greeted with warm smiles and exceptional hospitality that set the tone for an unforgettable stay.
+                I recently had the pleasure of staying at Crestview Lodge, and I can confidently say that it was an experience I'll cherish forever. From the moment I arrived, I was greeted with warm smiles and exceptional hospitality that set the tone for an unforgettable stay.
               </p>
               <p className="row-styles">
                 <Person size={30} />{" "}

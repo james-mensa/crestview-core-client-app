@@ -4,18 +4,13 @@ import { Search, Person, List } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CheckProfile } from "./responsehover";
-import { CheckTopAds, disableScroll } from "./reuseable";
+import { disableScroll } from "./reuseable";
 
 const MobileTopNav = (props) => {
   const navigate = useNavigate();
   const [searchvalue, setSearchValue] = useState("");
   const Checkuser = useSelector((item) => item.authuser);
-  useEffect(() => {
-    // CheckProfile(props.setprofile);
-  });
-  useEffect(() => {
-    CheckTopAds(props.topads);
-  });
+
 
   const handlesearchbox = (event) => {
     setSearchValue(event.target.value);
@@ -39,7 +34,7 @@ const MobileTopNav = (props) => {
                  >
               {" "}
               <IconButton
-               onClick={() => navigate("/client/profile")}
+               onClick={() => navigate("/dashboard/overview")}
         >
                 <Person size={22} />{" "}
               </IconButton>{" "}
@@ -62,7 +57,7 @@ const MobileTopNav = (props) => {
             <div className="userlog">
               <div className="signup">
                 {" "}
-                <span onClick={() => navigate("/user/Signup")}>Join Now</span>
+                <span onClick={() => navigate("/auth/Signup")}>Join Now</span>
               </div>
             </div>
             {

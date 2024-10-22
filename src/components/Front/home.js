@@ -1,30 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import TopNav from "../utils/pagenav";
-import Rooms from "./Rooms/index";
-import Attention from "./attention";
+import Rooms from "../../pages/client/home/Rooms.js";
+
 import WhatWeDo from "./whatwedo";
 import Testimones from "./testimonies";
 import Footer from "./footer.js";
 import MobileTopNav from "../utils/mobilenav";
 import MenuNav from "./menunav";
-import { showCoursesm } from "../utils/reuseable";
+
 import PageBase from "../PageBase.js";
 import { DesktopSearch, MobileSearch } from "../Search/index.js";
+import { lazyLoad } from "../../libs/viewHelpers.js";
 
 const Home = () => {
   const [showmennu, setmenu] = useState(false);
   const showmenu=true
   useEffect(()=>{
-    window.addEventListener("scroll",showCoursesm())
+    window.addEventListener("scroll",lazyLoad())
    
   });
-  const dispatch = useDispatch();
-  const [loading, setloading] = useState(false);
-  const Checkuser = useSelector((item) => item.authuser);
 
-  const navigate = useNavigate();
+
   return (
     <div className="mainLayoutb">
       <div className="desktop">
@@ -41,8 +36,7 @@ const Home = () => {
             style={{ minHeight: `${window.innerHeight - 200}px` }}
           >
             {" "}
-            <TopNav />
-           
+       
               <DesktopSearch />
           
           </div>

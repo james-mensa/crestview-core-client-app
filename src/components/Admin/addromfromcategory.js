@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import {
   GetAllRoomTypes,
   GetAllRooms,
-} from "../../store/actions/datacollection";
+} from "../../services/actions/datacollection";
 import RoomTypeBox from "./roomtypebox";
 import AddRoomTypeBox from "./addtyperoombox";
 

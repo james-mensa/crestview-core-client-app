@@ -2,31 +2,23 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import MyForm from "./components/Front/RegistrationForm";
 import Home from "./components/Front/home";
 import { showToastify } from "./components/utils/reuseable";
-import { ClearNotify } from "./store/actions/notification";
+import { ClearNotify } from "./services/actions/notification";
 import "./components/style/custome.css";
 import "./components/style/design.css";
 
 import Resetpasspage from "./components/Front/resetpassword";
-import ConfirmAccount from "./components/Front/confirmAccount";
+import ConfirmAccount from "./components/Front/auth/VerifyAccountPage";
 import PaymentSection from "./components/Front/payment";
 import {
   AdminLogin,
   AutoLogin,
   CheckLogin,
   getAllUsers,
-} from "./store/actions/adminActions";
-
-import SignInUser from "./components/Front/signin";
-
+} from "./services/actions/adminActions";
 import Authcontainer from "./components/utils/authuser";
-
-import LoginReset from "./components/Front/resetpass";
 import SearchResult from "./components/Front/searchresult";
 import UserPanel from "./components/Front/userprofile";
 import SettingsPanel from "./components/Front/profile/settingnav";
@@ -49,7 +41,8 @@ import Admincontainer from "./components/utils/authadmin";
 import ForgottenPassword from "./components/Front/forgotpassword";
 import EmployeeDashboard from "./components/Admin/employeepanel";
 import AdminRestriction from "./components/utils/adminrestrction";
-import AuthPage from "./components/Front/auth";
+import { AuthPage, LoginPage, SignUpPage, VerifyAccountPage } from "./components/Front/auth";
+import { HomePage } from "./pages/client/home/HomePage";
 
 function App() {
   const notifications = useSelector((value) => value.notification);
@@ -85,19 +78,19 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-
+        <Route path="/" element={<HomePage/>} />
         <Route path="/account/verification" element={<ConfirmAccount />} />
         <Route path="/account/passwordreset" element={<Resetpasspage />} />
         <Route path="/account/forgotten_credentials" element={<ForgottenPassword />} />
-        
         <Route
           path="/rooms/results/:startDate/:endDate/:roomtype/:person"
           element={<SearchResult />}
         />
-
-        <Route path="/user/login" element={<AuthPage />}></Route>
-        <Route path="/user/Signup" element={<MyForm />}></Route>
+        {/** client auth routes   */}
+        <Route path="/auth" element={<AuthPage />}></Route>
+        <Route path="/auth/login" element={<LoginPage />}></Route>
+        <Route path="/auth/signup" element={<SignUpPage  />}></Route>
+        <Route path="/auth/verification" element={<VerifyAccountPage />} />
         <Route
           path="/room/payment/:id/:start/:end"
           element={
@@ -115,7 +108,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/client/profile"
+          path="/dashboard/overview"
           element={
             <Authcontainer>
               <UserPanel />
@@ -123,7 +116,7 @@ function App() {
           }
         />
         <Route
-          path="/client/panel/records"
+          path="/dashboard/records"
           element={
             <Authcontainer>
               {" "}
@@ -134,7 +127,7 @@ function App() {
         <Route path="/admin/panel/bookings" element={<Admincontainer><PanelBook /></Admincontainer> } />
         <Route path="/admin/panel/meetings" element={ <Admincontainer><PanelMeetingOrders /></Admincontainer>} />
         <Route
-          path="/client/panel/settings"
+          path="/dashboard/settings"
           element={
             <Authcontainer>
               <SettingsPanel />
@@ -147,7 +140,7 @@ function App() {
         <Route path="/admin/panel/employee/management" element={ <Admincontainer><AdminRestriction><EmployeeDashboard/></AdminRestriction></Admincontainer>}/>
         <Route path="/client/conference/booking" element={<ConferenceBook />} />
         <Route
-          path="/client/panel/specail_orders"
+          path="/dashboard/specail_orders"
           element={
             <Authcontainer>
               <SpecialOrderPanel />

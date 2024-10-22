@@ -15,11 +15,11 @@ const PanelTestimony = () => {
       >
         <div className="profile-nav-admin">
           <div className="nav-column">
-            <p onClick={() => navigate("/client/profile")}>
+            <p onClick={() => navigate("/dashboard/overview")}>
               <span>Overview</span>
             </p>
             <p
-              onClick={() => navigate("/client/panel/records")}
+              onClick={() => navigate("/dashboard/records")}
               style={{ backgroundColor: "white", color: "rgb(7, 1, 27) " }}
             >
               <span>List Rooms</span>
@@ -31,16 +31,16 @@ const PanelTestimony = () => {
             >
                 <span>Manage rooms types</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/dashboard/records")}>
               <span>Bookings</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/dashboard/records")}>
               <span>Manage Testimony</span>
             </p>
-            <p onClick={() => navigate("/client/panel/records")}>
+            <p onClick={() => navigate("/dashboard/records")}>
               <span>Manage Customers</span>
             </p>
-            <p onClick={() => navigate("/client/panel/settings")}>
+            <p onClick={() => navigate("/dashboard/settings")}>
               <span>Account Settings </span>
             </p>
           </div>

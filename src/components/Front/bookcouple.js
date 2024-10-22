@@ -18,7 +18,7 @@ import {
   Clear_SearchBox,
   GetsearchResult,
   conferencAvailability,
-} from "../../store/actions/datacollection";
+} from "../../services/actions/datacollection";
 import BookRoomBox from "./Room/bookroom";
 import {
   DueTime,

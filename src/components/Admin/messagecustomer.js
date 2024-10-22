@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { sendMsg } from "../../store/actions/adminActions";
+import { sendMsg } from "../../services/actions/adminActions";
 import { showToastify } from "../utils/reuseable";
 import { CircleSpinner } from "react-spinners-kit";
 

@@ -4,7 +4,7 @@ import { Filter } from "react-bootstrap-icons";
 import RoomBox from "./roombox";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GetAllRooms } from "../../store/actions/datacollection";
+import { GetAllRooms } from "../../services/actions/datacollection";
 
 const RoomsDetail = () => {
   const dispatch = useDispatch();

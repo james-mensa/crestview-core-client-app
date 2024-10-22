@@ -9,7 +9,7 @@ import {
   TerminateUserAccount,TerminateAdminAccount,
   getAllUsers,
   sendMsg,
-} from "../../store/actions/adminActions";
+} from "../../services/actions/adminActions";
 import { showToastify } from "../utils/reuseable";
 import { CircleSpinner } from "react-spinners-kit";
 

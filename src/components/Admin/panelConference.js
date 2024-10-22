@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import BookingsPage from "./bookingspage";
 import MeetingSpaceOrders from "./conferencebookings";
 import { RiAdminFill, RiCustomerService2Line } from "react-icons/ri";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../services/actions/adminActions";
 
 const PanelMeetingOrders = () => {
   const admindetails = useSelector((data) => data.admin);

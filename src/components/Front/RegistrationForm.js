@@ -6,7 +6,7 @@ import { Button, Form } from "react-bootstrap";
 import { CircleSpinner } from "react-spinners-kit";
 import { Avatar, IconButton, TextField } from "@mui/material";
 import LoaderView from "../utils/loaderView";
-import { preRegister } from "../../store/actions/adminActions";
+import { preRegister } from "../../services/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import { Justify } from "react-bootstrap-icons";
 import Footer from "./footer"
@@ -142,7 +142,7 @@ const MyForm = () => {
           <div className="signin">
             <p>
               Already a member ?{" "}
-              <span onClick={() => navigate("/user/login")}>Sign In</span>
+              <span onClick={() => navigate("/auth/login")}>Sign In</span>
             </p>
           </div>
         </form>

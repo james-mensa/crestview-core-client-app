@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { useSelector,useDispatch } from 'react-redux';
 import { PushSpinner } from 'react-spinners-kit';
 import * as Yup from "yup";
-import { AddSubjectServer, DeleteSubject, getCourses } from '../../store/actions/datacollection';
+import { AddSubjectServer, DeleteSubject, getCourses } from '../../services/actions/datacollection';
 import { useNavigate } from "react-router-dom";
 import { Trash } from "react-bootstrap-icons";
 

@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   RevenueMonthly,
   MeetingSpaceMonthly,
-} from "../../store/actions/datacollection";
+} from "../../services/actions/datacollection";
 import { Activity, Cash, PeopleFill, PersonDown } from "react-bootstrap-icons";
 import { MenuItem, Select } from "@mui/material";
 import { BsCashStack, BsClipboard } from "react-icons/bs";
 import { MdBed, MdMeetingRoom, MdPending } from "react-icons/md";
-import { getAllUsers } from "../../store/actions/adminActions";
+import { getAllUsers } from "../../services/actions/adminActions";
 const AdminOverview = () => {
   //  ChartJS.register(CategoryScale, LinearScale, BarElement,PointElement,LineElement);
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ import AdminOverview from "./adminoverview";
 import { useNavigate } from "react-router-dom";
 import RoomTypes from "./roomtype";
 import { RiAdminFill, RiCustomerService2Line } from "react-icons/ri";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../services/actions/adminActions";
 
 const TypeDashboard = () => {
   const dispatch = useDispatch();

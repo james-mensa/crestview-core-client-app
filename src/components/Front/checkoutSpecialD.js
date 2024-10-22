@@ -15,7 +15,7 @@ import {
 import { MdTouchApp } from "react-icons/md";
 
 import { useDispatch, useSelector } from "react-redux";
-import { BookConference } from "../../store/actions/datacollection";
+import { BookConference } from "../../services/actions/datacollection";
 
 import { defaultDueTime, differenceBetween } from "../utils/reuseable";
 import MobileTopNav from "../utils/mobilenav";

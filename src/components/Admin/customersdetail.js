@@ -15,12 +15,12 @@ import {
 import RoomBox from "./roombox";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AllOrders, GetAllRooms } from "../../store/actions/datacollection";
+import { AllOrders, GetAllRooms } from "../../services/actions/datacollection";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import { MdDelete, MdEmail, MdNumbers, MdSecurity } from "react-icons/md";
-import { UnBlockuser, getAllUsers } from "../../store/actions/adminActions";
+import { UnBlockuser, getAllUsers } from "../../services/actions/adminActions";
 import { enableScroll } from "../utils/reuseable";
 import MessageCustomer from "./messagecustomer";
 import { CircleSpinner } from "react-spinners-kit";
