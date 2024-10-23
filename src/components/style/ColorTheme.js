@@ -7,7 +7,8 @@ const ColorTheme={
     text:{
        label:"#b8babf",
     light:{
-       100:'rgb(255, 255, 255)'
+       100:'rgb(255, 255, 255)',
+       200:'rgb(255, 255, 255)'
     },
     dark:{
         500:'#878787'   

@@ -269,7 +269,12 @@ export const facilities=[
     }
 ]
 
+const suiteImages=[
+    Assets.rm1,
+    Assets.rm12,
+    Assets.rm13,
 
+]
 
 const itemsList = [
     {
@@ -307,5 +312,6 @@ const itemsList = [
 
 
 export const  dummyData={
-    itemsList
+    itemsList,
+    suiteImages
 }

@@ -45,7 +45,6 @@ export const LargeScreen = ({showType=false}) => {
       checkIn:formatDateShort(date.startDate),
       ...filter,
       ...(showType && { type: roomType }),
-
     }
     const filterString = serializeFilter(userSelection)
     navigate(`/rooms/results/${filterString}`

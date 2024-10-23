@@ -1,11 +1,11 @@
-import { Box, Button, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import './styles.css';
 import React, { useState } from 'react';
 import { Label } from '../Label';
 import { dummyData } from '../../dummy';
 import { ImageSlider } from '../RoomImageSlider/PreviewSlider';
-import { ColorTheme } from '../style/ColorTheme';
 import { grey } from '@mui/material/colors';
+import { useNavigate } from 'react-router-dom';
 
 const ItemTransition = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,19 +17,24 @@ const itemsList=dummyData.itemsList
       setCurrentIndex((prevIndex) => (prevIndex === itemsList.length - 1 ? 0 : prevIndex + 1));
     };
   const images=itemsList.map((item) =>item.image);
- 
+  const navigate=useNavigate();
+  const handlePageNavigate=()=>{
+    navigate('/suite')
+  }
     return (
       <Box sx={styles().container}>
-
-<Box sx={styles().layout}>
-    <Label sx={styles().header}><Label sx={styles().header}>Welcome to  Crestview Lodge, </Label> We're all in on choice, quality and extraordinary experiences.</Label>
-    <Label  sx={styles().subHeader}>The ALL Inclusive Collection. All in. All for you. </Label>
-    <ImageSlider images={images} nextOnclickCallback={handleNext} prevOnClickCallBack={handlePrev}/>
-   <Box sx={styles().desktopButton}>
-   <RenderViewButton title={"View all rooms"}/>
-   </Box>
-
-</Box>
+        <Box sx={styles().layout}>
+            <Box>
+                <Label sx={styles().header}>Welcome to  Crestview Lodge, </Label>
+                <Label sx={styles().header}> We're all in on choice, quality and extraordinary experiences.</Label>
+                <Label  sx={styles().subHeader}>The ALL Inclusive Collection. All in. All for you. </Label>
+            </Box>
+            
+            <ImageSlider images={images} nextOnclickCallback={handleNext} prevOnClickCallBack={handlePrev}/>
+            <Box sx={styles().desktopButton}>
+            <RenderViewButton title={"View all suite"} onClick={handlePageNavigate}/>
+            </Box>
+        </Box>
         <Box sx={styles().itemWrapper}>
           {itemsList.map((item, index) => {
             const position = index - currentIndex;
@@ -39,11 +44,11 @@ const itemsList=dummyData.itemsList
             return (
               <Stack
                 key={index} className={`item ${isCurrent ? 'current' : ''}`} sx={styles(position,isCurrent,distanceFromCurrent).item} gap={1} >
-                <Label sx={styles(position,isCurrent,distanceFromCurrent).title}>
+                <Box sx={styles(position,isCurrent,distanceFromCurrent).title}>
                 {item.title.split('\n').map((line, lineIndex) => (
                   <Label sx={styles(position,isCurrent,distanceFromCurrent).title} key={lineIndex}>{line}</Label>
                 ))}
-                 </Label>
+                 </Box>
                 <Label sx={styles(position,isCurrent,distanceFromCurrent).description}>{item.description}</Label>
               </Stack>
             );
@@ -51,7 +56,7 @@ const itemsList=dummyData.itemsList
         </Box>
 
         <Box sx={styles().mobileButton}>
-   <RenderViewButton title={"View all rooms"}/>
+   <RenderViewButton title={"View all suite"} onClick={handlePageNavigate}/>
    </Box>
       </Box>
     );
@@ -64,12 +69,9 @@ const RenderViewButton=({onClick,title})=>{
     return(
         <button onClick={onClick} style={buttonStyles.button}>
          <Label sx={{fontWeight:'600'}}> {title}</Label>
-          
         </button>
     )
 }
-
-
 const buttonStyles={
 button:{
         backgroundColor: grey[100],
@@ -128,7 +130,11 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
                 gap:5
             },
             [theme.breakpoints.down('sm')]: {
-                width: '97vw',
+                // width: '98vw',
+                display:'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
                 padding :2
             },
 
@@ -153,8 +159,9 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
                 fontWeight:'400',marginBottom:8
             },
             [theme.breakpoints.down('sm')]: {
-                fontSize:'22px',
-                fontWeight:'400'
+                fontSize:'18px',
+                fontWeight:'400',
+                margin:'10px 0'
             },
 
         }),

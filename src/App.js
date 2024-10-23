@@ -43,6 +43,7 @@ import EmployeeDashboard from "./components/Admin/employeepanel";
 import AdminRestriction from "./components/utils/adminrestrction";
 import { AuthPage, LoginPage, SignUpPage, VerifyAccountPage } from "./components/Front/auth";
 import { HomePage } from "./pages/client/home/HomePage";
+import { SuitePage } from "./pages/client/SuitePage";
 
 function App() {
   const notifications = useSelector((value) => value.notification);
@@ -79,6 +80,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage/>} />
+        <Route path="/suite" element={<SuitePage />} />
         <Route path="/account/verification" element={<ConfirmAccount />} />
         <Route path="/account/passwordreset" element={<Resetpasspage />} />
         <Route path="/account/forgotten_credentials" element={<ForgottenPassword />} />

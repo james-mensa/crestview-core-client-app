@@ -4,8 +4,14 @@ import { Label } from "../Label"
 import SeeMore from "../SeeMore"
 import { IconAvater } from "../IconAvater"
 import { HorizontalDivider } from "../Divider"
+import { RenderViewButton } from "../Button"
+import { useNavigate } from "react-router-dom"
 
 export const RoomPreview=({data})=>{
+    const navigate=useNavigate();
+    const handlePageNavigate=()=>{
+    //   navigate("link")
+    }
     return(
         <Box sx={styles.container}>
             <Box sx={styles.card}>
@@ -16,31 +22,37 @@ export const RoomPreview=({data})=>{
     <Label sx={styles.header}>
         {data.name}
     </Label>
-    <SeeMore text={data.description} maxLength={200} component={<RenderAmenities data={data.amenities}/>}/>
+    <SeeMore text={data.description} maxLength={200} component={<RenderDetails data={data.amenities}/>}/>
+    <Stack direction={'row'} justifyContent={"flex-start"} width={'100%'}>
+              <RenderViewButton title={"Book now"} onClick={handlePageNavigate} varient="dark"/>
+             </Stack>
     <HorizontalDivider/>
 </Box>
         </Box>
     )
 }
 
-const RenderAmenities=({data})=>{
+const RenderDetails=({data})=>{
     return(
-    <Grid container spacing={2} sx={styles.layout}>
+        <Box>
+             <Grid container spacing={2} sx={styles.layout}>
+            {
+                data.map((_data,index)=>{
+                    return(
+                        <Grid item xs={8} sm={4} md={4} key={index}>
+                            <Stack direction={"row"} alignItems={"center"} spacing={1}>
+                                <IconAvater path={_data.icon}/>
+                                <Label sx={styles.amenitiesLabel}>{_data.name}</Label>
+                            </Stack>
+                        
+                        </Grid>
+                    )
+                })
+            }
+             </Grid>
 
-        {
-            data.map((_data,index)=>{
-                return(
-                    <Grid item xs={8} sm={4} md={4} key={index}>
-                        <Stack direction={"row"} alignItems={"center"} spacing={1}>
-                            <IconAvater path={_data.icon}/>
-                            <Label sx={styles.amenitiesLabel}>{_data.name}</Label>
-                        </Stack>
-                       
-                    </Grid>
-                )
-            })
-        }
-    </Grid>
+        </Box>
+
     )
 }
 

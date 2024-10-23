@@ -1,7 +1,7 @@
 import { Avatar, Button as BaseButton ,CircularProgress} from "@mui/material"
 import { ColorTheme } from "../style/ColorTheme"
 import { Label } from "../Label"
-import { blue } from "@mui/material/colors"
+import { blue, grey } from "@mui/material/colors"
 
 export const Button=({onClick,label})=>{
     return <BaseButton onClick={onClick} sx={styles.button}>{label}</BaseButton>
@@ -92,6 +92,30 @@ export const ProviderButton=({onClick,label,icon,loading})=>{
 }
 
 
+export const RenderViewButton=({onClick,title,varient='light'})=>{
+  const styles=buttonStyles(varient)
+  return(
+      <button onClick={onClick} style={styles.button}>
+       <Label sx={styles.title}> {title}</Label>
+      </button>
+  )
+}
+const buttonStyles=(varient)=>{
+  return{ 
+    button:{
+      backgroundColor:varient==='light'? grey[100]:grey[900],
+      borderRadius:0,
+      padding:'10px 20px',
+      marginTop: 20
+  },
+  title:{
+  fontWeight:'600',
+  color:varient==='light'? grey[800]:grey[100],
+
+  }
+}
+
+}
 
 
 const styles={

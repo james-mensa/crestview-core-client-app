@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { showCoursesm } from "../../../components/utils/reuseable";
 import { Footer, DesktopHeader, MobileHeader, PageBase } from "../../../layout";
-import { DesktopSearch, MobileSearch } from "../../../components/Search";
 import MenuNav from "../../../components/Front/menunav";
-import Testimones from "../../../components/Front/testimonies";
-import Facilities from "../../../common-ui/Facilities";
-import ItemTransition from "../../../components/ItemTransition";
-export const HomePage = () => {
+
+import Rooms from "../../../common-ui/Rooms";
+import { Assets } from "../../../config/register";
+import { dummyData } from "../../../dummy";
+
+export const SuitePage = () => {
   const [showmennu, setmenu] = useState(false);
   const showmenu=true
+  const suiteImages=dummyData.suiteImages;
   useEffect(()=>{
     window.addEventListener("scroll",showCoursesm())
    
   });
+
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % suiteImages.length);
+  };
 
 
   return (
@@ -22,7 +38,7 @@ export const HomePage = () => {
           className="front_home"
           style={{
             backgroundImage:
-              `url("/assets/images/background.jpeg")`,
+              `url(${suiteImages[currentIndex]})`,
             minHeight: `${window.innerHeight - 200}px`,
           }}
         >
@@ -32,7 +48,6 @@ export const HomePage = () => {
           >
             {" "}
        <DesktopHeader/>
-       <DesktopSearch />
           
           </div>
         </div>
@@ -49,7 +64,7 @@ export const HomePage = () => {
           className="front_home"
           style={{
             backgroundImage:
-              `url("/assets/images/background.jpeg")`,
+            `url(${Assets.rm1})`,
             minHeight: `${window.innerHeight}px`,
           }}
         >
@@ -59,23 +74,12 @@ export const HomePage = () => {
           >
             {" "}
             <MobileHeader setmenu={setmenu} showmenu={showmenu}/>
-            <div className="mobileboxs">
-              <MobileSearch />
-            </div>
           </div>
         </div>
       </div>
-      <ItemTransition/>
 <PageBase>
-
-{/* <Rooms /> */}
-
-<Facilities />
+<Rooms />
 </PageBase>
-{/* <Attention /> */}
-   
-      <Testimones />
-
 <Footer /> 
     </div>
   );

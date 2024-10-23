@@ -42,8 +42,6 @@ const Facilities=()=> {
              </Box>
                 <Box sx={styles.mobileWrapper}><CardSlider cards={getCards}/></Box>
             </Box>
-
-
         </div>
     );
 }
