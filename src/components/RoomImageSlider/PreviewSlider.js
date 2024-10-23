@@ -4,7 +4,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { ColorTheme } from '../style/ColorTheme';
 // ImageSlider component
-export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000, controller=true }) => {
+export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000, controller=true,nextOnclickCallback,prevOnClickCallBack }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -17,12 +17,14 @@ export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000,
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+   if(nextOnclickCallback){ nextOnclickCallback()}
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
+    if(prevOnClickCallBack){prevOnClickCallBack()}
   };
 
   return (

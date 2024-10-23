@@ -43,7 +43,7 @@ const Facilities=()=> {
                 <Box sx={styles.mobileWrapper}><CardSlider cards={getCards}/></Box>
             </Box>
 
-<ItemTransition/>
+
         </div>
     );
 }

@@ -268,3 +268,44 @@ export const facilities=[
         ]
     }
 ]
+
+
+
+const itemsList = [
+    {
+        title:"Exceptional \nfood and drink",
+        description:"From sourcing fresh ingredients to the inventiveness of our chefs to the range of options across different cuisines, we make every meal a profound pleasure.",
+        image: Assets.dinning3
+    },
+    {
+        title:"Family fun",
+        description:"We create extraordinary family experiences. Our fully supervised kids clubs allow kids to learn, have fun and make friends while you unwind.",
+        image:Assets.theater2
+    },
+    {
+        title:"A world of sports \n and activity",
+        description:"Chill out with yoga, raise your heart rate in our gyms, stretch your legs on the golf course or take to the air on a kite surf. You set your limits... if you have them.",
+        image:Assets.rooftop2
+    },
+    {
+        title:"World class \nspa and wellness",
+        description:"From beauty treatments to saunas, steam rooms and spa baths to massages and reflexology: get pampered and feel wonderful in exactly the way you want.",
+        image:Assets.rooftop2
+    },
+    {
+        title:"Unforgettable \ndestinations",
+        description:"Ideally situated in stunning mountain scenery, in areas of natural beauty, on golden beaches, and along idyllic coastlines, our carefully curated resorts make the most of their setting."
+    ,
+        image:Assets.rooftop2},
+    {
+        title:"Spectacular \nentertainment",
+        description:"Shows, spectacles and performances: from larger scale to more intimate, from music to magic, from dance to humour to regional and international culture. Discover and enjoy, then discover some more."
+   ,
+        image:Assets.rooftop2
+     }
+]
+
+
+export const  dummyData={
+    itemsList
+}

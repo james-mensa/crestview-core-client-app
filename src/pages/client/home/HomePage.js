@@ -6,6 +6,7 @@ import MenuNav from "../../../components/Front/menunav";
 import Testimones from "../../../components/Front/testimonies";
 import Rooms from "../../../common-ui/Rooms";
 import Facilities from "../../../common-ui/Facilities";
+import ItemTransition from "../../../components/ItemTransition";
 export const HomePage = () => {
   const [showmennu, setmenu] = useState(false);
   const showmenu=true
@@ -65,9 +66,10 @@ export const HomePage = () => {
           </div>
         </div>
       </div>
-
+      <ItemTransition/>
 <PageBase>
-<Rooms />
+
+{/* <Rooms /> */}
 
 <Facilities />
 </PageBase>

@@ -1,85 +1,58 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import './styles.css';
 import React, { useState } from 'react';
 import { Label } from '../Label';
+import { dummyData } from '../../dummy';
+import { ImageSlider } from '../RoomImageSlider/PreviewSlider';
+import { ColorTheme } from '../style/ColorTheme';
+import { grey } from '@mui/material/colors';
 
 const ItemTransition = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const items = [
-        {
-            title:"Exceptional \nfood and drink",
-            description:"From sourcing fresh ingredients to the inventiveness of our chefs to the range of options across different cuisines, we make every meal a profound pleasure."
-        },
-        {
-            title:"Family fun",
-            description:"We create extraordinary family experiences. Our fully supervised kids clubs allow kids to learn, have fun and make friends while you unwind."
-        },
-        {
-            title:"A world of sports \n and activity",
-            description:"Chill out with yoga, raise your heart rate in our gyms, stretch your legs on the golf course or take to the air on a kite surf. You set your limits... if you have them."
-        },
-        {
-            title:"World class \nspa and wellness",
-            description:"From beauty treatments to saunas, steam rooms and spa baths to massages and reflexology: get pampered and feel wonderful in exactly the way you want."
-        },
-        {
-            title:"Unforgettable \ndestinations",
-            description:"Ideally situated in stunning mountain scenery, in areas of natural beauty, on golden beaches, and along idyllic coastlines, our carefully curated resorts make the most of their setting."
-        },
-        {
-            title:"Spectacular \nentertainment",
-            description:"Shows, spectacles and performances: from larger scale to more intimate, from music to magic, from dance to humour to regional and international culture. Discover and enjoy, then discover some more."
-        }
-    ]
-  
+const itemsList=dummyData.itemsList 
     const handlePrev = () => {
-      setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
+      setCurrentIndex((prevIndex) => (prevIndex === 0 ? itemsList.length - 1 : prevIndex - 1));
     };
-  
     const handleNext = () => {
-      setCurrentIndex((prevIndex) => (prevIndex === items.length - 1 ? 0 : prevIndex + 1));
+      setCurrentIndex((prevIndex) => (prevIndex === itemsList.length - 1 ? 0 : prevIndex + 1));
     };
-  
+  const images=itemsList.map((item) =>item.image);
+ 
     return (
       <Box sx={styles().container}>
 
+<Box sx={styles().layout}>
+    <Label sx={styles().header}>We're all in on choice, quality and extraordinary experiences.</Label>
+    <Label  sx={styles().subHeader}>The ALL Inclusive Collection. All in. All for you. </Label>
+    <ImageSlider images={images} nextOnclickCallback={handleNext} prevOnClickCallBack={handlePrev}/>
+   <Box sx={styles().desktopButton}>
+   <RenderViewButton title={"View all rooms"}/>
+   </Box>
+
+</Box>
         <Box sx={styles().itemWrapper}>
-          {items.map((item, index) => {
+          {itemsList.map((item, index) => {
             const position = index - currentIndex;
             const distanceFromCurrent = Math.abs(index - currentIndex);
             const isCurrent = index === currentIndex;
             
             return (
               <Stack
-                key={index}
-                className={`item ${isCurrent ? 'current' : ''}`}
-                sx={styles(position,isCurrent,distanceFromCurrent).item}
-                gap={1}
-
-              >
+                key={index} className={`item ${isCurrent ? 'current' : ''}`} sx={styles(position,isCurrent,distanceFromCurrent).item} gap={1} >
                 <Label sx={styles(position,isCurrent,distanceFromCurrent).title}>
                 {item.title.split('\n').map((line, lineIndex) => (
-                                    <Label sx={styles(position,isCurrent,distanceFromCurrent).title} key={lineIndex}>{line}</Label>
-                                ))}
-                    </Label>
+                  <Label sx={styles(position,isCurrent,distanceFromCurrent).title} key={lineIndex}>{line}</Label>
+                ))}
+                 </Label>
                 <Label sx={styles(position,isCurrent,distanceFromCurrent).description}>{item.description}</Label>
-                
-            
-        
               </Stack>
             );
           })}
         </Box>
-        <Stack>
-        <button className="nav-button" onClick={handlePrev}>
-          Prev
-        </button>
-        
-        <button style={{textAlign:'center'}} className="nav-button" onClick={handleNext}>
-          Next
-        </button>
-        </Stack>
 
+        <Box sx={styles().mobileButton}>
+   <RenderViewButton title={"View all rooms"}/>
+   </Box>
       </Box>
     );
 };
@@ -87,27 +60,118 @@ const ItemTransition = () => {
 export default ItemTransition;
 
 
+const RenderViewButton=({onClick,title})=>{
+    return(
+        <button onClick={onClick} style={buttonStyles.button}>
+         <Label sx={{fontWeight:'600'}}> {title}</Label>
+          
+        </button>
+    )
+}
+
+
+const buttonStyles={
+button:{
+        backgroundColor: grey[100],
+        borderRadius:0,
+        padding:'10px 20px',
+        marginTop: 20
+    },
+ 
+}
 const styles=(position,isCurrent,distanceFromCurrent)=>{
     return{
 
-        container:(theme)=>({
+        desktopButton:(theme)=>({
+      
+            [theme.breakpoints.down('sm')]: {
+                    display:'none'
+            },
+        }),
+        mobileButton:(theme)=>({
+            display:'flex',
+            flexDirection:'row',
+            width:'100%',
+            justifyContent:'center',
+            alignItems:'center',
+            margin:'20px 0',
+            [theme.breakpoints.up('sm')]: {
+              display:'none',
+
+            },
 
         }),
-            itemWrapper:(theme)=>({
+        container:(theme)=>({
+            marginTop:-2.5,
+            display:"flex",
+            width: "100%",
+            flexDirection: "column",
+            justifyContent: "center",
+            background: 'rgb(7,1,36)',
+            background: 'linear-gradient(90deg, rgba(7,1,36,1) 10%, rgba(3,12,37,1) 50%)',
+            [theme.breakpoints.up('sm')]: {
+                flexDirection: "row",
+
+            },
+            [theme.breakpoints.down('sm')]: {
+       
+                flexDirection: 'column',
+            },
+
+
+        }),
+        layout:(theme)=>({
+            [theme.breakpoints.up('sm')]: {
+                width: '600px',
+                height:' 500px',
+                marginTop:10,
+                gap:5
+            },
+            [theme.breakpoints.down('sm')]: {
+                width: '97vw',
+                padding :2
+            },
+
+        }),
+        header:(theme)=>({
+            color:grey[500],
+            [theme.breakpoints.up('sm')]: {
+                fontSize:'25px',
+                fontWeight:'500',
+            
+            },
+            [theme.breakpoints.down('sm')]: {
+                fontSize:'20px',
+                fontWeight:'600'
+            },
+
+        }),
+        subHeader:(theme)=>({
+            color:grey[100],
+            [theme.breakpoints.up('sm')]: {
+                fontSize:'30px',
+                fontWeight:'400',marginBottom:8
+            },
+            [theme.breakpoints.down('sm')]: {
+                fontSize:'22px',
+                fontWeight:'400'
+            },
+
+        }),
+        itemWrapper:(theme)=>({
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'relative',
             overflow: 'hidden',
-            backgroundColor: 'rgb(235, 230, 230)',
             [theme.breakpoints.up('sm')]: {
                 width: '500px',
                 height:' 90vh',
             },
             [theme.breakpoints.down('sm')]: {
                 width: '100vw',
-                height:' 90vh',
+                height:'180px',
                 flexDirection: 'row',
             },
 
@@ -120,19 +184,20 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
                 display:'flex',
                 flexDirection:'column',
                 [theme.breakpoints.up('sm')]: {
-                    transform: `translateY(${position * 120}px)`, // Move items left or right
+                    transform: `translateY(${position * 120}px)`, 
                     alignItems:'center',
                 },
                 [theme.breakpoints.down('sm')]: {
                     width:'70%',
-                    transform: `translateX(${position * 305}px)`, // Move items left or right
-                    backgroundColor:isCurrent ?'red' :'green'
+                    transform: `translateX(${position * 305}px)`,
                 },
          }),
          title:(theme)=>({
             fontWeight:'600',
             display:'flex',
+            transition: 'transform 0.3s ease, opacity 0.5s ease, font-size 0.5s ease', 
             flexDirection:'column',
+            color:grey[200],
             [theme.breakpoints.up('sm')]: {
                 fontSize: isCurrent ? '50px' : '20px',
                 justifyContent:'center',
@@ -148,7 +213,9 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
          }),
          description:(theme)=>({
             display:'flex',
+            transition: 'transform 0.3s ease, opacity 0.5s ease, font-size 0.5s ease', 
             textAlign:'center',
+            color:grey[300],
             [theme.breakpoints.up('sm')]: {
                 fontSize: isCurrent ? '18px' : '15px',
                 display:isCurrent ? 'flex':'none',
