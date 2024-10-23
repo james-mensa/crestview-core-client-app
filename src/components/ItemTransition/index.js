@@ -22,7 +22,7 @@ const itemsList=dummyData.itemsList
       <Box sx={styles().container}>
 
 <Box sx={styles().layout}>
-    <Label sx={styles().header}>We're all in on choice, quality and extraordinary experiences.</Label>
+    <Label sx={styles().header}><Label sx={styles().header}>Welcome to  Crestview Lodge, </Label> We're all in on choice, quality and extraordinary experiences.</Label>
     <Label  sx={styles().subHeader}>The ALL Inclusive Collection. All in. All for you. </Label>
     <ImageSlider images={images} nextOnclickCallback={handleNext} prevOnClickCallBack={handlePrev}/>
    <Box sx={styles().desktopButton}>
