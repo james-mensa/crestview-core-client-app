@@ -11,9 +11,9 @@ import { ColorTheme } from "../style/ColorTheme";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { RoomType } from "../RoomType";
 import { formatDate } from "../utils/common";
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { Filter } from "../Filter";
-export const SmallScreen = () => {
+import { formatDateShort, serializeFilter } from "../../libs/common";
+export const SmallScreen = ({showType=false}) => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
   const tomorrowD = new Date(currentDate);
@@ -44,17 +44,23 @@ export const SmallScreen = () => {
 
   const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
   const handleCalenderModal = () => {
-    console.log({date})
+  
     setIsCalenderModalOpen(!isCalenderModalOpen);
   };
 
 
   const [roomType, setRoomType] = useState("Any Room type");
   const SearhValues = ()=>{
-    navigate(`/rooms/results/${date.startDate}/${date.endDate}/${roomType}/${options}`
+    const userSelection={
+      checkOut:formatDateShort(date.endDate),
+      checkIn:formatDateShort(date.startDate),
+      ...filter,
+      ...(showType && { type: roomType }),
+    }
+    const filterString = serializeFilter(userSelection)
+    navigate(`/rooms/results/${filterString}`
     )
   }
-
 
   const [filter,setFilter]=useState({
     rooms:1,
@@ -70,10 +76,10 @@ export const SmallScreen = () => {
          <BaseCalender onChange={setDate} value={date} show={isCalenderModalOpen} handleClose={handleCalenderModal}/>
 
     
-      <Box sx={styles.searchItemType}>
+    {showType &&  <Box sx={styles.searchItemType}>
       <Label sx={styles.roomTypeLabel}>Room type</Label>
         <RoomType onchange={setRoomType} value={roomType}/>
-      </Box>
+      </Box>}
       <Box sx={styles.searchItem} onClick={handleCalenderModal}>
         <Label sx={styles.label}>Checkin</Label>
         <Label sx={styles.title}>
