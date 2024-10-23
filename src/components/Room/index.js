@@ -100,7 +100,7 @@ const styles={
   }),
 
 roomName:{
- fontWeight:'700',
+ fontWeight:'600',
  fontSize:'20px'
   },
   cardRoomImg: {
@@ -128,12 +128,12 @@ roomName:{
     
   }),
   price:{
-    fontWeight:'700',
+    fontWeight:'600',
     fontSize:'20px'
   },
   guest:{
     fontSize:'14px',
-    fontWeight:'700'
+    fontWeight:'600'
 
   },
   tax:{
@@ -143,6 +143,6 @@ roomName:{
   ,
   indicator:{
     fontSize:'14px',
-    fontWeight:'700'
+    fontWeight:'600'
   }
 }

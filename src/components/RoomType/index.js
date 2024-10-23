@@ -47,7 +47,7 @@ container:{
     width: "205px",
     height: "40px",
     fontFamily: "Manrope",
-    fontWeight: '700',
+    fontWeight: '600',
     color: "rgb(6, 8, 29)",
     borderWidth:0,
     boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0,

@@ -13,7 +13,7 @@ export const Label=({children,...props})=>{
 const styles={
     label:{
        
-            fontFamily: "Manrope",
+            fontFamily: "Clash Grotesk",
         
     }
 }

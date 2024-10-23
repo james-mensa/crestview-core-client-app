@@ -131,19 +131,19 @@ const styles={
     },
     roomTypeLabel:{
       fontFamily: "Manrope",
-      fontWeight: '700',
+      fontWeight: '600',
         color:ColorTheme.text.label,
    paddingLeft:1.5,    
     },
   label:{
     fontFamily: "Manrope",
-    fontWeight: '700',
+    fontWeight: '600',
     color:ColorTheme.text.label,
   },
   title:{
     cursor:'pointer',
     fontFamily: "Manrope",
-    fontWeight: '700'
+    fontWeight: '600'
 
   }
   ,

@@ -3,9 +3,9 @@ import { showCoursesm } from "../../../components/utils/reuseable";
 import { Footer, DesktopHeader, MobileHeader, PageBase } from "../../../layout";
 import { DesktopSearch, MobileSearch } from "../../../components/Search";
 import MenuNav from "../../../components/Front/menunav";
-import Rooms from "./Rooms";
-import WhatWeDo from "../../../components/Front/whatwedo";
 import Testimones from "../../../components/Front/testimonies";
+import Rooms from "../../../common-ui/Rooms";
+import Facilities from "../../../common-ui/Facilities";
 export const HomePage = () => {
   const [showmennu, setmenu] = useState(false);
   const showmenu=true
@@ -69,7 +69,7 @@ export const HomePage = () => {
 <PageBase>
 <Rooms />
 
-<WhatWeDo />
+<Facilities />
 </PageBase>
 {/* <Attention /> */}
    

@@ -298,7 +298,7 @@ const styles = {
     fontWeight: 600, 
   },
   title:{
-    fontWeight:'700'
+    fontWeight:'600'
   },
   descriptionWrapper:{
   padding: 2,

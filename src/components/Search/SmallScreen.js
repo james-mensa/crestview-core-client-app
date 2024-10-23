@@ -127,20 +127,20 @@ const styles={
     },
     roomTypeLabel:{
       fontFamily: "Manrope",
-      fontWeight: '700',
+      fontWeight: '600',
         color:ColorTheme.text.label,
    paddingLeft:1.5,    
     },
   label:{
     fontFamily: "Manrope",
-    fontWeight: '700',
+    fontWeight: '600',
     color:ColorTheme.text.label,
    
   },
   title:{
     cursor:'pointer',
     fontFamily: "Manrope",
-    fontWeight: '700'
+    fontWeight: '600'
 
   }
   ,
@@ -158,7 +158,7 @@ const styles={
   },
   searchBtn:(theme)=>( {
     fontFamily: "Manrope",
-    fontWeight: '700',
+    fontWeight: '600',
     backgroundColor: ColorTheme.grey[100],
     borderRadius: 3,
     color: ColorTheme.button.dark,

@@ -66,7 +66,7 @@ const styles={
 
     }
     ,header:(theme)=>({
-        fontWeight:'700',
+        fontWeight:'600',
         [theme.breakpoints.up('sm')]: {
          fontSize:25
           },

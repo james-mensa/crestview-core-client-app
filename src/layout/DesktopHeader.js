@@ -116,6 +116,6 @@ border: `1px solid ${ColorTheme.background[150]}`
 
   },
   initials:{
-    fontWeight:'700'
+    fontWeight:'600'
   }
 }

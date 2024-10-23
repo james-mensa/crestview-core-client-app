@@ -218,3 +218,53 @@ export const roomsTypeData=[
     
 ]
 
+export const facilities=[
+    {
+        id:21324554,
+        name:'Conference rooms',
+        description:'For those seeking event and meeting facilities, our versatile spaces are perfect for hosting everything from intimate gatherings to corporate conferences. Our conference rooms are equipped with the latest technology and can be configured to meet your specific needs. Our professional event planning team is on hand to assist you in creating a seamless and memorable occasion.',
+        images:[
+            Assets.conference1,
+            Assets.conference2,
+            Assets.conference3
+        ]
+    },
+    {
+        id:21324555,
+        name:'High-End Movie Theater',
+        description:'Accessible to our clients /n Indulge in the latest blockbusters and timeless classics in our cutting-edge, private movie theater. Immerse yourself in crystal-clear visuals and immersive sound, all while reclining in the comfiest seats in town.',
+        images:[
+            Assets.theater1,
+            Assets.theater2,
+        ]
+    },
+    {
+        id:21324556,
+        name:'Gourmet Dining',
+        description:'Accessible to our clients /n Savor a world of culinary delights at our renowned restaurants. From sumptuous breakfast buffets to exquisite dinners, our talented chefs ensure that every meal is a feast for the senses.',
+        images:[
+            Assets.dinning1,
+            Assets.dinning2,
+            Assets.dinning3
+        ]
+    },
+    {
+        id:21324557,
+        name:'Rooftop Bar',
+        description:`Sip on signature cocktails while enjoying panoramic views of the city from our rooftop bar with comes with our Excecutive suite rooms. It's the perfect spot to unwind after a thrilling movie night.`,
+        images:[
+            Assets.rooftop1,
+            Assets.rooftop2,
+            Assets.rooftop3
+        ]
+    },
+    {
+        id: 213242453,
+        name: 'Gym',
+        description: `Stay fit and energized during your stay with our state-of-the-art gym facilities. Equipped with modern workout machines and free weights, it's the perfect space to maintain your fitness routine while enjoying panoramic views of the city.`,
+        images: [
+            Assets.gym1,
+            Assets.gym2
+        ]
+    }
+]

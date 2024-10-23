@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Rooms from "../../pages/client/home/Rooms.js";
 
 import WhatWeDo from "./whatwedo";
 import Testimones from "./testimonies";
@@ -10,6 +9,7 @@ import MenuNav from "./menunav";
 import PageBase from "../PageBase.js";
 import { DesktopSearch, MobileSearch } from "../Search/index.js";
 import { lazyLoad } from "../../libs/viewHelpers.js";
+import Rooms from "../../common-ui/Rooms";
 
 const Home = () => {
   const [showmennu, setmenu] = useState(false);

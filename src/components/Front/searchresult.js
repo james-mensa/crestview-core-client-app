@@ -313,14 +313,14 @@ const styles={
   }),
   label:{
     fontFamily: "Manrope",
-    fontWeight: '700',
+    fontWeight: '600',
     color:ColorTheme.text.label,
    
   },
   title:{
     cursor:'pointer',
     fontFamily: "Manrope",
-    fontWeight: '700'
+    fontWeight: '600'
 
   },
   searchItem:{

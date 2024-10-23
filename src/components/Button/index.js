@@ -141,7 +141,7 @@ const styles={
         cursor:'pointer'
     },
     providerText:{
-        fontWeight:'700',
+        fontWeight:'600',
         fontSize:'15px',
           cursor:'pointer'
     },

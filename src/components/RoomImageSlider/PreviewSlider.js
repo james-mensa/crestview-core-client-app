@@ -4,7 +4,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { ColorTheme } from '../style/ColorTheme';
 // ImageSlider component
-export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000 }) => {
+export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000, controller=true }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -29,20 +29,11 @@ export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000 
     <Box style={styles.sliderContainer}>
       <Box style={{ ...styles.slider, transform: `translateX(-${currentIndex * 100}%)` }}>
         {images.map((image, index) => (
-          <Box
-            key={index}
-            style={styles.slide}
-          >
-            <img src={image} alt={`Slide ${index}`} style={styles.image} />
-          </Box>
+          <Box key={index} style={styles.slide}><img src={image} alt={`Slide ${index}`} style={styles.image} /></Box>
         ))}
       </Box>
-      <IconButton onClick={handlePrev} style={styles.prevButton}>
-        <ArrowBackIosIcon/>
-      </IconButton>
-      <IconButton onClick={handleNext} style={styles.nextButton}>
-        <ArrowForwardIosIcon/>
-      </IconButton>
+    { controller && <IconButton onClick={handlePrev} style={styles.prevButton}><ArrowBackIosIcon/></IconButton> }
+    { controller &&<IconButton onClick={handleNext} style={styles.nextButton}><ArrowForwardIosIcon/></IconButton>}
     </Box>
   );
 };
@@ -64,7 +55,7 @@ const styles = {
   },
   image: {
     width: '100%',
-    height: 'auto',
+    height: '100%',
     display: 'block',
   },
   prevButton: {

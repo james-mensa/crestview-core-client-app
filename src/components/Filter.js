@@ -207,7 +207,7 @@ const styles = {
         gap: 10,
     },
     selectorTitle: {
-        fontWeight: '700',
+        fontWeight: '600',
     },
     button: {
         borderRadius: '20px',
@@ -225,7 +225,7 @@ const styles = {
         justifyContent: 'center',
     },
     value: {
-        fontWeight: '700',
+        fontWeight: '600',
     },
     reset:{
      
@@ -236,7 +236,7 @@ const resetButtonStyle=(isActive)=>{
     return{
 
         label:{
-            fontWeight: '700',
+            fontWeight: '600',
             color:isActive? 'red':'blue',
             cursor:'pointer',
             fontSize:'14px'
