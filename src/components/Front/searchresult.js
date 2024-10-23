@@ -103,8 +103,6 @@ const SearchResult = () => {
   if(!searchroombox){
     return <SkeletonLoadingCards />;
   }
-
-  console.log({seletedRoom:roomType})
   return (
         <Container className="main-layout">
                <BaseCalender onChange={setDate} value={date} show={isCalenderModalOpen} handleClose={handleCalenderModal}/>

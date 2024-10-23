@@ -49,7 +49,6 @@ export default function SignUpPage() {
   const handleSubmit =async () => {
     const isValid = Object.values(state).every((input) => !input.error);
     if (isValid) {
-      console.log({state})
       const formData={
         name:state.name.value,
         email:state.email.value,

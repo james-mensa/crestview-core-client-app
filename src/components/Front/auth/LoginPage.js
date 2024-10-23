@@ -42,7 +42,6 @@ export default function LoginPage() {
   const handleSubmit =async () => {
     const isValid = Object.values(state).every((input) => !input.error);
     if (isValid) {
-      console.log({state})
       setLoading(true);
  
     } else {

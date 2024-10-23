@@ -13,7 +13,6 @@ import { AppButton } from "../Button";
 import { Label } from "../Label";
 function Room(props) {
   const data = props.data;
-  console.log({ dataSource:data });
 
 
   return (

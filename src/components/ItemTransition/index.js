@@ -1,6 +1,6 @@
 import { Box, Stack } from '@mui/material';
 import './styles.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Label } from '../Label';
 import { dummyData } from '../../dummy';
 import { ImageSlider } from '../RoomImageSlider/PreviewSlider';
@@ -16,6 +16,7 @@ const itemsList=dummyData.itemsList
     const handleNext = () => {
       setCurrentIndex((prevIndex) => (prevIndex === itemsList.length - 1 ? 0 : prevIndex + 1));
     };
+
   const images=itemsList.map((item) =>item.image);
   const navigate=useNavigate();
   const handlePageNavigate=()=>{
@@ -30,7 +31,7 @@ const itemsList=dummyData.itemsList
                 <Label  sx={styles().subHeader}>The ALL Inclusive Collection. All in. All for you. </Label>
             </Box>
             
-            <ImageSlider images={images} nextOnclickCallback={handleNext} prevOnClickCallBack={handlePrev}/>
+            <ImageSlider autoPlayInterval={10000} images={images} nextOnclickCallback={handleNext} prevOnClickCallBack={handlePrev}/>
             <Box sx={styles().desktopButton}>
             <RenderViewButton title={"View all suite"} onClick={handlePageNavigate}/>
             </Box>

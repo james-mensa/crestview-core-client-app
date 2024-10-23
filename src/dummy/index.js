@@ -273,7 +273,6 @@ const suiteImages=[
     Assets.rm1,
     Assets.rm12,
     Assets.rm13,
-
 ]
 
 const itemsList = [

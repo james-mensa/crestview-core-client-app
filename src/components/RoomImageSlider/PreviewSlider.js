@@ -15,6 +15,7 @@ export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000,
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval]);
 
+
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
    if(nextOnclickCallback){ nextOnclickCallback()}

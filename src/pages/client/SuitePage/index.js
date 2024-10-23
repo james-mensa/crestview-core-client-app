@@ -64,7 +64,7 @@ export const SuitePage = () => {
           className="front_home"
           style={{
             backgroundImage:
-            `url(${Assets.rm1})`,
+            `url(${suiteImages[currentIndex]})`,
             minHeight: `${window.innerHeight}px`,
           }}
         >

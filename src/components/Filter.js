@@ -53,7 +53,6 @@ export const Filter = ({ setValues, value, isVisible, onClose }) => {
     }
 
     const isFilterUpdated = () =>{ 
-        console.log('Filter',{previousValue,value,isFilterUpdated:previousValue === value});
         return previousValue !== value;}
     const __resetButtonStyle=resetButtonStyle(isFilterUpdated())
     return (
@@ -232,7 +231,6 @@ const styles = {
     }
 };
 const resetButtonStyle=(isActive)=>{
-    console.log({isActive})
     return{
 
         label:{
