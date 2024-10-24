@@ -86,7 +86,7 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
     return{
 
         desktopButton:(theme)=>({
-      
+            marginBottom:2,
             [theme.breakpoints.down('sm')]: {
                     display:'none'
             },
@@ -126,12 +126,9 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
         layout:(theme)=>({
             [theme.breakpoints.up('sm')]: {
                 width: '600px',
-                // height:'500px',
                 marginTop:10,
-                gap:5
             },
             [theme.breakpoints.down('sm')]: {
-                // width: '98vw',
                 display:'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -144,8 +141,7 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
             color:grey[500],
             [theme.breakpoints.up('sm')]: {
                 fontSize:'25px',
-                fontWeight:'500',
-            
+                fontWeight:'500',       
             },
             [theme.breakpoints.down('sm')]: {
                 fontSize:'20px',
@@ -156,8 +152,9 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
         subHeader:(theme)=>({
             color:grey[100],
             [theme.breakpoints.up('sm')]: {
-                fontSize:'30px',
-                fontWeight:'400',marginBottom:8
+                fontSize:'25px',
+                fontWeight:'400',
+                marginBottom:2
             },
             [theme.breakpoints.down('sm')]: {
                 fontSize:'18px',
@@ -175,7 +172,6 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
             overflow: 'hidden',
             [theme.breakpoints.up('sm')]: {
                 width: '500px',
-                height:' 90vh',
             },
             [theme.breakpoints.down('sm')]: {
                 width: '100vw',
