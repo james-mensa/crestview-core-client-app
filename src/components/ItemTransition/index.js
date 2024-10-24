@@ -126,7 +126,7 @@ const styles=(position,isCurrent,distanceFromCurrent)=>{
         layout:(theme)=>({
             [theme.breakpoints.up('sm')]: {
                 width: '600px',
-                height:' 500px',
+                // height:'500px',
                 marginTop:10,
                 gap:5
             },

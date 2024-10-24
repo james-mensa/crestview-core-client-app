@@ -4,9 +4,9 @@ import { GetAllRoomTypes } from '../services/actions/datacollection';
 import { Label } from '../components/Label';
 import { Box, Grid, } from '@mui/material';
 import { lazyLoad } from '../libs/viewHelpers';
-import { roomsTypeData } from '../dummy';
 import  RoomPreview  from '../components/RoomPreview';
 import { CardSlider } from '../components/Slider/CardSlider';
+import { dummyData } from '../dummy';
 
 function Rooms() {
     const dispatch = useDispatch();
@@ -14,9 +14,10 @@ function Rooms() {
       dispatch(GetAllRoomTypes());
     }, [dispatch]);
   
+    const roomsTypeData= dummyData.roomsTypeData;
     useEffect(()=>{ window.addEventListener("scroll",lazyLoad()) });
       const loadingSkeletons = Array.from({ length: 4 }); // Number of skeletons to show while loading
-      const getCards= roomsTypeData.map((data,index)=>{
+      const getCards= dummyData.roomsTypeData.map((data,index)=>{
         return( <RoomPreview data={data}/> )
     })
       

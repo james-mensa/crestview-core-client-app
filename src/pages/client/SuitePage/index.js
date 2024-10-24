@@ -10,7 +10,8 @@ import { dummyData } from "../../../dummy";
 export const SuitePage = () => {
   const [showmennu, setmenu] = useState(false);
   const showmenu=true
-  const suiteImages=dummyData.suiteImages;
+  const suiteImages=dummyData.roomsTypeData.flatMap(room =>room.pictures)
+console.log({suiteImages})
   useEffect(()=>{
     window.addEventListener("scroll",showCoursesm())
    
@@ -33,25 +34,25 @@ export const SuitePage = () => {
 
   return (
     <div className="mainLayoutb">
-      <div className="desktop">
+  
         <div
           className="front_home"
           style={{
             backgroundImage:
               `url(${suiteImages[currentIndex]})`,
-            minHeight: `${window.innerHeight - 200}px`,
+            height: '50vh',
           }}
         >
           <div
             className="imagecover"
-            style={{ minHeight: `${window.innerHeight - 200}px` }}
+            style={{  height: '50vh', }}
           >
             {" "}
        <DesktopHeader/>
           
           </div>
         </div>
-      </div>
+    
 
       {showmennu ? (
         <div className="mobile">
