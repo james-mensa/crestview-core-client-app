@@ -11,7 +11,7 @@ export const FacilityPreview=({data})=>{
             <Box sx={styles.card}><ImageSlider images={data.images}/></Box>
             <Box sx={styles.contentContainer}>
                 <Label sx={styles.header}>{data.name}</Label>
-                <SeeMore text={data.description} maxLength={200} />
+                <SeeMore text={data.description} maxLength={150} />
                 <HorizontalDivider/>
             </Box>
         </Box>

@@ -23,7 +23,6 @@ function Rooms() {
       
     return (
         <div className='roomType' id='roomsCat'>
-            <Label sx={styles.headerStyle}> Our Suits</Label>
             <Label sx={styles.subtitle} className='header-style'>
                 Discover Your Perfect Stay: Explore Our Top-Rated Rooms and Exclusive Rates for Unforgettable Comfort!
             </Label>

@@ -6,6 +6,8 @@ import MenuNav from "../../../components/Front/menunav";
 import Rooms from "../../../common-ui/Rooms";
 import { Assets } from "../../../config/register";
 import { dummyData } from "../../../dummy";
+import { Box } from "@mui/material";
+import { Label } from "../../../components/Label";
 
 export const SuitePage = () => {
   const [showmennu, setmenu] = useState(false);
@@ -36,7 +38,7 @@ console.log({suiteImages})
     <div className="mainLayoutb">
   
         <div
-          className="front_home"
+          className="desktop front_home"
           style={{
             backgroundImage:
               `url(${suiteImages[currentIndex]})`,
@@ -45,11 +47,13 @@ console.log({suiteImages})
         >
           <div
             className="imagecover"
-            style={{  height: '50vh', }}
+            style={{  height: '50vh' }}
           >
             {" "}
        <DesktopHeader/>
-          
+       <Box sx={styles.overlay}>
+              <Label sx={styles.title}>Our Suite</Label>
+            </Box>
           </div>
         </div>
     
@@ -66,16 +70,19 @@ console.log({suiteImages})
           style={{
             backgroundImage:
             `url(${suiteImages[currentIndex]})`,
-            minHeight: `${window.innerHeight}px`,
+            height: `50vh`,
           }}
         >
-          <div
+          <Box
             className="imagecover"
-            style={{ minHeight: `${window.innerHeight}px` }}
+            style={{height: `50vh` }}
           >
             {" "}
             <MobileHeader setmenu={setmenu} showmenu={showmenu}/>
-          </div>
+            <Box sx={styles.overlay}>
+              <Label sx={styles.title}>Our Suite</Label>
+            </Box>
+          </Box>
         </div>
       </div>
 <PageBase>
@@ -86,3 +93,26 @@ console.log({suiteImages})
   );
 };
 
+const styles={
+  overlay:{
+height:'40vh',
+display:'flex',
+flexDirection:'column',
+justifyContent:'center',
+alignItems:'center',
+  },
+
+title:(theme)=>({
+  fontWeight:'600',
+  color:'white',
+  [theme.breakpoints.up('sm')]: {
+    fontSize:50
+
+},
+[theme.breakpoints.down('sm')]: {
+  fontSize:30
+}
+
+
+  })
+}
