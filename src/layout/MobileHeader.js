@@ -4,14 +4,13 @@ import {Person, List } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { disableScroll } from "../libs/viewHelpers";
+import { MobileButton } from "../components/Button";
 const MobileHeader = (props) => {
   const navigate = useNavigate();
-  const [ setSearchValue] = useState("");
   const Checkuser = useSelector((item) => item.authuser);
-  const handlesearchbox = (event) => {
-    setSearchValue(event.target.value);
-  };
-
+  const handleOnclick=()=>{
+    navigate("/auth")
+  }
   return (
     <div className="navbar">
       <img
@@ -51,10 +50,7 @@ const MobileHeader = (props) => {
         ) : (
           <>
             <div className="userlog">
-              <div className="signup">
-                {" "}
-                <span onClick={() => navigate("/auth/Signup")}>Join Now</span>
-              </div>
+              <MobileButton title={"login"} onClick={handleOnclick}/>
             </div>
             {
               props.showmenu ?
@@ -64,7 +60,7 @@ const MobileHeader = (props) => {
                 props.setmenu(true);
               }}
             >
-              <List />
+              <List color="white"/>
             </IconButton>
             :null
             }

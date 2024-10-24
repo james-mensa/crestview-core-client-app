@@ -4,7 +4,6 @@ import { Footer, DesktopHeader, MobileHeader, PageBase } from "../../../layout";
 import MenuNav from "../../../components/Front/menunav";
 
 import Rooms from "../../../common-ui/Rooms";
-import { Assets } from "../../../config/register";
 import { dummyData } from "../../../dummy";
 import { Box } from "@mui/material";
 import { Label } from "../../../components/Label";

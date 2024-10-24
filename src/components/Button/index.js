@@ -59,9 +59,10 @@ export const AuthButton=({onClick,label,loading})=>{
 
 
 
-export const PlainButton = ({ title, onClick, icon }) => {
+export const PlainButton = ({ title, onClick, varient='light' }) => {
+  const bstyles =plainButtonStyle(varient)
   return (
-    <button sx={styles.appButton} onClick={onClick}>
+    <button sx={bstyles.button} onClick={onClick}>
     
       <Label sx={styles.label}> {title}</Label>
     </button>
@@ -69,6 +70,17 @@ export const PlainButton = ({ title, onClick, icon }) => {
 };
 
 
+const plainButtonStyle=(varient)=>{
+
+return {
+button:{
+height:300
+},
+label:{
+  color:varient==="light" ?'white' :grey[900]
+}
+}
+}
 
 export const ProviderButton=({onClick,label,icon,loading})=>{
     return (
@@ -100,6 +112,15 @@ export const RenderViewButton=({onClick,title,varient='light'})=>{
       </button>
   )
 }
+
+export const MobileButton=({onClick,title,varient='light'})=>{
+  const styles=buttonStyles(varient)
+  return(
+      <button onClick={onClick} style={styles.smallButton}>
+       <Label sx={styles.title}> {title}</Label>
+      </button>
+  )
+}
 const buttonStyles=(varient)=>{
   return{ 
     button:{
@@ -107,6 +128,11 @@ const buttonStyles=(varient)=>{
       borderRadius:0,
       padding:'10px 20px',
       marginTop: 20
+  },
+  smallButton:{
+    backgroundColor:varient==='light'? grey[100]:grey[900],
+    borderRadius:0,
+    padding:'5px 10px',
   },
   title:{
   fontWeight:'600',

@@ -57,7 +57,7 @@ const MobileTopNav = (props) => {
             <div className="userlog">
               <div className="signup">
                 {" "}
-                <span onClick={() => navigate("/auth/Signup")}>Join Now</span>
+                <span onClick={() => navigate("/auth/Signup")}>Login</span>
               </div>
             </div>
             {
