@@ -1,4 +1,4 @@
-import { CLIENT_AUTH_INIT, USER_DETAIL } from "../../constants";
+import { USER_DETAIL,CLIENT_AUTH_INIT } from "../../../config/constants";
 
 export const userDetail = (data) => ({
     type: USER_DETAIL,

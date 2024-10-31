@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API } from '../../constants';
+import { API } from '../../../config/constants';
 const ACCESS_TOKEN_LOCAL="bk_access_token";
 const BaseApi = axios.create({
   baseURL: API, 

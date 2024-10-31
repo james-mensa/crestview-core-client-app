@@ -1,4 +1,4 @@
-import {NOTIFYSUCC,NOTIFYCLEAR,NOTIFYERROR} from "./../constants"
+import { NOTIFYSUCC,NOTIFYCLEAR,NOTIFYERROR } from "../../config/constants";
 const states={
     success: null,
 
