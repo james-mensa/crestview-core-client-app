@@ -2,7 +2,7 @@ import { Avatar, Button as BaseButton ,CircularProgress} from "@mui/material"
 import { ColorTheme } from "../style/ColorTheme"
 import { Label } from "../Label"
 import { blue, grey } from "@mui/material/colors"
-
+import "./button.css"
 export const Button=({onClick,label})=>{
     return <BaseButton onClick={onClick} sx={styles.button}>{label}</BaseButton>
 }
@@ -62,8 +62,7 @@ export const AuthButton=({onClick,label,loading})=>{
 export const PlainButton = ({ title, onClick, varient='light' }) => {
   const bstyles =plainButtonStyle(varient)
   return (
-    <button sx={bstyles.button} onClick={onClick}>
-    
+    <button sx={bstyles.button} onClick={onClick} className="plain-button">
       <Label sx={styles.label}> {title}</Label>
     </button>
   );
@@ -221,3 +220,7 @@ const styles={
         // color: theme.palette.mode === "dark" ? grey[100] : blue[900],
       }),
 }
+
+
+
+

@@ -23,7 +23,7 @@ const itemsList=dummyData.itemsList
     navigate('/suite')
   }
     return (
-      <Box sx={styles().container}>
+      <Box sx={styles().container} id={"about_us_div"}>
         <Box sx={styles().layout}>
             <Box>
                 <Label sx={styles().header}>Welcome to  Crestview Lodge, </Label>

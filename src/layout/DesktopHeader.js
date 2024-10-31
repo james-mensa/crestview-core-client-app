@@ -1,12 +1,32 @@
 import { Box, IconButton } from "@mui/material";
 import React, {} from "react";
-import { Person } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { ColorTheme } from "../components/style/ColorTheme";
 import { Label } from "../components/Label";
 import { getInitials } from "../libs/viewHelpers";
+import { PlainButton } from "../components/Button";
+
+
+const goToAboutUs=()=>{
+    const targetDiv = document.getElementById("about_us_div");
+    if (targetDiv) {
+      targetDiv.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  
+}
+
+const goToFooter=()=> {
+  window.scroll({
+    top: document.body.scrollHeight,
+    behavior: "smooth", 
+  });
+}
+
 
 const DesktopHeader = (props) => {
   const navigate = useNavigate();
@@ -14,6 +34,12 @@ const DesktopHeader = (props) => {
   const account= Checkuser ? Checkuser.account:null
 
 const clientNameIniitials= account ? getInitials(account.fullname):'';
+
+const goToSuitePage=()=>{
+  
+  navigate("/suite")
+}
+
   return (
     <div className="navbar">
       <div className="navcontainer">
@@ -31,46 +57,22 @@ const clientNameIniitials= account ? getInitials(account.fullname):'';
           </div>
         </div>
       </div>
-      <div className="navcontainerlog">
-        <div className="nav-actions">
-          <IconButton>
-            {/* <Label></Label> */}
-          </IconButton>
-          <span
-            onClick={() => {
-              window.scroll({
-                top: document.body.scrollHeight,
-                behavior: "smooth", // You can use 'smooth' for smooth scrolling or 'auto' for instant scrolling
-              });
-            }}
-          >
-            About Us
-          </span>
-          <span
-            onClick={() => {
-              document
-                .getElementById("roomsCat")
-                .scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Rooms
-          </span>
-          <span>Contact</span>
-  
-          <span 
-          onClick={()=>{
-            navigate("/rixos/location")
-          }}>Location</span>
-        </div>
+      <Box className="navcontainerlog">
+        <Box sx={styles.navListContainer} >
+          <PlainButton title={"About Us"} onClick={goToAboutUs}/>
+          <PlainButton title={"Suite"} onClick={goToSuitePage}/>
+          <PlainButton title={"Contact"} onClick={goToFooter}/>
+          <PlainButton title={"Location"} onClick={()=>navigate("/rixos/location")}/>
+        </Box>
         {Checkuser && Checkuser.auth ? (
           <>
             <Box
               className="uavatar"
               sx={styles.authAvater}
               onClick={() => navigate("/dashboard/overview")}>
-<Label sx={styles.initials}>
-    {clientNameIniitials}
-</Label>
+                      <Label sx={styles.initials}>
+                          {clientNameIniitials}
+                      </Label>
             </Box>
           </>
         ) : (
@@ -84,7 +86,7 @@ const clientNameIniitials= account ? getInitials(account.fullname):'';
             </Box>
           </div>
         )}
-      </div>
+      </Box>
     </div>
   );
 };
@@ -117,5 +119,11 @@ border: `1px solid ${ColorTheme.background[150]}`
   },
   initials:{
     fontWeight:'600'
+  },
+  navListContainer:{
+    display:'flex',
+    flexDirection:'row',
+    gap:2,
+    marginRight:3,
   }
 }
