@@ -1,7 +1,8 @@
 
-import { InitAuth } from "./models";
-import { Api } from "../Api";
+
+import { Api } from "../ApiClient";
 import * as useNotification from "../notification";
+import { InitAuth } from "./actionTypes";
 export const initAuth = (email) => {
     return async (dispatch) => {
       try {

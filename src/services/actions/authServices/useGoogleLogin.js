@@ -1,7 +1,7 @@
 
-import { userDetail } from "./models";
+import { userDetail } from "./actionTypes";
 import * as useNotification from "../notification";
-import { Api } from "../Api";
+import { Api } from "../ApiClient";
 
 
 export const useGoogleLogin = (token) => {

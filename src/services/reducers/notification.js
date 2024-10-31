@@ -1,4 +1,4 @@
-import {NOTIFYSUCC,NOTIFYCLEAR,NOTIFYERROR} from "./../type"
+import {NOTIFYSUCC,NOTIFYCLEAR,NOTIFYERROR} from "./../constants"
 const states={
     success: null,
 

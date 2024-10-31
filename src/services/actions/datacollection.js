@@ -1,6 +1,5 @@
-import axios, { all } from "axios";
+import axios from "axios";
 import * as notify from "./notification";
-import { AutoLogin } from "./adminActions";
 
 const {
   ADDROOM,
