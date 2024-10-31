@@ -7,6 +7,7 @@ import { ColorTheme } from "../components/style/ColorTheme";
 import { Label } from "../components/Label";
 import { getInitials } from "../libs/viewHelpers";
 import { PlainButton } from "../components/Button";
+import { Assets } from "../config/register";
 
 
 const goToAboutUs=()=>{
@@ -51,8 +52,8 @@ const goToSuitePage=()=>{
                 navigate("/");
               }}
               alt=""
-              src="https://res.cloudinary.com/dewkx66gl/image/upload/v1695980190/pngwing.com_2_n6furk.png"
-              className="companyname-img "
+              src={Assets.crestview}
+         style={styles.logoImg}
             />{" "}
           </div>
         </div>
@@ -125,5 +126,9 @@ border: `1px solid ${ColorTheme.background[150]}`
     flexDirection:'row',
     gap:2,
     marginRight:3,
-  }
+  },
+  logoImg:{
+    width:'auto',
+    height:30,
+}
 }

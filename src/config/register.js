@@ -63,6 +63,5 @@ fam3:"/assets/images/room/fam3.jpg",
 standard1:"/assets/images/room/standard1.jpg",
 standard2:"/assets/images/room/standard2.jpg",
 standard3:"/assets/images/room/standard3.jpg",
-
-
+crestview:"/assets/images/crestview.png"
 }

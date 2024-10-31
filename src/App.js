@@ -44,6 +44,7 @@ import AdminRestriction from "./components/utils/adminrestrction";
 import { AuthPage, LoginPage, SignUpPage, VerifyAccountPage } from "./components/Front/auth";
 import { HomePage } from "./pages/client/home/HomePage";
 import { SuitePage } from "./pages/client/SuitePage";
+import AdminOverviewPage from "./pages/admin/overview";
 
 function App() {
   const notifications = useSelector((value) => value.notification);
@@ -136,10 +137,24 @@ function App() {
             </Authcontainer>
           }
         />
-        <Route path="/admin/panel/overview" element={ <Admincontainer><AdminRestriction><AdminDashboard /></AdminRestriction></Admincontainer>} />
-        <Route path="/admin/panel/rooms" element= {<Admincontainer><AdminRestriction><PanelRoom /></AdminRestriction></Admincontainer>} />
-        <Route path="/admin/panel/addroom" element={<Admincontainer><AdminRestriction><AddRoom /></AdminRestriction></Admincontainer>} />
-        <Route path="/admin/panel/employee/management" element={ <Admincontainer><AdminRestriction><EmployeeDashboard/></AdminRestriction></Admincontainer>}/>
+        <Route path="/admin/panel/overview" element={ 
+          // <Admincontainer><AdminRestriction><AdminDashboard /></AdminRestriction></Admincontainer>
+          // <AdminDashboard />
+          <AdminOverviewPage/>
+        } 
+          />
+        <Route path="/admin/panel/suite" element= {
+          // <Admincontainer><AdminRestriction><PanelRoom /></AdminRestriction></Admincontainer>
+          <PanelRoom />
+          } />
+        <Route path="/admin/panel/suite-type" element={
+          // <Admincontainer><AdminRestriction><AddRoom /></AdminRestriction></Admincontainer>
+          <AddRoom />
+          } />
+        <Route path="/admin/panel/employee/management" element={ 
+          // <Admincontainer><AdminRestriction><EmployeeDashboard/></AdminRestriction></Admincontainer>
+          <EmployeeDashboard/>
+          }/>
         <Route path="/client/conference/booking" element={<ConferenceBook />} />
         <Route
           path="/dashboard/specail_orders"

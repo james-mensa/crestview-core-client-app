@@ -17,10 +17,10 @@ const AdminOverview = () => {
 
   useEffect(() => {
     dispatch(RevenueMonthly(2023));
-  }, [dispatch]);
+  }, []);
   useEffect(() => {
     dispatch(MeetingSpaceMonthly(2023));
-  }, [dispatch]);
+  }, []);
   const RevenueD = useSelector((data) => data.monthlyIncome);
   const ConferenceRev = useSelector((data) => data.conferenceIncome);
 
@@ -171,7 +171,7 @@ const AdminOverview = () => {
         },
       ],
     });
-  }, ConferenceRev);
+  }, []);
 
   const [statData, setSetData] = useState({});
   const [growIndicator, setGrowthrate] = useState({});
@@ -316,7 +316,7 @@ const AdminOverview = () => {
         },
       ],
     });
-  }, RevenueD);
+  }, []);
 
   const options = {
     scales: {
