@@ -4,9 +4,9 @@ import { API } from '../../../config/constants';
 const ACCESS_TOKEN_LOCAL="bk_access_token";
 const REFRESH_TOKEN_LOCAL="bk_refresh_token";
 
-// Create an instance of axios with the backend URL
 const AuthApi = axios.create({
-  baseURL: API, // Your backend URL
+  baseURL: API,
+  withCredentials: true,
 });
 
 // Request interceptor to add the access token to headers
