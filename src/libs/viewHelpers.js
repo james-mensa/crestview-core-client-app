@@ -205,12 +205,3 @@ export function ReturnOrderByType(target, data) {
 }
 
 
-
-/* GET NAME INITIALS */
-
-export function getInitials(fullName) {
-  return fullName
-      .split(' ') // Split the full name into an array of words
-      .map(name => name[0].toUpperCase()) // Take the first character of each word and convert it to uppercase
-      .join(''); // Join the initials together
-}

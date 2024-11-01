@@ -785,7 +785,7 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: transparent;
-  width: 100%;
+  width: 95%;
   z-index: 100;
 }
 
@@ -851,17 +851,6 @@
   width: 150px;
 }
 
-
-
-.uavatar img {
-  margin-top: -12px;
-  margin-right: 10px;
-}
-.uavatar:hover {
-  transition: 0.3s ease-in-out;
-  cursor: pointer;
-  background-color: rgb(248, 252, 255);
-}
 
 .presshoverAv {
   margin-left: 10px;

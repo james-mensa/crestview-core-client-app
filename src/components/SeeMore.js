@@ -34,6 +34,10 @@ const styles={
         fontWeight:500
     },
     toggler:{
-        fontWeight:700,color:'#2f3e5e'
+        fontWeight:600,
+        color:'#2f3e5e',
+        fontSize:13,
+    
+        
     }
 }

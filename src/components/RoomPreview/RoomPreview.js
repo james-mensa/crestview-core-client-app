@@ -2,7 +2,7 @@ import { Box, Grid, Stack } from "@mui/material"
 import { ImageSlider } from "../RoomImageSlider/PreviewSlider"
 import { Label } from "../Label"
 import SeeMore from "../SeeMore"
-import { IconAvater } from "../IconAvater"
+import AvatarIcon from "../AvatarIcon"
 import { HorizontalDivider } from "../Divider"
 import { RenderViewButton } from "../Button"
 import { useNavigate } from "react-router-dom"
@@ -41,7 +41,7 @@ const RenderDetails=({data})=>{
                     return(
                         <Grid item xs={8} sm={4} md={4} key={index}>
                             <Stack direction={"row"} alignItems={"center"} spacing={1}>
-                                <IconAvater path={_data.icon}/>
+                                <AvatarIcon icon={_data.icon}/>
                                 <Label sx={styles.amenitiesLabel}>{_data.name}</Label>
                             </Stack>
                         

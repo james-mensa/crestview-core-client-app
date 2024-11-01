@@ -8,37 +8,37 @@ export const getNavContent=()=>{
 
     return [
         {
-            path:'/admin/panel/overview',
+            path:'/admin/overview',
             title:'Site Overview',
             show: true,
             icon:<AppsIcon/>
         },
         {
-            path:'/admin/panel/suite',
+            path:'/admin/suite',
             title:'Suite',
             show: true,
             icon:<BedroomChildIcon/>
         },
         {
-            path:'/admin/panel/suite-types',
+            path:'/admin/suite-type',
             title:'manage suite types',
             show: true,
             icon:<AirlineSeatIndividualSuiteIcon/>
         },
         {
-            path:'/admin/panel/bookings',
+            path:'/admin/bookings',
             title:'Bookings',
             show: true,
             icon:<SegmentIcon/>
         }
         ,{
-            path:'/admin/panel/employees',
+            path:'/admin/manage-employee',
             title:'Manage employees',
             show: true,
             icon:<SupportAgentIcon/>
         }
         ,{
-            path:'/admin/panel/customers',
+            path:'/admin/customers',
             title:'Manage customers',
             show: true,
             icon:<ManageAccountsIcon/>

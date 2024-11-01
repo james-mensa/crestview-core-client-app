@@ -1,8 +1,6 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-
-import AdminOverview from "./adminoverview";
 import { useNavigate } from "react-router-dom";
 import RoomTypes from "./roomtype";
 import { RiAdminFill, RiCustomerService2Line } from "react-icons/ri";
@@ -23,28 +21,28 @@ const TypeDashboard = () => {
         {admindetails && admindetails.account && admindetails.account.role === "admin" ? (
             <div className="nav-column">
               <p style={{ backgroundColor: " white", color: "rgb(7, 1, 27) " }}
-                onClick={() => navigate("/admin/panel/overview")}
+                onClick={() => navigate("/admin/overview")}
               
               >
                 <span>Overview</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/rooms")}>
+              <p onClick={() => navigate("/admin/rooms")}>
                 <span>List Rooms</span>
               </p>
 
-              <p onClick={() => navigate("/admin/panel/room_type")}>
+              <p onClick={() => navigate("/admin/room_type")}>
                 <span>Manage rooms types</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/bookings")}>
+              <p onClick={() => navigate("/admin/bookings")}>
                 <span>Bookings</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/meetings")}   >
+              <p onClick={() => navigate("/admin/meetings")}   >
                 <span>Conference Room Bookings</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/employee/management")}>
+              <p onClick={() => navigate("/admin/employee/management")}>
                 <span>Employee Management</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/customers")}>
+              <p onClick={() => navigate("/admin/customers")}>
                 <span>Manage Customers</span>
               </p>
               <div className="admin_indentity">
@@ -67,10 +65,10 @@ const TypeDashboard = () => {
           
            
 
-              <p onClick={() => navigate("/admin/panel/bookings")}>
+              <p onClick={() => navigate("/admin/bookings")}>
                 <span>Bookings</span>
               </p>
-              <p onClick={() => navigate("/admin/panel/meetings")}>
+              <p onClick={() => navigate("/admin/meetings")}>
                 <span>Conference Room Bookings</span>
               </p>
        

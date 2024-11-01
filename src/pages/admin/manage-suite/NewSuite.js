@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-import SectionNav from "./../utils/sectionnav";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Select, MenuItem, TextField } from "@mui/material";
 import { CircleSpinner } from "react-spinners-kit";
 import { useDispatch, useSelector } from "react-redux";
-import { AddNewRoom } from "../../services/actions/datacollection";
-const AddRoom = () => {
+import { AddNewRoom } from "../../../services/actions/datacollection";
+import SectionNav from "../../../components/utils/sectionnav";
+
+const NewSuite = () => {
 
   const notifications = useSelector((value) => value.notification);
-
-
-
-
   const dispatch=useDispatch()
   const [roomtype, setroomtype] = useState("Family room");
   const [loading, setloading] = useState(false);
@@ -384,4 +381,4 @@ const AddRoom = () => {
   );
 };
 
-export default AddRoom;
+export default NewSuite;

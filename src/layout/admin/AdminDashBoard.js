@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material"
+import { Box } from "@mui/material"
 
 import { Label } from "../../components/Label";
 import { blue, grey, red } from "@mui/material/colors";
@@ -7,6 +7,7 @@ import { getNavContent } from "./config";
 import { useNavigate } from "react-router-dom";
 import { Assets } from "../../config/register";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import AvatarIcon from "../../components/AvatarIcon";
 export const AdminDashboard = ({children})=>{
     const navItems=getNavContent().filter((item)=>item.show)
     return(
@@ -20,6 +21,7 @@ export const AdminDashboard = ({children})=>{
             />
                 </Box>
                 <Box sx={styles.topNavRight}>
+                    <AvatarI name={"James mensah"} role={"Admin"} alias={"JM"}/>
                     <AlertCard/>
                 </Box>
                 {/* <IconButton sx={styles.topNavMobileButton}></IconButton> */}
@@ -40,88 +42,6 @@ export const AdminDashboard = ({children})=>{
         </Box>
     )
 }
-
-
-const NavItem=({icon,title,path})=>{
-    const navigate=useNavigate()
-    const currentPath=usePathname();
-    const isActive=currentPath===path;
-    const styles=itemStyles(isActive)
-    const handleOnClick=()=>{
-        navigate(path)
-    }
-    return(
-        <Box sx={styles.container} onClick={handleOnClick}>
-      <Label sx={styles.itemLabel}> {icon}  </Label>   <Label sx={styles.itemLabel}>{title}</Label>
-        </Box>
-    )
-}
-const itemStyles=(isActive)=>{
-    return{
-        container: {
-            display:'flex',
-            flexDirection:'row',
-            backgroundColor:isActive ? grey[200]:'transparent',
-            borderRadius:1,
-            padding:'5px 10px',
-            gap:1.5,
-            alignItems: 'center',
-            cursor:'pointer',
-            transition: 'background-color 0.3s ease',
-            '&:hover': {
-                backgroundColor: blue[50],
-                color: blue[500],
-            },
-        },
-        itemLabel:{
-            fontSize:15,
-            fontWeight:'500',
-            color:isActive ? grey[900]:grey[600],
-        }
-    }
-}
-
-
-
-const AlertCard=()=>{
-    const styles=alertStyles()
-    return(
-        <Box sx={styles.container}>
-            <NotificationsNoneIcon/>
-            <Label sx={styles.alertIndicator}>4</Label>
-        </Box>
-    )
-}
-const alertStyles=()=>{
-    return{
-        container:{
-            display:'flex',
-            flexDirection:'column',
-            justifyContent:'flex-start',
-            backgroundColor:grey[50],
-            borderRadius:3,
-            padding:0.5,
-            cursor:'pointer',
-             userSelect: 'none'
-        },
-        alertIndicator:{
-            backgroundColor:red[500],
-            color:grey[50],
-            display:'flex',
-            flexDirection:'column',
-            justifyContent:'center',
-            alignItems:'center',
-            width:20,
-            height:20,
-            position:'absolute',
-            marginTop:-1,
-            marginLeft:2,
-            borderRadius:3,
-            fontSize:13
-        }
-    }
-}
-
 const styles={
     container:{
 
@@ -190,5 +110,113 @@ const styles={
     },
     topNavRight:{
 
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        gap:3
+    }
+}
+
+
+//*** common components */
+const NavItem=({icon,title,path})=>{
+    const navigate=useNavigate()
+    const currentPath=usePathname();
+    const isActive=currentPath===path;
+    const styles=itemStyles(isActive)
+    const handleOnClick=()=>{
+        navigate(path)
+    }
+    return(
+        <Box sx={styles.container} onClick={handleOnClick}>
+      <Label sx={styles.itemLabel}> {icon}  </Label>   <Label sx={styles.itemLabel}>{title}</Label>
+        </Box>
+    )
+}
+const AlertCard=()=>{
+    const styles=alertStyles()
+    return(
+        <Box sx={styles.container}>
+            <NotificationsNoneIcon/>
+            <Label sx={styles.alertIndicator}>4</Label>
+        </Box>
+    )
+}
+const AvatarI=({name,alias,img,role})=>{
+    return(
+        <Box sx={avatarStyles.container}>
+          <AvatarIcon alias={alias} icon={img}  />
+          <Label sx={avatarStyles.name}>{name}</Label>
+        </Box>
+    )
+}
+
+const avatarStyles={
+    container:{
+display: 'flex',
+flexDirection:'row',
+alignItems:'center',
+gap:1
+    }
+    ,
+    name:{
+        fontSize:15,
+        fontWeight:'500',
+        color:grey[50],
+    }
+}
+
+
+const itemStyles=(isActive)=>{
+    return{
+        container: {
+            display:'flex',
+            flexDirection:'row',
+            backgroundColor:isActive ? grey[200]:'transparent',
+            borderRadius:1,
+            padding:'5px 10px',
+            gap:1.5,
+            alignItems: 'center',
+            cursor:'pointer',
+            transition: 'background-color 0.3s ease',
+            '&:hover': {
+                backgroundColor: blue[50],
+                color: blue[500],
+            },
+        },
+        itemLabel:{
+            fontSize:15,
+            fontWeight:'500',
+            color:isActive ? grey[900]:grey[600],
+        }
+    }
+}
+const alertStyles=()=>{
+    return{
+        container:{
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'flex-start',
+            backgroundColor:grey[50],
+            borderRadius:3,
+            padding:0.5,
+            cursor:'pointer',
+             userSelect: 'none'
+        },
+        alertIndicator:{
+            backgroundColor:red[500],
+            color:grey[50],
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'center',
+            alignItems:'center',
+            width:20,
+            height:20,
+            position:'absolute',
+            marginTop:-1,
+            marginLeft:2,
+            borderRadius:3,
+            fontSize:13
+        }
     }
 }

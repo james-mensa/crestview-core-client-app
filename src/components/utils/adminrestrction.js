@@ -14,7 +14,7 @@ const AdminRestriction = (props) => {
       if (!Checkuser.account) {
         navigate("/");
       } else if (Checkuser.account && Checkuser.account.role === "employee") {
-navigate("/admin/panel/bookings")
+navigate("/admin/bookings")
         
       }
     }

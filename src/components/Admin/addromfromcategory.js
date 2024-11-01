@@ -28,7 +28,7 @@ const AddRoomCategory = () => {
         <span
      
           onClick={() => {
-            navigate("/admin/panel/addroom");
+            navigate("/admin/addroom");
           }}
           className="searchbtn"
         >

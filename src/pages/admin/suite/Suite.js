@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Select, MenuItem, IconButton } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
 import { Filter } from "react-bootstrap-icons";
-import RoomBox from "./roombox";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GetAllRooms } from "../../services/actions/datacollection";
+import { GetAllRooms } from "../../../services/actions/datacollection";
+import RoomBox from "../../../components/Admin/roombox";
 
-const RoomsDetail = () => {
+const Suite = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetAllRooms());
@@ -132,4 +132,4 @@ const RoomsDetail = () => {
   );
 };
 
-export default RoomsDetail;
+export default Suite;

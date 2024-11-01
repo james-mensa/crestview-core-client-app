@@ -18,7 +18,7 @@ const SignInAdmin = () => {
       setload(false);
 
       if (notifications.success) {
-        navigate("/admin/panel/overview");
+        navigate("/admin/overview");
       }
     }
   });
@@ -26,7 +26,7 @@ const SignInAdmin = () => {
   useEffect(() => {
     if (Checkuser && ! Checkuser.loading) {
       if(Checkuser.account){
-        navigate("/admin/panel/overview");
+        navigate("/admin/overview");
       }
    
     }

@@ -6,7 +6,6 @@ const  amenities=[
       "name": "Free Wi-Fi",
       "description": "Unlimited high-speed internet access throughout your stay.",
       "icon": Assets.wifi,
-
       "isAvailable": true
     },
     {

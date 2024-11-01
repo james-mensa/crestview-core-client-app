@@ -26,7 +26,7 @@ const PanelTestimony = () => {
             </p>
             
             <p
-              onClick={() => navigate("/admin/panel/room_type")}
+              onClick={() => navigate("/admin/room_type")}
              
             >
                 <span>Manage rooms types</span>

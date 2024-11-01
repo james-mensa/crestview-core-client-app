@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import Home from "./components/Front/home";
 import { showToastify } from "./components/utils/reuseable";
 import { ClearNotify } from "./services/actions/notification";
 import "./components/style/custome.css";
@@ -23,16 +22,12 @@ import SearchResult from "./components/Front/searchresult";
 import UserPanel from "./components/Front/userprofile";
 import SettingsPanel from "./components/Front/profile/settingnav";
 import BookingsPanel from "./components/Front/profile/bookingnav";
-import AdminDashboard from "./components/Admin/panel";
-import PanelRoom from "./components/Admin/panelroom";
 import AddRoom from "./components/Admin/addrooms";
 import TypeDashboard from "./components/Admin/typepanel";
 import AddRoomTypes from "./components/Admin/addroomtype";
 import AddRoomCategory from "./components/Admin/addromfromcategory";
 import Location from "./components/utils/location";
-import PanelBook from "./components/Admin/panelbooks";
-import PanelMeetingOrders from "./components/Admin/panelConference";
-import PanelCustomer from "./components/Admin/panelcustomers";
+
 import ConferenceBook from "./components/Front/bookconference";
 import ConferenceCheckout from "./components/Front/checkoutconference";
 import SpecialOrderPanel from "./components/Front/profile/specialordernav";
@@ -45,6 +40,10 @@ import { AuthPage, LoginPage, SignUpPage, VerifyAccountPage } from "./components
 import { HomePage } from "./pages/client/home/HomePage";
 import { SuitePage } from "./pages/client/SuitePage";
 import AdminOverviewPage from "./pages/admin/overview";
+import CustomersPage from "./pages/admin/manage-customer";
+import AdminSuitePage from "./pages/admin/suite";
+import BookingsPage from "./pages/admin/bookings";
+import NewSuitePage from "./pages/admin/manage-suite";
 
 function App() {
   const notifications = useSelector((value) => value.notification);
@@ -127,8 +126,13 @@ function App() {
             </Authcontainer>
           }
         />
-        <Route path="/admin/panel/bookings" element={<Admincontainer><PanelBook /></Admincontainer> } />
-        <Route path="/admin/panel/meetings" element={ <Admincontainer><PanelMeetingOrders /></Admincontainer>} />
+        <Route path="/admin/bookings" 
+        element={
+          // <Admincontainer>
+          //   <PanelBook />
+          // {/* </Admincontainer>  */}
+          <BookingsPage/>
+        } />
         <Route
           path="/dashboard/settings"
           element={
@@ -137,21 +141,21 @@ function App() {
             </Authcontainer>
           }
         />
-        <Route path="/admin/panel/overview" element={ 
+        <Route path="/admin/overview" element={ 
           // <Admincontainer><AdminRestriction><AdminDashboard /></AdminRestriction></Admincontainer>
           // <AdminDashboard />
           <AdminOverviewPage/>
         } 
           />
-        <Route path="/admin/panel/suite" element= {
+        <Route path="/admin/suite" element= {
           // <Admincontainer><AdminRestriction><PanelRoom /></AdminRestriction></Admincontainer>
-          <PanelRoom />
+          <AdminSuitePage />
           } />
-        <Route path="/admin/panel/suite-type" element={
+        <Route path="/admin/suite-type" element={
           // <Admincontainer><AdminRestriction><AddRoom /></AdminRestriction></Admincontainer>
-          <AddRoom />
+          <NewSuitePage />
           } />
-        <Route path="/admin/panel/employee/management" element={ 
+        <Route path="/admin/manage-employee" element={ 
           // <Admincontainer><AdminRestriction><EmployeeDashboard/></AdminRestriction></Admincontainer>
           <EmployeeDashboard/>
           }/>
@@ -164,13 +168,16 @@ function App() {
             </Authcontainer>
           }
         />
-        <Route path="/admin/panel/customers" element={<Admincontainer><PanelCustomer /></Admincontainer>} />
+        <Route path="/admin/customers" element={
+          // <Admincontainer><PanelCustomer /></Admincontainer>
+          <CustomersPage/>
+          } />
         <Route path="/admin/dashboard" element={<SignInAdmin />} />
 
-        <Route path="/admin/panel/room_type" element={ <Admincontainer><TypeDashboard /></Admincontainer>} />
-        <Route path="/admin/panel/newcategory" element={<Admincontainer><AddRoomTypes /></Admincontainer>} />
+        <Route path="/admin/room_type" element={ <Admincontainer><TypeDashboard /></Admincontainer>} />
+        <Route path="/admin/newcategory" element={<Admincontainer><AddRoomTypes /></Admincontainer>} />
         <Route
-          path="/admin/panel/newroom_from_category"
+          path="/admin/newroom_from_category"
           element={<Admincontainer><AddRoomCategory /></Admincontainer>}
         />
         <Route path="/rixos/location" element={<Location />} />

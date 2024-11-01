@@ -23,7 +23,7 @@ const RoomTypes = () => {
 <div style={{width:"120px"}}>
 <span
         onClick={() => {
-          navigate("/admin/panel/newcategory");
+          navigate("/admin/newcategory");
         }}
         className="searchbtn" style={{ width:"100px"}}
       >

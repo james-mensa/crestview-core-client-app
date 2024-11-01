@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { ColorTheme } from "../components/style/ColorTheme";
-import { Label } from "../components/Label";
-import { getInitials } from "../libs/viewHelpers";
+
 import { PlainButton } from "../components/Button";
 import { Assets } from "../config/register";
+import AvatarIcon  from "../components/AvatarIcon";
 
 
 const goToAboutUs=()=>{
@@ -33,13 +33,8 @@ const DesktopHeader = (props) => {
   const navigate = useNavigate();
   const Checkuser = useSelector((item) => item.authuser);
   const account= Checkuser ? Checkuser.account:null
-
-const clientNameIniitials= account ? getInitials(account.fullname):'';
-
-const goToSuitePage=()=>{
-  
-  navigate("/suite")
-}
+console.log({ account})
+  const goToSuitePage=()=>navigate("/suite")
 
   return (
     <div className="navbar">
@@ -67,14 +62,8 @@ const goToSuitePage=()=>{
         </Box>
         {Checkuser && Checkuser.auth ? (
           <>
-            <Box
-              className="uavatar"
-              sx={styles.authAvater}
-              onClick={() => navigate("/dashboard/overview")}>
-                      <Label sx={styles.initials}>
-                          {clientNameIniitials}
-                      </Label>
-            </Box>
+ 
+                        <AvatarIcon onClick={() => navigate("/dashboard/overview")} icon={account.picture} alias={account.alias}/>
           </>
         ) : (
           <div className="userlog">
