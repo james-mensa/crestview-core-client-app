@@ -80,13 +80,6 @@ const  amenities=[
   //     "isAvailable": true
   //   },
     {
-      "_id": "64ec0e5f95e1b02ab5bc1f24",
-      "name": "Air Conditioning",
-      "description": "In-room air conditioning with adjustable temperature settings.",
-      "icon": Assets.airCondition,
-      "isAvailable": true
-    },
-    {
       "_id": "64ec0e5f95e1b02ab5bc1f27",
       "name": "In-Room Safe",
       "description": "Electronic safe to secure your valuables during your stay.",
