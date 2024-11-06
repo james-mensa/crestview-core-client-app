@@ -6,7 +6,7 @@ import { InitAuth } from "./actionTypes";
 export const initAuth = (email) => {
     return async (dispatch) => {
       try {
-        const response=await Api.BaseApi.get("/api/auth/init", {  params: { email }});
+        const response=await Api.BaseApi.get(`/api/auth/init/${email}`, {  params: { email }});
         if(response){
             const _res=response.data
             const path=_res.path

@@ -31,6 +31,7 @@ const styles = {
 
 const AvatarIcon = ({ icon, alias, onClick }) => {
     const hasIcon = Boolean(icon);
+    console.log({icon, alias, onClick})
     return (
         <Box sx={styles.authAvatar} onClick={onClick}>
             {hasIcon ? (
