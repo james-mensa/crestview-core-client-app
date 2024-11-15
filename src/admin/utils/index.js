@@ -17,3 +17,10 @@ export const uriToBase64 = async (uri) => {
     });
   };
   
+ export function transformToItemList(amenities) {
+    return Object.entries(amenities).map(([key, value]) => ({
+      value: value,
+      label: key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')
+    }));
+  }
+  

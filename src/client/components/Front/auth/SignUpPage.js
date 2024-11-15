@@ -50,7 +50,7 @@ export default function SignUpPage() {
     const isValid = Object.values(state).every((input) => !input.error);
     if (isValid) {
       const formData={
-        name:state.name.value,
+        fullname:state.name.value,
         email:state.email.value,
         password:state.password.value
       }

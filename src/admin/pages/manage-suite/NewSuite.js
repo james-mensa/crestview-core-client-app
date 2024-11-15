@@ -1,60 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Box, Stack } from "@mui/material";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Label } from "../../../packages/component/Label";
 import { InputText } from "../../../packages/InputText";
 import { ActionButton } from "../../../packages/component/ActionButton";
 import { FileUpload } from "../../common-ui/UploadFile";
 // import { AddNewRoom } from "../../../services/actions/datacollection";
+import useSelectHelper from '../../../hooks/useSelectFormHelper';
+import useInputUpdateHelper from '../../../hooks/useInputFormHelper';
+import { useFieldHasError } from "../../../hooks/useFormHasError";
+import { SelectInput } from "../../../packages/SelectInput";
+import { Amenities } from "../../utils/constants";
 
-
+const __DEFAULT_VALUE = { isValid: false, value: "", errorMessage: 'required' };
 const defaultState = {
-name: { value: "", error: true },
-description: { value: "", error: true },
-price: { value: 0, error: true },
-tax: { value: 0, error: true },
-adult:{ value: 0, error: true },
-children:{ value: 0, error: true },
-mattress:{ value: "", error: true },
-amenities:{ value: [""], error: true },
+name: __DEFAULT_VALUE,
+description: __DEFAULT_VALUE,
+price: __DEFAULT_VALUE,
+tax: __DEFAULT_VALUE,
+adult:__DEFAULT_VALUE,
+children:__DEFAULT_VALUE,
+mattress:__DEFAULT_VALUE,
+
+submitAttempt:false
 };
 
 const NewSuite = () => {
   const notifications = useSelector((value) => value.notification);
 
   const [formData,upDateForm]=useState(defaultState)
+  const handleItemUpdate = useSelectHelper(upDateForm);
+  const handleInputUpdate = useInputUpdateHelper(upDateForm);
+  const fieldHasError = useFieldHasError(formData);
+
   const [files, setFiles] = useState([]);
+  const [amenities,setAmenities] = useState([]);
 
 
-  const handleChange = (key) => (value) => {
-    upDateForm((prev) => ({
+  const handleSelectItem = (data) => {
+  const value=data.target.value;
+    console.log({value})
+    setAmenities((prev) => ([
       ...prev,
-      [key]: {
-        ...(prev[key]),
-        value: value,
-        error: value.length < 1,
-      },
-    }));
+      value
+    ]));
   };
 
   const handleSubmit =async () => {
+    upDateForm((prev) => ({
+      ...prev,
+      submitAttempt: true,
+    }));
+    console.log({formData})
     const isValid = Object.values(formData).every((input) => !input.error);
     if (isValid) {
 
- 
     } else {
-      upDateForm((prev) => ({
-        ...prev,
-        submissionAttempt: true,
-      }));
+
     }
   };
 
-  const isEmpty=(key)=>{
-    return formData.submissionAttempt && formData[key].error
-  }
+
   return (
     <Box sx={styles.container}>
     
@@ -63,76 +71,95 @@ const NewSuite = () => {
       <ActionButton title={"Add now"} varient="dark"  onClick={handleSubmit}/>
        </Stack>  
     <Box sx={styles.pageLayout}>
-<Stack  gap={3}>
-<Stack sx={styles.fieldLayout}>
+        <Stack  gap={3}>
+             <Stack sx={styles.fieldLayout}>
                   <TextField 
                   name={"name"}
                   label={"Name"}
-                  onChange={handleChange("name")}
-
                   placeholder={"Enter suite type name"}
-                  isError={isEmpty("name")}
-                  errorMessage={"Name is required"}
-                  />
+                  onChange={handleInputUpdate("name")}
+                  error={fieldHasError('name')}
+                  errorMessage={formData.name.errorMessage} />
                   
                 <Stack gap={1} width={250}>
                   <Label>Capacity</Label>
                   <Stack direction={"row"} gap={1}>
-                    <InputText error={isEmpty("adult")}
-                      errorMessage={"valid is required"} handleOnChange={handleChange("adult")}  name={"adult"} placeholder={"adult"}/>
-                    <InputText   error={isEmpty("children")} errorMessage={"valid is required"} handleOnChange={handleChange("children")}  name={"children"} placeholder={"children"}/>
+                    <InputText 
+                      onChange={handleInputUpdate('adult','number')}
+                      error={fieldHasError('adult')}
+                      errorMessage={formData.adult.errorMessage}
+                      name={"adult"} 
+                      placeholder={"adult"}/>
+                    <InputText   
+                        onChange={handleInputUpdate('children','number')}
+                        error={fieldHasError('children')}
+                        errorMessage={formData.children.errorMessage}
+                        name={"children"} 
+                        placeholder={"children"}/>
                   </Stack>
                 </Stack>
           
         </Stack>
-
+        
         <Stack sx={styles.fieldLayout}>
                   <TextField 
                   name={"mattress"}
                   label={"Mattress"}
-  
-                  onChange={handleChange("mattress")}
                   placeholder={"mattress description"}
+                  onChange={handleInputUpdate('mattress')}
+                  error={fieldHasError('mattress')}
+                  errorMessage={formData.mattress.errorMessage}
+
                   />
                   
                 <Stack gap={1} width={250}>
-                  <Label>Price * (dollar)</Label>
+                  <Label>Price * ($)</Label>
                   <Stack direction={"row"} gap={1}>
-                    <InputText name={"price"}
-                     error={isEmpty("price")}  
-                     errorMessage={"field required"}      
-                     handleOnChange={handleChange("price")} 
+                    <InputText 
+                      name={"price"}
+                      onChange={handleInputUpdate('price')}
+                      error={fieldHasError('price','number')}
+                      errorMessage={formData.price.errorMessage}
                      placeholder={"price per stay"}
                      type="Number"/>
                     <InputText name={"tax"}  
-                    error={isEmpty("tax")}
-                    errorMessage={"field required"} 
-                    type="number"
-                    handleOnChange={handleChange("tax")} 
-                    placeholder={"tax on utilities"}/>
+                       type="number"
+                       placeholder={"tax on utilities"}
+                       onChange={handleInputUpdate('tax','number')}
+                       error={fieldHasError('tax')}
+                       errorMessage={formData.price.errorMessage}
+                    
+                    
+                    />
                   </Stack>
                 </Stack>
           
         </Stack>
 
+
         <Stack gap={1}  sx={styles.descriptionBox}>
           <Label>Desctiption</Label>
             <InputText multiline minRows={10} 
-             error={isEmpty("description")} handleOnChange={handleChange("description")} errorMessage={"field required"}  name={"description"} placeholder={"Enter suite type description"}/>
+              name={"description"} 
+              error={fieldHasError('description')}
+              onChange={handleInputUpdate("description")}
+              errorMessage={"field required"} 
+              placeholder={"Enter suite type description"}/>
+        </Stack>
+        <Stack gap={1}  width={"50%"} height={200}>
+          <Label>Amenities</Label>
+          <Stack width={300} direction={"row"} gap={1} >
+               <SelectInput  onChange={handleSelectItem} items={Amenities}   name={"amenities"} placeholder={"Add new amenities"}/>
+              <Box marginTop={0.2}><ActionButton title={"Add"} varient="dark"/></Box> 
+          </Stack>
+           
         </Stack>
 </Stack>
 <Stack sx={styles.imagePickerBox}>
 
 
         <FileUpload files={files} setFiles={setFiles}/>
-        <Stack gap={1}  width={"50%"} height={200}>
-          <Label>Amenities</Label>
-          <Stack width={300} direction={"row"} gap={1} >
-               <InputText   onChange={handleChange("amenities")}   name={"amenities"} placeholder={"Add new amenities"}/>
-              <Box marginTop={0.2}><ActionButton title={"Add"} varient="dark"/></Box> 
-          </Stack>
-           
-        </Stack>
+ 
 
 </Stack>
     </Box>
@@ -145,16 +172,16 @@ export default NewSuite;
 
 
 
-const TextField=({label,name,value,onChange,placeholder,isError,errorMessage})=>{
+const TextField=({label,name,value,onChange,placeholder,error,errorMessage})=>{
   return (
     <Box sx={styles.fieldContainer}>
       <Label>{label}</Label>
       <InputText name={name}
              placeholder={placeholder}
-             error={isError}
+             error={error}
              errorMessage={errorMessage}
              value={value}
-             handleOnChange={onChange}
+             onChange={onChange}
       />
 
 

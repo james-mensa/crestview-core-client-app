@@ -1,33 +1,61 @@
 import React from "react";
-import { alpha, FormControl, InputBase } from "@mui/material";
+import { alpha, FormControl, MenuItem, Select, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { Label } from "./component/Label";
 
-export const InputText = ({
+export const SelectInput = ({
   placeholder,
   onChange,
-  type = "text",
   name,
   value,
   errorMessage,
   error,
   isSmall = false,
+  items=[],
+
   ...props
 }) => {
   const styles = getStyles(isSmall);
   
+
+  const isAvailable = items.find((item) => item.value === value);
+  const renderValue = (value) => {
+    if (!value) {
+      return <Typography color="gray">{placeholder}</Typography>;
+    }
+    if (isAvailable) return isAvailable ? value : "";
+  };
+  const inputValue = isAvailable ? value : null;
   return (
     <FormControl variant="standard">
-      <InputBase
+      <Select
         {...props}
         name={name}
-        type={type === "text" || type === "password" ? type : "text"}
+        value={inputValue}
         onChange={onChange}
-        value={value}
         error={error}
         placeholder={placeholder}
+        // renderValue={renderValue}
+        defaultValue=""
+        displayEmpty
+        inputProps={{ "aria-label": "Without label" }}
+
         sx={styles.input}
-      />
+      >
+                  {items.map((data, index) => (
+            <MenuItem value={data.value} key={`${index}`}>
+              <Typography
+                fontFamily={"Inter"}
+                fontWeight={400}
+                fontSize={16}
+                color={"#667085"}
+              >
+                {data.label}
+              </Typography>
+            </MenuItem>
+          ))}
+
+      </Select>
      <Label sx={styles.errorMessage}>{error && errorMessage}</Label>
     </FormControl>
   );
@@ -38,6 +66,7 @@ const getStyles = (isSmall) => {
     input: (theme) => ({
       "& input::placeholder": { fontSize: "13px" },
       "& .MuiInputBase-input": {
+
         borderRadius: isSmall ? 1 : 2,
         position: "relative",
         backgroundColor: isSmall ? 'transparent' : theme.palette.mode === "light" ? "#F3F6F9" : "#1A2027",
@@ -50,7 +79,7 @@ const getStyles = (isSmall) => {
             ? grey[700] 
             : "#2D3843",
         fontSize: 16,
-        width: isSmall ? '300px' : "100%",
+        width: isSmall ? '300px' : "400px",
         padding: isSmall ? "8px 12px" : "10px 12px",
         transition: theme.transitions.create([
           "border-color",
