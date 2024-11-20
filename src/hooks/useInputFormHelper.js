@@ -5,12 +5,14 @@ import { validateField } from "../libs/validators";
 const useInputUpdateHelper = (updateForm) => {
   
   return (key, fieldType) => (event) => {
-    console.log({key, fieldType,event})
+   const value=event.target ? event.target.value : event
+
+   console.log({value})
+   
     updateForm((prev) => ({
       ...prev,
       [key]: {
-        value: event.target.value,
-        ...validateField(event.target.value, fieldType),
+        ...validateField(value, fieldType),
       },
     }));
   };

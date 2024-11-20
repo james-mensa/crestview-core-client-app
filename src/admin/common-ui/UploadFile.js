@@ -3,8 +3,10 @@ import { grey } from '@mui/material/colors';
 import { useState, useCallback } from 'react';
 import { Assets } from '../../config/register';
 import { Label } from '../../packages/component/Label';
-import { imageFileToBase64 } from '../utils/imageToBase64';
 import { ImagePreview } from '../component/ImagePreview';
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 3MB
+const ALLOWED_FILE_TYPES = ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml'];
 
 export function FileUpload({files,setFiles}) {
     const [fileSet, setFileSet] = useState(new Set());
@@ -12,35 +14,43 @@ export function FileUpload({files,setFiles}) {
     const handleFileChange = useCallback(async (event) => {
         const fileList = event.target.files;
         if (fileList) {
-            await addBase64Images(fileList);
+            await addImages(fileList);
         }
     }, []);
 
 
-    const addBase64Images = async (fileList) => {
-        try {
-            const convertedImages = await Promise.all(
-                Array.from(fileList).map(async (file) => {
-                    const base64Image = await imageFileToBase64(file);
-                    return `data:image/png;base64,${base64Image}`;
-                })
-            );
-            const newFiles = convertedImages.filter((file) => !fileSet.has(file));
-            if (newFiles.length > 0) {
-                setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-                setFileSet((prevSet) => new Set([...prevSet, ...newFiles]));
+    const isFileUnique = (file) => {
+        return !Array.from(fileSet).some((existingFile) => 
+            existingFile.name === file.name && existingFile.size === file.size
+        );
+    };
+    
+    const addImages = async (fileList) => {
+        const newFiles = Array.from(fileList).filter((file) => {
+            if (fileSet.has(file)) return false;
+            if(!isFileUnique(file)) return false;
+            if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+                console.error(`Unsupported file type: ${file.name}`);
+                return false;
             }
-        } catch (error) {
-            console.error("Error converting files to base64", error);
+            if (file.size > MAX_FILE_SIZE) {
+                console.error(`File too large: ${file.name}`);
+                return false;
+            }
+            return true;
+        });
+         
+        if (newFiles.length > 0) {
+            setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+            setFileSet((prevSet) => new Set([...prevSet, ...newFiles]));
         }
     };
-
     const handleDrop = useCallback(
         async (event) => {
             event.preventDefault();
             const droppedFiles = event.dataTransfer.files;
             if (droppedFiles) {
-                await addBase64Images(droppedFiles);
+                await addImages(droppedFiles);
             }
         },
         [fileSet]
@@ -50,13 +60,15 @@ export function FileUpload({files,setFiles}) {
         event.preventDefault();
     };
     const removeImage = useCallback((index) => {
-        const removedFile = files[index];
-        setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-        setFileSet((prevSet) => {
-            const updatedSet = new Set(prevSet);
-            updatedSet.delete(removedFile);
-            return updatedSet;
-        });
+        if (window.confirm('Are you sure you want to remove this image?')) {
+            const removedFile = files[index];
+            setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+            setFileSet((prevSet) => {
+                const updatedSet = new Set(prevSet);
+                updatedSet.delete(removedFile);
+                return updatedSet;
+            });
+        }
     }, [files]);
 
     return (
@@ -97,7 +109,7 @@ export function FileUpload({files,setFiles}) {
                         <Grid item xs={11} sm={11} md={2} key={index}>
                             <Box sx={styles.imageWrapper}>
                                 <ImagePreview
-                                    file={file}
+                                    file={URL.createObjectURL(file)}
                                     index={index}
                                     removeHandler={removeImage}
                                 />

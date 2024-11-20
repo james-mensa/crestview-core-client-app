@@ -8,9 +8,8 @@ import { format } from "date-fns";
 import { MobileTimePicker } from "@mui/x-date-pickers/MobileTimePicker";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  conferencAvailability,
-} from "../../store/actions/datacollection";
+
+import { conferencAvailability } from '../../../store/actions/datacollection';
 import {
   DueTime,
   defaultDueTime,
@@ -19,6 +18,7 @@ import MobileTopNav from "../utils/mobilenav";
 
 import { ArrowBarRight } from "react-bootstrap-icons";
 import { CircleSpinner } from "react-spinners-kit";
+
 const ConferenceBook = () => {
   const dispatch = useDispatch();
   const notifications = useSelector((value) => value.notification);

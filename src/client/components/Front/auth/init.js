@@ -18,7 +18,7 @@ import { GoogleAuth } from "./GoogleAuth";
 import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { AuthService } from "../../../store/actions/auth";
+import { AuthService } from "../../../../store/actions/auth";
 
 
 const initialState = {

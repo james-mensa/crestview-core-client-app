@@ -6,7 +6,7 @@ import { Button, Form } from "react-bootstrap";
 import { CircleSpinner } from "react-spinners-kit";
 import { Avatar, IconButton, TextField } from "@mui/material";
 import LoaderView from "../utils/loaderView";
-import { AdminSignIn, SignIn, preRegister } from "../../store/actions/adminActions";
+import { AdminSignIn, SignIn, preRegister } from "../../../store/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 const SignInAdmin = () => {

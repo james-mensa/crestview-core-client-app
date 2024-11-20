@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AutoLogin, getAllUsers } from "../../store/actions/adminActions";
+import { AutoLogin, getAllUsers } from "../../../store/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import LoaderView from "./loaderView";
 import { PromptToastify } from "./reuseable";

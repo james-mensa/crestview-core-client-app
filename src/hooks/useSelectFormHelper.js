@@ -1,10 +1,12 @@
 import { validateField } from "../libs/validators";
 
 const useSelectHelper = (updateForm) => {
+ 
   return (key, fieldType) => (event) => {
+    const value=event.target?.value || event
     updateForm((prev) => ({
       ...prev,
-      [key]: { value: event.target.value, ...validateField(event.target.value, fieldType) }
+      [key]: {...validateField(value, fieldType) }
     }));
   };
 };

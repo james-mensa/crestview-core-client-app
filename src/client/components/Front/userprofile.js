@@ -4,7 +4,7 @@ import Footer from "./footer";
 import { KeyFill, ListCheck, Person, XLg } from "react-bootstrap-icons";
 import SectionNav from "../utils/sectionnav";
 import { useDispatch, useSelector } from "react-redux";
-import { Signout } from "../../store/actions/adminActions";
+import { Signout } from "../../../store/actions/adminActions";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import MobileTopNav from "../utils/mobilenav";

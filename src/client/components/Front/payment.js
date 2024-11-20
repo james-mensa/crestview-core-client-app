@@ -29,7 +29,7 @@ import { CircleSpinner } from "react-spinners-kit";
 import { disableScroll, enableScroll, stayDays } from "../utils/reuseable";
 import CardPay from "../utils/cardpayment";
 import { useDispatch, useSelector } from "react-redux";
-import { BookRoom, GetRoom } from "../../store/actions/datacollection";
+import { BookRoom, GetRoom } from "../../../store/actions/datacollection";
 import PrintProof from "./printproof";
 import MobileTopNav from "../utils/mobilenav";
 import LoaderView from "../utils/loaderView";

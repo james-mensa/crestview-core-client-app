@@ -67,28 +67,35 @@ export function validateEmail(email) {
   const emailRequirement = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRequirement.test(email)) {
-    return { isValid: false, errorMessage: 'Invalid email format.' };
+    return { value:email, isValid: false, errorMessage: 'Invalid email format.' };
   }
 
-  return { isValid: true };
+  return {value:email, isValid: true };
 }
 
 export function validateNumber(value) {
+  const valueToString = (value ?? '').toString().trim();
   const numberRequirement = /^[0-9]+(\.[0-9]+)?$/;
 
-  if (!numberRequirement.test(value.trim())) {
-    return { isValid: false, errorMessage: 'Value must be a valid number.' };
+  if (!numberRequirement.test(valueToString)) {
+    return {
+      value: valueToString,
+      isValid: false,
+      errorMessage: 'Value must be a valid number.'
+    };
   }
-
-  return { isValid: true };
+  return { 
+    value: parseFloat(valueToString), 
+    isValid: true 
+  };
 }
 
 export function validateString(value) {
   if (typeof value !== 'string' || value.trim() === '') {
-    return { isValid: false, errorMessage: 'Value must be a non-empty string.' };
+    return { value,isValid: false, errorMessage: 'Value must be a non-empty string.' };
   }
 
-  return { isValid: true };
+  return { value,isValid: true };
 }
 
 export function validateBoolean(value) {
@@ -96,7 +103,21 @@ export function validateBoolean(value) {
     return { isValid: false, errorMessage: 'Value must be a boolean.' };
   }
 
-  return { isValid: true };
+  return { value,isValid: true };
+}
+
+/**
+ * Validates a list, ensuring that it contains at least one item.
+ *
+ * @param {Array} list - The list to validate
+ * @returns {{ isValid: boolean, errorMessage?: string }}
+ */
+export function validateList(list) {
+  if (!Array.isArray(list) || list.length === 0) {
+    return { isValid: false, errorMessage: 'add at least one item.' };
+  }
+
+  return { value:list,isValid: true };
 }
 
 export function validateField(input, fieldType) {
@@ -111,7 +132,19 @@ export function validateField(input, fieldType) {
       return validateString(input);
     case fieldValidation.BOOLEAN:
       return validateBoolean(input);
+    case fieldValidation.LIST:
+      return validateList(input);
     default:
       return validateString(input);
   }
+}
+
+export function validateForm(formState) {
+
+  for (let key in formState) {
+    if (key !== "submitAttempt" && !formState[key].isValid) {
+      return false; 
+    }
+  }
+  return true;
 }

@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { showToastify } from "./client/components/utils/reuseable";
-import { ClearNotify } from "./client/store/actions/notification";
+import { ClearNotify } from "./store/actions/notification";
 import "./client/components/style/custome.css";
 import "./client/components/style/design.css";
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import Footer from "../footer";
 import SectionNav from "../../utils/sectionnav";
-import { Signout } from "../../../store/actions/adminActions";
+import { Signout } from "../../../../store/actions/adminActions";
 import BookingsRecord from "./mybookings";
 import { IconButton } from "@mui/material";
 import PrintDoc from "./printdoc";

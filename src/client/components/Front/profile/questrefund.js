@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CircleSpinner } from "react-spinners-kit";
 
 import { PromptToastify } from "../../utils/reuseable";
-import { QuestRefunds } from "../../../store/actions/adminActions";
+import { QuestRefunds } from "../../../../store/actions/adminActions";
 
 
 const QuestRefund = (props) => {

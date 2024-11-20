@@ -9,7 +9,7 @@ export const defaultValue = {
   
     for (const key in form) {
       if (form.hasOwnProperty(key) && key !== 'submitAttempt') {
-        const value = form[key].value?.toString().trim();
+        const value = form[key].value;
         newForm[key] = value;
       }
     }

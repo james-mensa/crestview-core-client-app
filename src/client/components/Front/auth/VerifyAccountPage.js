@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { CircleSpinner } from "react-spinners-kit";
-import { ComfirmUserS } from "../../../store/actions/adminActions";
+import { ComfirmUserS } from "../../../../store/actions/adminActions";
 
 const VerifyAccountPage = () => {
   const [searchParams] = useSearchParams();

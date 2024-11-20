@@ -5,7 +5,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AuthService } from '../../../store/actions/auth/index';
+import { AuthService } from "../../../../store/actions/auth";
 
 
 

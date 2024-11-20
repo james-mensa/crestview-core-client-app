@@ -16,7 +16,7 @@ import { InputText } from "../../../../packages/InputText";
 import { ColorTheme } from "../../style/ColorTheme";
 import { GoogleAuth } from "./GoogleAuth";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthService } from "../../../store/actions/auth";
+import { AuthService } from "../../../../store/actions/auth";
 
 
 

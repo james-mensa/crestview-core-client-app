@@ -7,7 +7,7 @@ import {Provider} from  "react-redux"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { GOOGLE_AUTH_CLIENT_ID } from './config/protectedConstant';
-import ReduxStore from './client/store';
+import ReduxStore from './store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <GoogleOAuthProvider clientId={GOOGLE_AUTH_CLIENT_ID}>

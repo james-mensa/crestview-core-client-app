@@ -8,7 +8,7 @@ import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { TextField } from "@mui/material";
 import { CircleSpinner } from "react-spinners-kit";
 import { disableScroll } from "./reuseable";
-import { BookRoom } from "../../store/actions/datacollection";
+import { BookRoom } from "../../../store/actions/datacollection";
 import { useDispatch, useSelector } from "react-redux";
 
 const CardPay = (props) => {

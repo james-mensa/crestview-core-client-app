@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import SettiingForm from "./settings";
 import Footer from "../footer";
 import SectionNav from "../../utils/sectionnav";
-import { Signout } from "../../../store/actions/adminActions";
+import { Signout } from "../../../../store/actions/adminActions";
 import { IconButton } from "@mui/material";
 import { enableScroll } from "../../utils/reuseable";
 import MobileTopNav from "../../utils/mobilenav";

@@ -5,4 +5,5 @@ export const fieldValidation = {
     BOOLEAN: 'BOOLEAN',
     PASSWORD: 'password',
     STRING: 'string',
+    LIST: 'list',
   };
