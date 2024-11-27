@@ -2,12 +2,13 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Box, IconButton, Stack } from "@mui/material";
 import { Label } from "../../packages/component/Label";
-import { ColorTheme } from "./style/ColorTheme";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { HorizontalDivider } from "./Divider";
-import { InfoButton } from "./Button";
+
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import { ColorTheme } from '../../style/ColorTheme';
+import { InfoButton } from '../../packages/component/Button';
 export const Filter = ({ setValues, value, isVisible, onClose }) => {
     const [previousValue, setPreviousValue] = useState(value);
     useEffect(() => {

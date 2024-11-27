@@ -3,16 +3,17 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { Box, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { BaseCalender } from "../BaseCalender";
+
 import { Divider } from "../Divider";
 import { Label } from "../../../packages/component/Label";
-import { ColorTheme } from "../style/ColorTheme";
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { RoomType } from "../RoomType";
 import { formatDate } from "../utils/common";
 import { Filter } from "../Filter";
 import { formatDateShort, serializeFilter } from "../../libs/common";
+import { ModalDateRangerPicker } from "../../../packages/component/calender/modalPicker/ModalDateRangerPicker";
+import { ColorTheme } from "../../../style/ColorTheme";
 export const LargeScreen = ({showType=false}) => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
@@ -58,7 +59,7 @@ export const LargeScreen = ({showType=false}) => {
   }
   return (
     <Box sx={styles.container}>
-         <BaseCalender onChange={setDate} value={date} show={isCalenderModalOpen} handleClose={handleCalenderModal}/>
+         <ModalDateRangerPicker onChange={setDate} value={date} show={isCalenderModalOpen} handleClose={handleCalenderModal}/>
 
       {
         showType && 

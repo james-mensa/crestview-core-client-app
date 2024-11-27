@@ -65,4 +65,9 @@ standard2:"/assets/images/room/standard2.jpg",
 standard3:"/assets/images/room/standard3.jpg",
 crestview:"/assets/images/crestview.png",
 uploadIcon:"/assets/images/upload.png",
+
+icons:{
+    calender_icon:"/assets/icons/calender-icon.png",
+    calender_fill:'/assets/icons/calender-icon-fill.png'
+}
 }

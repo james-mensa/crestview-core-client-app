@@ -2,7 +2,7 @@ import { Box, IconButton } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { ColorTheme } from '../style/ColorTheme';
+import { ColorTheme } from '../../../style/ColorTheme';
 // ImageSlider component
 export const ImageSlider = ({ images, autoPlay = true, autoPlayInterval = 50000, controller=true,nextOnclickCallback,prevOnClickCallBack }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

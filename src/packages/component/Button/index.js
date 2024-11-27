@@ -1,8 +1,8 @@
 import { Avatar, Button as BaseButton ,CircularProgress} from "@mui/material"
-import { ColorTheme } from "../style/ColorTheme"
 import { Label } from "../../../packages/component/Label"
 import { blue, grey } from "@mui/material/colors"
 import "./button.css"
+import { ColorTheme } from "../../../style/ColorTheme"
 export const Button=({onClick,label})=>{
     return <BaseButton onClick={onClick} sx={styles.button}>{label}</BaseButton>
 }

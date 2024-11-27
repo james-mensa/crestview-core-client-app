@@ -10,12 +10,12 @@ import { blue, grey } from "@mui/material/colors";
 
 
 import { useState } from "react";
-import { AuthButton, ProviderButton } from "../../Button";
 import { Label } from "../../../../packages/component/Label";
 import { InputText } from "../../../../packages/InputText";
-import { ColorTheme } from "../../style/ColorTheme";
 import { GoogleAuth } from "./GoogleAuth";
 import { useSelector } from "react-redux";
+import { AuthButton, ProviderButton } from "../../../../packages/component/Button";
+import { ColorTheme } from "../../../../style/ColorTheme";
 
 
 

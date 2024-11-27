@@ -1,9 +1,8 @@
-import { Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useState } from 'react';
-import { ColorTheme } from '../style/ColorTheme';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 import { useSwipeable } from 'react-swipeable';
+import { ColorTheme } from '../../../style/ColorTheme';
 
 // CardSlider component
 export const CardSlider = ({ cards, autoPlay = true,}) => {

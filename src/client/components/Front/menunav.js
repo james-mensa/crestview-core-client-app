@@ -3,7 +3,6 @@ import React from "react";
 import { XLg } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { enableScroll } from "../utils/reuseable";
-import { PlainButton } from "../Button";
 
 const MenuNav = (props) => {
   const navigate = useNavigate();

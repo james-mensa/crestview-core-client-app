@@ -3,11 +3,11 @@ import React, {} from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import { ColorTheme } from "../components/style/ColorTheme";
 
-import { PlainButton } from "../components/Button";
 import { Assets } from "../../config/register";
 import AvatarIcon  from "../../packages/AvatarIcon";
+import { PlainButton } from "../../packages/component/Button";
+import { ColorTheme } from "../../style/ColorTheme";
 
 
 const goToAboutUs=()=>{

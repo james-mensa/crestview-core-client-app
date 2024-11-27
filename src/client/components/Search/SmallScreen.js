@@ -6,13 +6,13 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNavigate } from "react-router-dom";
 import { BaseCalender } from "../BaseCalender";
 import { Label } from "../../../packages/component/Label";
-import { ColorTheme } from "../style/ColorTheme";
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { RoomType } from "../RoomType";
 import { formatDate } from "../utils/common";
 import { Filter } from "../Filter";
 import { formatDateShort, serializeFilter } from "../../libs/common";
+import { ColorTheme } from "../../../style/ColorTheme";
 export const SmallScreen = ({showType=false}) => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());

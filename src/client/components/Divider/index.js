@@ -1,4 +1,4 @@
-import { ColorTheme } from "../style/ColorTheme"
+import { ColorTheme } from "../../../style/ColorTheme"
 
 export const Divider=()=>{
     return(<div style={styles.divider}/>)

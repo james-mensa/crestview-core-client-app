@@ -8,9 +8,10 @@ import HvacIcon from '@mui/icons-material/Hvac';
 import PersonIcon from '@mui/icons-material/Person';
 import './style.scss'
 import { Box } from '@mui/material';
-import { ColorTheme } from "../style/ColorTheme";
-import { AppButton } from "../Button";
+
 import { Label } from "../../../packages/component/Label";
+import { ColorTheme } from "../../../style/ColorTheme";
+import { AppButton } from "../../../packages/component/Button";
 function Room(props) {
   const data = props.data;
 

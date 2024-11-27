@@ -5,8 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { showToastify } from "./client/components/utils/reuseable";
 import { ClearNotify } from "./store/actions/notification";
-import "./client/components/style/custome.css";
-import "./client/components/style/design.css";
+import "./style/custome.css";
+import "./style/design.css";
 
 import Resetpasspage from "./client/components/Front/resetpassword";
 import ConfirmAccount from "./client/components/Front/auth/VerifyAccountPage";

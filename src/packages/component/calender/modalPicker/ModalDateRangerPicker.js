@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
-import './BaseCalender.css';
-import { DateRange } from 'react-date-range';
-
+import { Button } from '../../Button';
 import { Box } from '@mui/material';
-import { Button } from '../../../packages/component/Button';
-// import { DateRangerPicker } from '../../../packages/component/calender';
-
-export const BaseCalender = ({ value, onChange,show,handleClose }) => {
+import { DateRangerPicker } from '../DateRangerPicker';
+export const ModalDateRangerPicker = ({ value, onChange,show,handleClose }) => {
 
   // Disable scrolling when the calendar is open
   useEffect(() => {
@@ -34,7 +30,7 @@ export const BaseCalender = ({ value, onChange,show,handleClose }) => {
   };
 
   return (
-    <Box className="calender-container" sx={styles.container} onClick={handleClose} >
+    <Box  sx={styles.container} onClick={handleClose} >
      <div className='calender-wrapper' onClick={handleWrapperClick}> 
     {/**
      *      <DateRange
@@ -46,14 +42,14 @@ export const BaseCalender = ({ value, onChange,show,handleClose }) => {
         minDate={new Date()}
       />
      */}
-     {/* <DateRangerPicker/> */}
+     <DateRangerPicker/>
 
-      <div className='calender-close'>
+      <Box sx={styles.calenderAction}>
         <div>
         <Button label={"Done"} onClick={handleClose}/>
         </div>
      
-      </div>
+      </Box>
   
      </div>
   
@@ -63,6 +59,16 @@ export const BaseCalender = ({ value, onChange,show,handleClose }) => {
 
 const styles = {
   container:(theme)=>({
+    top: 0,
+    left: 0,
+    display: 'flex',
+    position:'fixed',
+    width: '100% ',
+    height: '100vh',
+    backgroundColor: 'rgba(29, 30, 31,0.4)',
+    zIndex: 10000,
+    justifyContent: 'center',
+    alignItems: 'center',
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'rgba(29, 30, 31,0.6)',
     },
@@ -70,4 +76,16 @@ const styles = {
       backgroundColor: 'rgba(29, 30, 31,0.4)',
     },  
 }),
+calenderAction:(theme)=>({
+  width: '100%',
+  padding: '10px 20px',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent:'flex-end',
+  justifyItems: 'flex-end',
+  backgroundColor: 'white',
+  borderTopWidth: '1px',
+  borderTopStyle: 'solid'
+  
+})
 };

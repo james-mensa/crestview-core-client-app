@@ -4,8 +4,8 @@ import { Label } from "../../../packages/component/Label"
 import SeeMore from "../SeeMore"
 import AvatarIcon from "../../../packages/AvatarIcon"
 import { HorizontalDivider } from "../Divider"
-import { RenderViewButton } from "../Button"
 import { useNavigate } from "react-router-dom"
+import { RenderViewButton } from "../../../packages/component/Button"
 
 export const RoomPreview=({data})=>{
     const navigate=useNavigate();

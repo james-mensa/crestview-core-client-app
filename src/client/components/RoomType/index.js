@@ -1,6 +1,6 @@
 import { Box, MenuItem, Select } from "@mui/material"
 import { Label } from "../../../packages/component/Label"
-import { ColorTheme } from "../style/ColorTheme"
+import { ColorTheme } from "../../../style/ColorTheme"
 
 export const RoomType=({onchange,value})=>{
     return(

@@ -1,11 +1,11 @@
 
 import { useEffect} from "react";
-import { ProviderButton } from "../../Button"
 import { useGoogleLogin } from "@react-oauth/google";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "../../../../store/actions/auth";
+import { ProviderButton } from "../../../../packages/component/Button";
 
 
 

@@ -10,15 +10,15 @@ import { blue, grey } from "@mui/material/colors";
 
 
 import { useState } from "react";
-import { AuthButton, ProviderButton } from "../../Button";
 import { Label } from "../../../../packages/component/Label";
 import { InputText } from "../../../../packages/InputText";
-import { ColorTheme } from "../../style/ColorTheme";
 import { GoogleAuth } from "./GoogleAuth";
 import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "../../../../store/actions/auth";
+import { ColorTheme } from "../../../../style/ColorTheme";
+import { AuthButton, ProviderButton } from "../../../../packages/component/Button";
 
 
 const initialState = {

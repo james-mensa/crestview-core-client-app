@@ -20,13 +20,13 @@ import MobileTopNav from "../utils/mobilenav";
 
 import SkeletonLoadingCards from "../skeletonLoading/SkeletonLoadingCards";
 import { Label } from "../../../packages/component/Label";
-import { ColorTheme } from "../style/ColorTheme";
 import { RoomType } from "../RoomType";
 import { HorizontalDivider } from "../Divider";
 import { BaseCalender } from "../BaseCalender";
 import { formatDate } from "../utils/common";
-import { AppButton } from "../Button";
 import Room from "../Room";
+import { ColorTheme } from "../../../style/ColorTheme";
+import { AppButton } from "../../../packages/component/Button";
 const SearchResult = () => {
   const dispatch = useDispatch();
   const { startDate, endDate, roomtype, person } = useParams();
