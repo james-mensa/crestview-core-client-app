@@ -9,6 +9,7 @@ import { HorizontalDivider } from "./Divider";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { ColorTheme } from '../../style/ColorTheme';
 import { InfoButton } from '../../packages/component/Button';
+import { useCloseModel } from '../../packages/hooks/useCloseModel';
 export const Filter = ({ setValues, value, isVisible, onClose }) => {
     const [previousValue, setPreviousValue] = useState(value);
     useEffect(() => {
@@ -35,19 +36,7 @@ export const Filter = ({ setValues, value, isVisible, onClose }) => {
         handleApply('children', value);
     };
 
-    // Close the filter if a click is detected outside of its container.
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (containerRef.current && !containerRef.current.contains(event.target)) {
-                onClose(); // Hide the filter when clicking outside.
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [onClose]);
+    useCloseModel(containerRef,onClose);
 
     if (!isVisible) {
         return null; // Return null if the filter is not visible.

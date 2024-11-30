@@ -13,6 +13,8 @@ import { formatDate } from "../utils/common";
 import { Filter } from "../Filter";
 import { formatDateShort, serializeFilter } from "../../libs/common";
 import { ColorTheme } from "../../../style/ColorTheme";
+import { DatePicker } from "../../../packages/component/calender/DatePicker";
+import { XDateRangePicker } from "../../../packages/component/calender/XDateRangePicker";
 export const SmallScreen = ({showType=false}) => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
@@ -80,14 +82,7 @@ export const SmallScreen = ({showType=false}) => {
       <Label sx={styles.roomTypeLabel}>Room type</Label>
         <RoomType onchange={setRoomType} value={roomType}/>
       </Box>}
-      <Box sx={styles.searchItem} onClick={handleCalenderModal}>
-        <Label sx={styles.label}>Checkin</Label>
-        <Label sx={styles.title}>
-              {formatDate(date.startDate)} <ArrowRightAltIcon  color="action"/> {formatDate(date.endDate)}
-              <KeyboardArrowDownIcon color={'action'} sx={styles.dateArrow}/> 
-        </Label>       
-      
-      </Box>
+<XDateRangePicker label={"Check In"}/>
 
       <Box sx={styles.searchItem} >
       <Label sx={styles.label}>Guests</Label>
@@ -141,7 +136,6 @@ const styles={
     fontFamily: "Manrope",
     fontWeight: '600',
     color:ColorTheme.text.label,
-   
   },
   title:{
     cursor:'pointer',

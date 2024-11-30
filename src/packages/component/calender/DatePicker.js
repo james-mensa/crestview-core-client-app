@@ -10,13 +10,11 @@ import { Assets } from "../../../config/register";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-
+import { ActionButton } from "../ActionButton";
 import {
   PickersDay
 } from "@mui/x-date-pickers";
 import { Avatar, Box } from "@mui/material";
-
-import { ContainedButton, OutlinedButton } from "../Button/AppButton";
 
 import CircleIcon from "@mui/icons-material/Circle";
 import { formattedDate } from "./common";
@@ -106,16 +104,8 @@ export function DatePicker({
                 paddingX={2}
               >
                 <Stack direction={"row"} gap={1.5}>
-                  <OutlinedButton
-                    width={142}
-                    title="cancel"
-                    onClick={() => setModelState(false)}
-                  />
-                  <ContainedButton
-                    width={142}
-                    title="confirm"
-                    onClick={updatePropsState}
-                  />
+                <ActionButton title={"cancel"} varient="light" onClick={() => setModelState(false)}/>
+                <ActionButton title={"confirm"} varient="dark" onClick={updatePropsState}/>
                 </Stack>
               </Stack>
             </Box>
@@ -218,7 +208,7 @@ const CustomCalendarHeader = (
         <Box height={40} sx={styles.dateLable}>
           <CalenderLabel title={formattedDate(datePicked)} />
         </Box>
-        <OutlinedButton title="Next" onClick={() => {}} />
+        <ActionButton title={"Next"} varient="dark" onClick={()=>{}}/>
       </Stack>
     </CustomCalendarHeaderRoot>
   );

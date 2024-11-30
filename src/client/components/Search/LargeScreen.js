@@ -7,49 +7,39 @@ import { useNavigate } from "react-router-dom";
 import { Divider } from "../Divider";
 import { Label } from "../../../packages/component/Label";
 
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { RoomType } from "../RoomType";
-import { formatDate } from "../utils/common";
 import { Filter } from "../Filter";
 import { formatDateShort, serializeFilter } from "../../libs/common";
-import { ModalDateRangerPicker } from "../../../packages/component/calender/modalPicker/ModalDateRangerPicker";
 import { ColorTheme } from "../../../style/ColorTheme";
+import dayjs from "dayjs";
+import { XLDateRangerPicker } from "../../../packages/component/calender/XLDateRangerPicker";
 export const LargeScreen = ({showType=false}) => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
   const tomorrowD = new Date(currentDate);
   tomorrowD.setDate(currentDate.getDate() + 1);
-  const [date, setDate] = useState(
-    {
-      startDate: new Date(),
-      endDate: tomorrowD,
-      key: "selection",
-    },
-  );
+  const initialRange= {
+    rangeStart: dayjs(),
+    rangeEnd: dayjs().add(1,'day'),
+  };
+  const [dateRange, updateDateRange] =React.useState(initialRange);
   const [filter,setFilter]=useState({
     rooms:1,
     adults:2,
     children:0
   })
 
-  const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
-  const handleCalenderModal = () => {
-
-    setIsCalenderModalOpen(!isCalenderModalOpen);
-  };
-
-
   const [roomType, setRoomType] = useState("Any Room type");
   const SearhValues = ()=>{
     const userSelection={
-      checkOut:formatDateShort(date.endDate),
-      checkIn:formatDateShort(date.startDate),
+      checkOut:formatDateShort(dateRange.rangeStart),
+      checkIn:formatDateShort(dateRange.rangeEnd),
       ...filter,
       ...(showType && { type: roomType }),
     }
     const filterString = serializeFilter(userSelection)
     navigate(`/rooms/results/${filterString}`
-    )
+)
   }
 
  
@@ -59,7 +49,6 @@ export const LargeScreen = ({showType=false}) => {
   }
   return (
     <Box sx={styles.container}>
-         <ModalDateRangerPicker onChange={setDate} value={date} show={isCalenderModalOpen} handleClose={handleCalenderModal}/>
 
       {
         showType && 
@@ -69,23 +58,9 @@ export const LargeScreen = ({showType=false}) => {
       </Box>
       }
 {  showType && <Divider/> }
-      <Box sx={styles.searchItem} onClick={handleCalenderModal}>
-        <Label sx={styles.label}>CheckIn</Label>
-        <Label sx={styles.title}>
-              {formatDate(date.startDate)}
-              <KeyboardArrowDownIcon color={'action'} /> 
-        </Label>       
-      
-      </Box>
+      <XLDateRangerPicker value={dateRange.rangeStart} label={"CheckIn"} handleOnchange={updateDateRange}/>
       <Divider/>
-      <Box sx={styles.searchItem} onClick={handleCalenderModal}>
-        <Label sx={styles.label}>CheckOut</Label>
-        <Label sx={styles.title}>
-              {formatDate(date.endDate)}
-              <KeyboardArrowDownIcon color={'action'} /> 
-        </Label>       
-      
-      </Box>
+      <XLDateRangerPicker value={dateRange.rangeEnd} label={"CheckOut"} handleOnchange={updateDateRange}/>
       <Divider/>
       <Box sx={styles.searchItem} >
       <Label sx={styles.label}>Guests</Label>

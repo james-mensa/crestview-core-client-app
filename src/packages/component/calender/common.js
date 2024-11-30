@@ -2,46 +2,68 @@
 import dayjs from "dayjs";
 
 export const contentRangeList = [
+
   {
-    label: "Yesterday",
-    value: {
-      rangeStart: dayjs().subtract(1, "day").startOf("day"),
-      rangeEnd: dayjs().subtract(1, "day").endOf("day"),
-    },
-  },
-  {
-    label: "Today",
+    label: "One Day",
     value: {
       rangeStart: dayjs().startOf("day"),
-      rangeEnd: dayjs().endOf("day"),
+      rangeEnd: dayjs().add(1,'day'),
     },
   },
   {
-    label: "Last Week",
+    label: "Two Days",
     value: {
-      rangeStart: dayjs().subtract(1, "week").startOf("week"),
-      rangeEnd: dayjs().subtract(1, "week").endOf("week"),
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(2,'day'),
     },
   },
   {
-    label: "Last Month",
+    label: "Three Days",
     value: {
-      rangeStart: dayjs().subtract(1, "month").startOf("month"),
-      rangeEnd: dayjs().subtract(1, "month").endOf("month"),
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(3,'day'),
     },
   },
   {
-    label: "Last Year",
+    label: "Four Days",
     value: {
-      rangeStart: dayjs().subtract(1, "year").startOf("year"),
-      rangeEnd: dayjs().subtract(1, "year").endOf("year"),
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(4,'day'),
     },
   },
   {
-    label: "All time",
+    label: "Five Days",
     value: {
-      rangeStart: dayjs("1970-01-01"),
-      rangeEnd: dayjs(),
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(5,'day'),
+    },
+  },
+  {
+    label: "One Week",
+    value: {
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(6,'day'),
+    },
+  },
+  {
+    label: "Two Weeks",
+    value: {
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(2,'week'),
+    },
+  },
+  {
+    label: "Three Weeks",
+    value: {
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(3,'week'),
+    },
+  },
+  {
+    label: "One Month",
+    value: {
+      rangeStart: dayjs().startOf("day"),
+      rangeEnd: dayjs().add(1,'month'),
     },
   },
 ];
@@ -69,6 +91,24 @@ export const useUpdateDateRange =
     });
   };
 
+  export const useUpdateDateFocusRange =
+  (upDateState) =>
+  (pickedDate,reset) => {
+    upDateState((prevRange) => {
+      if(reset===true){
+        return {...prevRange, focusDate: null};
+      }
+      if (prevRange.rangeEnd === null && prevRange.rangeStart === null) {
+        return { ...prevRange };
+      }
+      if (pickedDate.isBefore(prevRange.rangeStart)) {
+          return { ...prevRange, focusDate: prevRange.rangeStart };
+        } else {
+          return { ...prevRange, focusDate: pickedDate };
+        }
+      
+    });
+  };
 export const isDateWithinRange = (
   date,
   rangeStart,

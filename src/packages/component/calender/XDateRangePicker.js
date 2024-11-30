@@ -6,46 +6,47 @@ import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import ChevronRight from "@mui/icons-material/ChevronRight";
-import CheckIcon from "@mui/icons-material/Check";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { PickersDay } from "@mui/x-date-pickers";
-import { Avatar, Box, Button } from "@mui/material";
-import RemoveIcon from "@mui/icons-material/Remove";
-
-import CircleIcon from "@mui/icons-material/Circle";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {
-  contentRangeList,
-  formattedDate,
-  isDateWithinRange,
-  isRangeEndPoint,
-  isRangePoint,
-  useUpdateDateRange,
-} from "./common";
-import { Assets } from "../../../config/register";
+  PickersDay
+} from "@mui/x-date-pickers";
+import { Box, Button, Chip, Divider, Grid } from "@mui/material";
+
+import { ActionButton } from "../ActionButton";
+import CircleIcon from "@mui/icons-material/Circle";
+import {contentRangeList, formattedDate, isDateWithinRange, isRangeEndPoint, isRangePoint, useUpdateDateRange } from "./common";
+import { Label } from "../Label";
+import { formatDate } from "../../../client/components/utils/common";
+import { ColorTheme } from "../../../style/ColorTheme";
+import { blue } from "@mui/material/colors";
+import { useCloseModel } from "../../hooks/useCloseModel";
+
 const CustomCalendarHeaderRoot = styled("div")({
   display: "flex",
+  flexDirection: "column",
   justifyContent: "space-between",
   padding: "8px 16px",
   alignItems: "center",
 });
 
-export function DateRangerPicker({
+export function XDateRangePicker({
   handleOnchange,
   value,
+  label
 }) {
   const initialRange= {
     rangeStart: value?.rangeStart ?? null,
     rangeEnd: value?.rangeEnd ?? null,
   };
-  const [dateRange, updateDateRange] =
-    React.useState(initialRange);
+  const [dateRange, updateDateRange] =React.useState(initialRange);
 
   const [fromMonth, updateMonth] = React.useState(dayjs());
   const updateDatehelper = useUpdateDateRange(updateDateRange);
   const [showModel, setModelState] = React.useState(false);
-  const [dateRangeText, setDateRangeText] = React.useState("Select dates");
   const updateModelState = () => setModelState(true);
 
   const isInvalidDate =
@@ -55,129 +56,80 @@ export function DateRangerPicker({
       return;
     }
     if (handleOnchange) handleOnchange(dateRange);
-    setDateRangeText(
-      `${formattedDate(dateRange.rangeStart)} - ${formattedDate(
-        dateRange.rangeEnd
-      )}`
-    );
     setModelState(false);
   };
-
   return (
     <Box sx={styles.container}>
+
+
       <IconButton
-        sx={{ height: "40px" }}
-        size="small"
+        sx={{borderRadius:0, padding:0,width:'100%'}}
         onClick={updateModelState}
+        
       >
-        <Box sx={styles.labelContainer}>
-          <Avatar
-            src={
-              Assets.icons[
-                isInvalidDate? "calender_icon":"calender_fill"
-              ]
-            }
-            sx={{ width: 20, height: 20 }}
-          />
-          <CalenderLabel
-            title={dateRangeText}
-            fontWeight="600"
-            color="#63705F"
-          />
-        </Box>
+      <Stack sx={styles.searchItem}  alignItems={"flex-start"} onClick={updateModelState}>
+        <Label sx={styles.label}>{label}</Label>
+        <Label sx={styles.title}>
+              {formatDate(dateRange.rangeStart)} <ArrowRightAltIcon  color="action"/> {formatDate(dateRange.rangeEnd)}
+              <KeyboardArrowDownIcon color={'action'} sx={styles.dateArrow}/> 
+        </Label> 
+      </Stack>
       </IconButton>
 
-      <DatePickerModel open={showModel}>
+      <DatePickerModel open={showModel} close={()=>setModelState(false)}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Stack direction={"row"}>
-            <Box sx={styles.rangeBox}>
-              <Box sx={styles.textRangePicker}>
-                <CalenderLabel title="Range Presets" fontWeight="700" />
-              </Box>
-              {contentRangeList.map((item, index) => {
+        <DateCalendar
+                  sx={styles.dateComponent}
+                  disablePast	
+                  slots={{
+                    calendarHeader: (props) =>
+                      CustomCalendarHeader({
+                        props,
+                        fromMonth,
+                        updateMonth,
+                      }),
+                    day: (props) =>
+                      CustomDayDate({
+                        props,
+                        updateDatehelper,
+                        dateRange,
+                      }),
+                  }}
+                />
+              <Divider sx={{marginTop:2}}>
+    <Chip label="Range Presets" size="small" />
+  </Divider>
+           <Grid container spacing={0.1}>
+                 {contentRangeList.map((item, index) => {
                 return (
+                  <Grid item xs={4} sm={4} md={4} key={index}>
                   <TextRangePicker
                     key={index}
                     selected={item.value === dateRange}
                     title={item.label}
                     onClick={() => updateDateRange(item.value)}
                   />
+                </Grid>
                 );
               })}
-            </Box>
-            <Box width={656} sx={styles.mainDatePickerContainer}>
-              <Stack direction={"row"}>
-                <DateCalendar
-                  sx={styles.dateComponent}
-                  showDaysOutsideCurrentMonth
-                  fixedWeekNumber={6}
-                  slots={{
-                    calendarHeader: (props) =>
-                      CustomCalendarHeader({
-                        props,
-                        fromMonth,
-                        updateMonth,
-                      }),
-                    day: (props) =>
-                      CustomDayDate({
-                        props,
-                        updateDatehelper,
-                        dateRange,
-                      }),
-                  }}
-                />
-                <DateCalendar
-                  sx={styles.dateComponent}
-                  showDaysOutsideCurrentMonth
-                  fixedWeekNumber={6}
-                  slots={{
-                    calendarHeader: (props) =>
-                      CustomCalendarHeader({
-                        props,
+          </Grid>
+      
+            <Box>
+    
 
-                        fromMonth,
-                        updateMonth,
-                        next: true,
-                      }),
-                    day: (props) =>
-                      CustomDayDate({
-                        props,
-                        updateDatehelper,
-                        dateRange,
-                      }),
-                  }}
-                />
-              </Stack>
               <Stack
                 sx={{ height: 72 }}
                 direction={"row"}
                 alignItems={"center"}
                 paddingX={2}
               >
-                <Stack
-                  width={"100%"}
-                  direction={"row"}
-                  alignItems={"center"}
-                  paddingLeft={1}
-                >
-                  <Box height={40} sx={styles.dateLable}>
-                    <CalenderLabel
-                      title={formattedDate(dateRange.rangeStart)}
-                    />
-                  </Box>
-                  <RemoveIcon />
-                  <Box height={40} sx={styles.dateLable}>
-                    <CalenderLabel title={formattedDate(dateRange.rangeEnd)} />
-                  </Box>
-                </Stack>
                 <Stack direction={"row"} gap={1.5}>
-            
-             <Button label={"cancel"}  onClick={() => setModelState(false)}/>
-                  <Button label={"confirm"} onClick={updatePropsState}/>
+                             <ActionButton title={"cancel"} varient="light" onClick={() => setModelState(false)}/>
+                             <ActionButton title={"confirm"} varient="dark" onClick={updatePropsState}/>
                 </Stack>
               </Stack>
             </Box>
-          </Stack>
+       
         </LocalizationProvider>
       </DatePickerModel>
     </Box>
@@ -187,10 +139,14 @@ export function DateRangerPicker({
 const DatePickerModel = ({
   children,
   open,
+  close
 }) => {
+    const modelRef=React.useRef(null);
+    useCloseModel(modelRef,close);
+   
   if (!open) return null;
   return (
-    <Box width={848} sx={styles.model}>
+    <Box sx={styles.model}>
       {children}
     </Box>
   );
@@ -214,8 +170,8 @@ function CustomDayDate({
     isDateWithinRange(day, dateRange.rangeStart, dateRange.rangeEnd) &&
     !outsideCurrentMonth
       ? {
-          backgroundColor: "#f5faf4",
-          borderRadius: "1px",
+        backgroundColor: ColorTheme.dark['550'],
+        borderRadius: "1px",
         }
       : {};
 
@@ -242,7 +198,6 @@ function CustomDayDate({
     </Box>
   );
 }
-
 const CustomCalendarHeader = ({
   props,
   fromMonth,
@@ -266,22 +221,21 @@ const CustomCalendarHeader = ({
   }, []);
   return (
     <CustomCalendarHeaderRoot>
-      <Stack spacing={1} direction="row">
+      <Stack spacing={1} direction="row" alignItems={"center"} width={'100%'} justifyContent={'space-between'}>
         <IconButton onClick={selectPreviousMonth} title="Previous month">
           <ChevronLeft />
         </IconButton>
-      </Stack>
-      <Typography variant="body2" fontWeight={"700"} fontSize={"16px"}>
+        <Typography variant="body2" fontWeight={"700"} fontSize={"16px"}>
         {currentMonth.format("MMMM YYYY")}
       </Typography>
-      <Stack spacing={1} direction="row">
-        <IconButton onClick={selectNextMonth} title="Next month">
+      <IconButton onClick={selectNextMonth} title="Next month">
           <ChevronRight />
         </IconButton>
       </Stack>
     </CustomCalendarHeaderRoot>
   );
 };
+
 
 const TextRangePicker = ({
   selected,
@@ -293,70 +247,28 @@ const TextRangePicker = ({
       <Button
         onClick={onClick}
         sx={{
+          backgroundColor: selected? blue[100] : null,
           textTransform: "none",
           "&:hover": { backgroundColor: "#F5FAF4" },
         }}
       >
-        <Typography
-          fontFamily={"Inter"}
-          fontSize={14}
-          fontWeight={600}
-          noWrap
-          width={280}
-          textAlign={"left"}
-          paddingLeft={2}
-        >
-          <CheckIcon
-            sx={{
-              visibility: selected ? "visible" : "hidden",
-              width: 20,
-              height: 20,
-            }}
-          />{" "}
-          {title}
-        </Typography>
+        <Label sx={{fontSize:13,fontWeight:selected ? 'bold':'500'}}> {title}</Label>
       </Button>
     </Box>
   );
 };
 
-const CalenderLabel = ({
-  fontWeight = "500",
-  title,
-  color,
-}) => {
-  return (
-    <Typography
-      fontFamily={"Inter"}
-      fontSize={14}
-      fontWeight={fontWeight}
-      color={color ?? "#455042"}
-      noWrap
-      textAlign={"center"}
-    >
-      {title}
-    </Typography>
-  );
-};
 const styles = {
   container: {
     display: "flex",
+    width: "100%",
   },
-  dateWrapper: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  mainDatePickerContainer: {
-    borderLeft: "1px #B7C1B6 solid",
-  },
+
   dateComponent: {
-    borderBottom: "1px #B7C1B6 solid",
-    width: 328,
+    width: '100%',
   },
   dateLable: {
-    width: "145px",
+    width: "204px",
     height: "40px",
     backgroundColor: "white",
     borderRadius: "8px",
@@ -369,31 +281,7 @@ const styles = {
     cursor: "pointer",
     paddingLeft: "8px",
   },
-  rangeBox: {
-    width: 192,
-    height: "auto",
-    display: "flex",
-    flexDirection: "column",
-    padding: "20px 16px",
-  },
-  textRangePickerLabel: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: 160,
-    height: 40,
-  },
-  textRangePicker: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: 160,
-    height: 40,
-    cursor: "pointer",
-    "& hover": {
-      backgroundColor: "red",
-    },
-  },
+
   labelContainer: {
     height: "40px",
     backgroundColor: "white",
@@ -421,18 +309,56 @@ const styles = {
   },
   dayContainer: {
     "&.MuiPickersDay-root.Mui-selected": {
-      backgroundColor: `#04BB47 !important`,
+      backgroundColor: `#030c25 !important`,
       color: "white",
       fontSize: "14px",
     },
   },
   model: {
     position: "absolute",
-    marginTop: "56px",
+    marginTop: "80px",
     zIndex: 1000,
+    marginLeft:-2.5,
+    width: '92%',  
     transition: "all 0.3s ease-in-out",
-    boxShadow: `0px 8px 8px -4px rgba(230, 227, 227)`,
+    boxShadow: `0px 8px 8px -4px rgba(230, 227, 227,0.2)`,
+    backgroundColor:"white",
     border: "1px #B7C1B6 solid",
     borderRadius: "8px",
   },
+  searchItem:(theme)=>({
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor:ColorTheme.background.light,
+    borderRadius:'15px',
+    borderWidth:'1px',
+    borderColor:ColorTheme.grey[100], 
+    
+    overFlow:'hidden',
+    [theme.breakpoints.down('sm')]: {
+      width:'100%',
+      padding:'10px 20px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width:'60%',
+      padding:2,
+    },
+
+    
+}),
+textRangePicker:{
+  padding:'10px 10px',
+}
+,
+label:{
+  fontFamily: "Manrope",
+  fontWeight: '600',
+  color:ColorTheme.text.label,
+},
+title:{
+  cursor:'pointer',
+  fontFamily: "Manrope",
+  fontWeight: '600'
+
+}
 };
