@@ -20,6 +20,8 @@ export const CONFERENCEREVENUE="CONFERENCEREVENUE"
 // export const API="https://rixoshotels.onrender.com";
 export const API="http://localhost:3004/api";
 // export const API="/api";
+
+
 export const SEARCRESULTS="SEARCRESULTS";
 export const YEARMONTHSTAT="YearMonthstat"
 export const BOOKCONFERENCE="BookConference";
