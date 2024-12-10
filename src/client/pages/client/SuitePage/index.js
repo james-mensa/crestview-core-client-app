@@ -4,15 +4,18 @@ import { Footer, DesktopHeader, MobileHeader, PageBase } from "../../../layout";
 import MenuNav from "../../../components/Front/menunav";
 
 import Rooms from "../../../common-ui/Rooms";
-import { dummyData } from "../../../../dummy";
 import { Box } from "@mui/material";
 import { Label } from "../../../../packages/component/Label";
-
+import { useSuiteState } from "../../../../hooks/useSuiteTypes";
 export const SuitePage = () => {
   const [showmennu, setmenu] = useState(false);
+  const [images, setImages] = useState([]);
+  const {suiteList}=useSuiteState()
+
+  useEffect(()=>{
+    setImages(suiteList.flatMap(item =>item.images))
+  },[suiteList])
   const showmenu=true
-  const suiteImages=dummyData.roomsTypeData.flatMap(room =>room.pictures)
-console.log({suiteImages})
   useEffect(()=>{
     window.addEventListener("scroll",showCoursesm())
    
@@ -29,7 +32,7 @@ console.log({suiteImages})
   }, []);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % suiteImages.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
 
@@ -40,7 +43,7 @@ console.log({suiteImages})
           className="desktop front_home"
           style={{
             backgroundImage:
-              `url(${suiteImages[currentIndex]})`,
+              `url(${images[currentIndex]})`,
             height: '50vh',
           }}
         >
@@ -68,7 +71,7 @@ console.log({suiteImages})
           className="front_home"
           style={{
             backgroundImage:
-            `url(${suiteImages[currentIndex]})`,
+            `url(${images[currentIndex]})`,
             height: `50vh`,
           }}
         >

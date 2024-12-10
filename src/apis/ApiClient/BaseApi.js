@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { API } from '../../config/constants';
 const ACCESS_TOKEN_LOCAL="bk_access_token";
+
+console.log({accessTokensss:process.env.REACT_APP_BACKEND_URL})
 const BaseApi = axios.create({
-  baseURL: API,
+  baseURL:  process.env.REACT_APP_BACKEND_URL,
   withCredentials: true, 
 });
 

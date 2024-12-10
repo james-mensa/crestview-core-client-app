@@ -40,28 +40,34 @@ const CustomCalendarHeaderRoot = styled("div")({
 export function XLDateRangerPicker({
   handleOnchange,
   value,
-  label
+  label,
+  title,
+  isCheckout=false
 }) {
   const initialRange= {
     rangeStart: value?.rangeStart ?? null,
     rangeEnd: value?.rangeEnd ?? null,
     focusDate:null
   };
-  const [dateRange, updateDateRange] =React.useState(initialRange);
+  // eslint-disable-next-line no-unused-vars
+  const [dateRange, __] =React.useState(initialRange);
 
   const [fromMonth, updateMonth] = React.useState(dayjs());
-  const updateDatehelper = useUpdateDateRange(updateDateRange);
-  const updateDateFocusHelper = useUpdateDateFocusRange(updateDateRange)
+  const updateDatehelper = useUpdateDateRange(handleOnchange,isCheckout);
+  const updateDateFocusHelper = useUpdateDateFocusRange(handleOnchange,isCheckout)
   const [showModel, setModelState] = React.useState(false);
-  const updateModelState = () => setModelState(true);
+  const updateModelState = () => {
+    handleOnchange(p=>({...p,focusDate:null}))
+    setModelState(true)};
 
   const isInvalidDate =
     dateRange.rangeEnd == null || dateRange.rangeStart == null;
-  const updatePropsState = () => {
+  const resetPropsState = () => {
     if (isInvalidDate) {
       return;
     }
     if (handleOnchange) handleOnchange(dateRange);
+    handleOnchange(p=>({...p,focusDate:null}))
     setModelState(false);
   };
 
@@ -71,16 +77,16 @@ export function XLDateRangerPicker({
         sx={{borderRadius:0}}
         onClick={updateModelState}
       >
-      <Stack  alignItems={"flex-start"} onClick={updateModelState}>
-        <Label sx={styles.label}>{label}</Label>
+      <Stack  alignItems={"flex-start"} onClick={updateModelState} width={125}>
+        <Label sx={styles.label}>{title}</Label>
         <Label sx={styles.title}>
-              {formattedDate(value)}
+              {formattedDate(label,'Pick a date')}
               <KeyboardArrowDownIcon color={'action'} /> 
         </Label>
       </Stack>
       </IconButton>
 
-      <DatePickerModel open={showModel} close={()=>setModelState(false)}>
+      <DatePickerModel open={showModel} close={updateModelState}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Stack direction={"row"} >
             <Box sx={styles.rangeBox}>
@@ -91,15 +97,15 @@ export function XLDateRangerPicker({
                 return (
                   <TextRangePicker
                     key={index}
-                    selected={item.value === dateRange}
+                    selected={item.value === value}
                     title={item.label}
-                    onClick={() => updateDateRange(item.value)}
+                    onClick={() => handleOnchange(item.value)}
                   />
                 );
               })}
             </Box>
             <Box width={656} sx={styles.mainDatePickerContainer}>
-              <Stack direction={"row"}>
+              <Stack direction={"row"}  >
                 <DateCalendar
                   sx={styles.dateComponent}
                   disablePast	
@@ -116,7 +122,7 @@ export function XLDateRangerPicker({
                         props,
                         updateDatehelper,
                         updateDateFocusHelper,
-                        dateRange,
+                        dateRange:value,
                       }),
                   }}
                 />
@@ -138,7 +144,8 @@ export function XLDateRangerPicker({
                         props,
                         updateDatehelper,
                         updateDateFocusHelper,
-                        dateRange,
+                        dateRange:value,
+
                       }),
                   }}
                 />
@@ -165,8 +172,8 @@ export function XLDateRangerPicker({
                   </Box>
                 </Stack>
                 <Stack direction={"row"} gap={1.5}>
-                  <ActionButton title={"cancel"} varient="light" onClick={() => setModelState(false)}/>
-                  <ActionButton title={"confirm"} varient="dark" onClick={updatePropsState}/>
+                  <ActionButton title={"cancel"} varient="light" onClick={resetPropsState}/>
+                  <ActionButton title={"confirm"} varient="dark" onClick={() => setModelState(false)}/>
                 </Stack>
               </Stack>
             </Box>
@@ -183,7 +190,7 @@ const DatePickerModel = ({
   close,
 }) => {
   const modelRef=React.useRef(null);
-  useCloseModel(modelRef,close);
+  useCloseModel(modelRef,close,"mousedown");
   
   if (!open) return null;
   return (
@@ -217,14 +224,14 @@ function CustomDayDate({
       : {};
 
   const withinRangeFocusStyles =
-      isDateWithinRange(day, dateRange.rangeStart, dateRange.focusDate)? {backgroundColor: grey[300],borderRadius: "1px"} : {};
+      isDateWithinRange(day, dateRange.rangeStart, dateRange.focusDate)? {backgroundColor: grey[200],borderRadius: "1px"} : {};
   const rangeEndPointIndicatorStyle = isRangeEndPoint(day, dateRange.rangeEnd)
     ? {color: "white"}: { display: "none",};
 
   const handleFocus=()=>updateDateFocusHelper(day);
   const resetState=()=>updateDateFocusHelper(day,true)
   return (
-    <Box sx={styles.dayPickerContainer}>
+    <Box sx={styles.dayPickerContainer} >
       <PickersDay
         {...other}
         outsideCurrentMonth={outsideCurrentMonth}
@@ -232,8 +239,10 @@ function CustomDayDate({
         selected={isRangePoint(day, dateRange)}
         onClick={onClick}
         onMouseEnter={handleFocus}
+        onMouseOver={handleFocus}
         onMouseLeave={resetState}
         sx={[styles.dayContainer,withinRangeFocusStyles, withinRangeStyles]}
+
       />
       <CircleIcon
         sx={[styles.pickedDayIndicator, rangeEndPointIndicatorStyle]}
@@ -432,6 +441,8 @@ const styles = {
     backgroundColor:grey[50],
     border: "1px #B7C1B6 solid",
     borderRadius: "8px",
+    opacity: 1,
+    transform: "translateY(0)",
   },
 
 

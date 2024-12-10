@@ -13,15 +13,19 @@ import { formatDateShort, serializeFilter } from "../../libs/common";
 import { ColorTheme } from "../../../style/ColorTheme";
 import dayjs from "dayjs";
 import { XLDateRangerPicker } from "../../../packages/component/calender/XLDateRangerPicker";
+
+const initialRange= {
+  rangeStart: dayjs(),
+  rangeEnd: dayjs().add(1,'day'),
+  focusDate:null
+};
+
 export const LargeScreen = ({showType=false}) => {
   const navigate=useNavigate();
   let currentDate =new Date(Date.now());
   const tomorrowD = new Date(currentDate);
   tomorrowD.setDate(currentDate.getDate() + 1);
-  const initialRange= {
-    rangeStart: dayjs(),
-    rangeEnd: dayjs().add(1,'day'),
-  };
+
   const [dateRange, updateDateRange] =React.useState(initialRange);
   const [filter,setFilter]=useState({
     rooms:1,
@@ -57,25 +61,24 @@ export const LargeScreen = ({showType=false}) => {
         <RoomType onchange={setRoomType} value={roomType}/>
       </Box>
       }
-{  showType && <Divider/> }
-      <XLDateRangerPicker value={dateRange.rangeStart} label={"CheckIn"} handleOnchange={updateDateRange}/>
-      <Divider/>
-      <XLDateRangerPicker value={dateRange.rangeEnd} label={"CheckOut"} handleOnchange={updateDateRange}/>
-      <Divider/>
-      <Box sx={styles.searchItem} >
-      <Label sx={styles.label}>Guests</Label>
-        <Box sx={styles.guestWrapper} onClick={handleFilter}>
-       <Stack direction={'row'} alignItems={"center"} spacing={1} >
-        <Label  sx={styles.title}>{`${filter.adults + filter.children} Guests,`}</Label>
-       </Stack>
-       <Stack direction={'row'} alignItems={"center"} spacing={1}>
-       <Label sx={styles.title}>{`${filter.rooms} Room${filter.rooms >1 ?'s':''}`}</Label>
-       </Stack>
-        </Box>
-      <Filter value={filter} setValues={setFilter} isVisible={isFilterVisible} onClose={handleFilter}/>
+     { showType && <Divider/> }
+          <XLDateRangerPicker value={dateRange} label={dateRange.rangeStart} title={"CheckIn"} handleOnchange={updateDateRange}/>
+          <Divider/>
+          <XLDateRangerPicker value={dateRange} label={dateRange.rangeEnd} title={"CheckOut"} handleOnchange={updateDateRange} isCheckout={true}/>
+          <Divider/>
+          <Box sx={styles.searchItem} >
+          <Label sx={styles.label}>Guests</Label>
+            <Box sx={styles.guestWrapper} onClick={handleFilter}>
+          <Stack direction={'row'} alignItems={"center"} spacing={1} >
+            <Label  sx={styles.title}>{`${filter.adults + filter.children} Guests,`}</Label>
+          </Stack>
+          <Stack direction={'row'} alignItems={"center"} spacing={1}>
+          <Label sx={styles.title}>{`${filter.rooms} Room${filter.rooms >1 ?'s':''}`}</Label>
+          </Stack>
+            </Box>
+          <Filter value={filter} setValues={setFilter} isVisible={isFilterVisible} onClose={handleFilter}/>
       </Box>
 
-    
         <button
           style={styles.searchBtn}
           type="button"

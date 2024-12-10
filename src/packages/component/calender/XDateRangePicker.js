@@ -142,7 +142,7 @@ const DatePickerModel = ({
   close
 }) => {
     const modelRef=React.useRef(null);
-    useCloseModel(modelRef,close);
+    useCloseModel(modelRef,close,"mousedown");
    
   if (!open) return null;
   return (

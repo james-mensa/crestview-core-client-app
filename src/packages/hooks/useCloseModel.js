@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 
-export const useCloseModel=(ref,close)=>{
+export const useCloseModel=(ref,close,listener)=>{
     const handleClickOutside = (event) => {
         if (ref.current &&!ref.current.contains(event.target)) {
             close();
         }
     };
     useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener(listener, handleClickOutside);
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener(listener, handleClickOutside);
         };
-    }, [ref, close]);
+    }, []);
 
 }
