@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { RenderViewButton } from "../../../packages/component/Button"
 
 export const RoomPreview=({data})=>{
+    console.log("Room Preview",data)
     const navigate=useNavigate();
     const handlePageNavigate=()=>{
     //   navigate("link")
@@ -15,7 +16,7 @@ export const RoomPreview=({data})=>{
     return(
         <Box sx={styles.container}>
             <Box sx={styles.card}>
-<ImageSlider images={data.pictures}/>
+<ImageSlider images={data.images}/>
             </Box>
 
 <Box sx={styles.contentContainer}>

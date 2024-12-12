@@ -72,7 +72,7 @@ export const contentRangeList = [
 
 
 export const useUpdateDateRange =
-  (upDateState) =>
+  (upDateState,isCheckout=false) =>
   (pickedDate) => {
     upDateState((prevRange) => {
       if (prevRange.rangeEnd === null && prevRange.rangeStart === null) {
@@ -84,6 +84,9 @@ export const useUpdateDateRange =
           return { ...prevRange, rangeEnd: pickedDate };
         }
       } else if (prevRange.rangeStart && prevRange.rangeEnd) {
+        if(isCheckout){
+          return {...prevRange,rangeEnd: pickedDate };
+        }
         return { rangeEnd: null, rangeStart: pickedDate };
       } else {
         return { ...prevRange };
@@ -92,7 +95,7 @@ export const useUpdateDateRange =
   };
 
   export const useUpdateDateFocusRange =
-  (upDateState) =>
+  (upDateState,isCheckout=false) =>
   (pickedDate,reset) => {
     upDateState((prevRange) => {
       if(reset===true){
@@ -103,8 +106,11 @@ export const useUpdateDateRange =
       }
       if (pickedDate.isBefore(prevRange.rangeStart)) {
           return { ...prevRange, focusDate: prevRange.rangeStart };
-        } else {
+        } else  {
+          if(isCheckout){
           return { ...prevRange, focusDate: pickedDate };
+          }
+          return { ...prevRange};
         }
       
     });
@@ -127,6 +133,6 @@ export const isRangeEndPoint = (date, endpoint) => {
   return date.isSame(endpoint, "day") 
 };
 
-export const  formattedDate=(date)=>{
-  if(date==null) return '-- | --';
+export const  formattedDate=(date,helperText)=>{
+  if(date==null || !date.isValid || !date.isValid()) return helperText?? '-- | --';
   return date.format('MMM D, YYYY');}

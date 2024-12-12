@@ -95,14 +95,14 @@ const roomsTypeData=[
         tax:1,
         maxOccupancy:4,
         amenities,
-        description: "A luxurious room with a stunning city view.",
+        description: "Experience unparalleled luxury in our One Bedroom Premium Suite, featuring spacious interiors, modern furnishings, and breathtaking city views. The suite includes a plush king-sized bed, a separate living area, a fully equipped kitchenette, and a spa-inspired bathroom. Ideal for families or business travelers, this suite combines comfort and elegance to provide a truly memorable stay.",
         rooms:{
             total:10,
             data:[
             ]
 
     },
-    pictures:[
+    images:[
         Assets.premium1,
         Assets.premium2,
         Assets.premium3
@@ -123,7 +123,7 @@ const roomsTypeData=[
             data:[
             ]
     },
-    pictures:[
+    images:[
         Assets.president1,
         Assets.president2,
         Assets.president3
@@ -140,7 +140,7 @@ const roomsTypeData=[
             total:10,
             data:[
             ]
-    },    pictures:[
+    },    images:[
         Assets.pent1,
         Assets.pent2,
     ]
@@ -159,7 +159,7 @@ const roomsTypeData=[
             total:10,
             data:[
             ]
-    },    pictures:[
+    },    images:[
         Assets.econ1,
         Assets.econ2,
     ]
@@ -176,7 +176,7 @@ const roomsTypeData=[
             total:10,
             data:[
             ]
-    },    pictures:[
+    },    images:[
         Assets.fam1,
         Assets.fam2,
         Assets.fam3
@@ -193,7 +193,7 @@ const roomsTypeData=[
             total:10,
             data:[
             ]
-    },    pictures:[
+    },    images:[
         Assets.standard1,
         Assets.standard2,
         Assets.standard3

@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import React, { useEffect, useState } from 'react';
 // import { GetAllRoomTypes } from '../../services/actions/datacollection';
 import { Label } from '../../packages/component/Label';
 import { Box, Grid, } from '@mui/material';
 import { lazyLoad } from '../libs/viewHelpers';
 import  RoomPreview  from '../components/RoomPreview';
 import { CardSlider } from '../components/Slider/CardSlider';
-import { dummyData } from '../../dummy';
+import { useSuiteState } from '../../hooks/useSuiteTypes';
 
 function Rooms() {
-    const dispatch = useDispatch();
-    useEffect(() => {
-    //   dispatch(GetAllRoomTypes());
-    }, [dispatch]);
-  
-    const roomsTypeData= dummyData.roomsTypeData;
+const {suiteList}=useSuiteState()
+
     useEffect(()=>{ window.addEventListener("scroll",lazyLoad()) });
       const loadingSkeletons = Array.from({ length: 4 }); // Number of skeletons to show while loading
-      const getCards= dummyData.roomsTypeData.map((data,index)=>{
+      const getCards= suiteList.map((data,index)=>{
         return( <RoomPreview data={data}/> )
     })
       
@@ -30,7 +25,7 @@ function Rooms() {
              <Box sx={styles.desktopWrapper}>
                 <Grid container spacing={2} sx={styles.layout}>
                     {
-                    roomsTypeData.map((data,index)=>{
+                    suiteList.map((data,index)=>{
                         return(
                             <Grid 
                             item xs={11} sm={11} md={6} key={index}
