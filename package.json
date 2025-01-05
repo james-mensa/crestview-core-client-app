@@ -81,6 +81,6 @@
   },
   "proxy": "http://localhost:3003",
   "devDependencies": {
-    "daisyui": "^3.8.1"
+    "daisyui": "^3.9.4"
   }
 }
