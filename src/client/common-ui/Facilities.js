@@ -5,9 +5,10 @@ import { Label } from '../../packages/component/Label';
 import { Box, Grid, } from '@mui/material';
 import { lazyLoad } from '../libs/viewHelpers';
 import { facilities } from '../../dummy';
-import { CardSlider } from '../components/Slider/CardSlider';
+
 import { FacilityPreview } from '../components/FacilityPreview';
 import ItemTransition from '../components/ItemTransition';
+import { CardSlider } from '../../packages/component/CardSlider';
 
 const Facilities=()=> {
     const dispatch = useDispatch();

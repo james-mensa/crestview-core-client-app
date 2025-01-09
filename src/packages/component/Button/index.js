@@ -1,5 +1,5 @@
 import { Avatar, Button as BaseButton ,CircularProgress} from "@mui/material"
-import { Label } from "../../../packages/component/Label"
+import { Label } from "../Label"
 import { blue, grey } from "@mui/material/colors"
 import "./button.css"
 import { ColorTheme } from "../../../style/ColorTheme"

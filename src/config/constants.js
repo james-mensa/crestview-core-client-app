@@ -18,7 +18,7 @@ export const ORDERDETAIL="OrderDetail";
 export const ALLORDERMEETING="ALLORDERMEETING"
 export const CONFERENCEREVENUE="CONFERENCEREVENUE"
 // export const API="https://rixoshotels.onrender.com";
-export const API="http://localhost:3004/api";
+export const API="http://localhost:8081/api";
 // export const API="/api";
 
 

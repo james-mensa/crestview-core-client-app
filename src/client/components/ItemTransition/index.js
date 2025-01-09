@@ -3,9 +3,9 @@ import './styles.css';
 import React, { useEffect, useState } from 'react';
 import { Label } from '../../../packages/component/Label';
 import { dummyData } from '../../../dummy';
-import { ImageSlider } from '../RoomImageSlider/PreviewSlider';
 import { grey } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
+import { ImageSlider } from '../../../packages/component/RoomImageSlider/PreviewSlider';
 
 const ItemTransition = () => {
     const [currentIndex, setCurrentIndex] = useState(0);

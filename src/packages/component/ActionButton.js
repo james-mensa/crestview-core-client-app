@@ -14,7 +14,7 @@ export const ActionButton=({onClick,title,varient='light',loading})=>{
   const buttonStyles=(varient)=>{
     return{ 
       button:{
-        backgroundColor:varient==='light'? grey[100]:grey[900],
+        backgroundColor:varient==='light'? grey[100]:varient==='inactive'?'transparent':varient==='active'? grey[300]: grey[900],
         borderRadius:0,
         padding:'10px 20px',
         height:40,
@@ -24,7 +24,7 @@ export const ActionButton=({onClick,title,varient='light',loading})=>{
 
     title:{
     fontWeight:'600',
-    color:varient==='light'? grey[800]:grey[100],
+    color:varient==='light'? grey[800]:varient==='inactive'? grey[600]:varient==='active'? grey[600]:grey[100],
   
     }
   }

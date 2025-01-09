@@ -26,7 +26,10 @@ export const SuitePage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      handleNext();
+      if(images.length>1){
+        handleNext();
+      }
+
     }, 5000);
     return () => clearInterval(interval);
   }, []);

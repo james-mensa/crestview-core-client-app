@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-// import { GetAllRoomTypes } from '../../services/actions/datacollection';
+import React, { useEffect } from 'react';
 import { Label } from '../../packages/component/Label';
 import { Box, Grid, } from '@mui/material';
 import { lazyLoad } from '../libs/viewHelpers';
-import  RoomPreview  from '../components/RoomPreview';
-import { CardSlider } from '../components/Slider/CardSlider';
+
 import { useSuiteState } from '../../hooks/useSuiteTypes';
+import RoomPreview from '../../packages/component/RoomPreview';
+import { CardSlider } from '../../packages/component/CardSlider';
 
 function Rooms() {
 const {suiteList}=useSuiteState()

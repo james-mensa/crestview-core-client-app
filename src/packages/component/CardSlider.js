@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import React, { useState } from 'react';
 
 import { useSwipeable } from 'react-swipeable';
-import { ColorTheme } from '../../../style/ColorTheme';
+import { ColorTheme } from '../../style/ColorTheme';
 
 // CardSlider component
 export const CardSlider = ({ cards, autoPlay = true,}) => {

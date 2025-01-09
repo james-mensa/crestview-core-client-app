@@ -20,12 +20,18 @@ export const AddSuiteType = async (data,images) => {
 export const getSuiteTypes = async () => {
   return crudService.apiRequest("get",'/suite/type')
 };
-
-
+export const getSuiteTypeById = async (id) => {
+  return crudService.apiRequest("get",`/suite/type/${id}`);
+};
+export const deleteSuiteTypeById = async (id) => {
+  return crudService.apiRequest('delete',`/suite/type/${id}`);
+};
 
 
 
 export const suitTypeApis={
   AddSuiteType,
-  getSuiteTypes
+  getSuiteTypes,
+  getSuiteTypeById,
+  deleteSuiteTypeById
 }

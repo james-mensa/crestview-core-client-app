@@ -1,9 +1,9 @@
 import { Box,} from "@mui/material"
-import { ImageSlider } from "../RoomImageSlider/PreviewSlider"
 import { Label } from "../../../packages/component/Label"
 import SeeMore from "../SeeMore"
 
 import { HorizontalDivider } from "../Divider"
+import { ImageSlider } from "../../../packages/component/RoomImageSlider/PreviewSlider"
 
 export const FacilityPreview=({data})=>{
     return(

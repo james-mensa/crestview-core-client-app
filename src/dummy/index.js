@@ -94,6 +94,7 @@ const roomsTypeData=[
         pricePerNight:900,
         tax:1,
         maxOccupancy:4,
+        mattress:'* Queen size (60 x 80 inches) 12-inch multi-layer ,suitable for all sleeping styles',
         amenities,
         description: "Experience unparalleled luxury in our One Bedroom Premium Suite, featuring spacious interiors, modern furnishings, and breathtaking city views. The suite includes a plush king-sized bed, a separate living area, a fully equipped kitchenette, and a spa-inspired bathroom. Ideal for families or business travelers, this suite combines comfort and elegance to provide a truly memorable stay.",
         rooms:{
@@ -117,6 +118,7 @@ const roomsTypeData=[
         tax:1,
         maxOccupancy:5,
         amenities,
+        mattress:'king-size mattress (76 x 80 inches) featuring a 14-inch multi-layer luxury construction',
         description: "The Presidential Suite is the epitome of luxury and space, featuring a large living room, dining area, and a master bedroom with a king-sized bed. Guests can enjoy a private balcony with panoramic views, personalized butler service, and exclusive amenities such as a private jacuzzi, steam room, and home theater system. The suite also includes a full kitchen with a private dining area and a complimentary premium minibar, making it ideal for VIPs, celebrities, or those seeking the highest level of comfort and exclusivity.",
         rooms:{
             total:10,
