@@ -1,5 +1,4 @@
 import React from "react";
-import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "../style/custome.css";
@@ -38,8 +37,10 @@ import SuiteTypesPage from "../admin/pages/manage-suite";
 import { appRoutePaths } from "../config/routePaths";
 import AddSuiteTypePage from "../admin/pages/manage-suite/AddSuiteTypePage";
 import SuiteTypeDetailPage from "../admin/pages/manage-suite/SuiteTypeDetailPage";
+import { observer } from "mobx-react-lite";
+import { FormDialog } from "../packages/dialogs";
 
-function AppRoute() {
+const  AppRoute=observer(()=> {
   return (
     <BrowserRouter>
       <Routes>
@@ -122,9 +123,9 @@ function AppRoute() {
         <Route path="/admin/dashboard" element={<SignInAdmin />} />
         <Route path="/rixos/location" element={<Location />} />
       </Routes>
-      <Toaster />
+      <FormDialog/>
     </BrowserRouter>
   );
-}
+})
 
 export default AppRoute;

@@ -71,7 +71,7 @@ const getStyles = (isSmall) => ({
           ? grey[700] 
           : "#2D3843",
       fontSize: 16,
-      width: isSmall ? '300px' : "400px",
+      width: isSmall ? '100%' : "400px",
       padding: isSmall ? "8px 12px" : "10px 12px",
       transition: theme.transitions.create([
         "border-color",

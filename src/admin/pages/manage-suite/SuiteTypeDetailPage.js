@@ -8,6 +8,8 @@ import { useRouteState } from "../../../hooks/useRouteState";
 import { useEffect, useState } from "react";
 import { suitTypeApis } from "../../../apis/suite/suiteTypeApi";
 import { grey, red } from "@mui/material/colors";
+import { formDialogStore } from "../../../mobx-store";
+import AddLoungForm from "./AddLoungForm";
 
 const SuiteTypeDetailPage = () => {
   const [data, setData] = useState(null);
@@ -31,10 +33,17 @@ const SuiteTypeDetailPage = () => {
   const goAddSuiteTypePage = () => {
     appNavigation(appRoutePaths.admin.ADMIN_ADD_SUITE_TYPE_PATH);
   };
+  const openAddRoomDialog = () => {
+    formDialogStore.open(
+      <AddLoungForm suiteTypeId={id}/>,
+      false,
+      true,
+      `Add new room to ${data?.name}`
+    );
+  };
 
   const handleDeleteSuiteType = async () => {
     const res = await suitTypeApis.deleteSuiteTypeById(data._id);
-    console.log({actionResponse:res})
     if (res.success) {
       appNavigation(appRoutePaths.admin.ADMIN_MANAGE_SUITE_PATH);
     }
@@ -66,51 +75,27 @@ const SuiteTypeDetailPage = () => {
           <ActionButton
             title={"Add Room"}
             varient="dark"
-            onClick={goAddSuiteTypePage}
+            onClick={openAddRoomDialog}
           />
         </Stack>
       }
     >
       {panel === 1 ? (
-        <Stack spacing={1}>
-          <div style={styles.photoContainer}>
-            {data?.images.map((metaData, index) => (
-              <img
-                key={index}
-                src={metaData.file}
-                alt={`img-${index + 1}`}
-                style={styles.image}
-              />
-            ))}
-          </div>
-          <Stack direction={"row"}></Stack>
-          <Label font={"semibold"}>Info: {data?.name}</Label>
-          <Label font={"semibold"}>Description</Label>
-          <Label>{data?.description}</Label>
-          <Label font={"semibold"}>Mattress Detail</Label>
-          <Label>{data?.mattress}.</Label>
-          <Label font={"semibold"}>Other Actions</Label>
-          <Box width={100}>
-            <Button
-              variant="contained"
-              sx={styles.deleteBtn}
-              onClick={handleDeleteSuiteType}
-            >
-              Delete
-            </Button>
-          </Box>
-        </Stack>
+        <SuiteTypeDetails
+          data={data}
+          handleDeleteSuiteType={handleDeleteSuiteType}
+        />
       ) : (
         <Stack>
           <Label font={"semibold"}> {data?.name} Rooms</Label>
           <Stack direction={"row"} spacing={1}>
-            <Label>Total : </Label> <Label font={"semibold"}>20</Label>
+            <Label>Total : </Label> <Label font={"semibold"}>{data?.rooms?.length}</Label>
           </Stack>
           <Grid marginTop={5} container spacing={1.5} sx={styles.layout}>
-            {[101, 102, 104, 105, 106, 107, 108, 109].map((data, index) => {
+            {data?.rooms.map((room, index) => {
               return (
                 <Grid item xs={4} sm={4} md={2} key={index}>
-                  <Box sx={styles.roomCard}>{data}</Box>
+                  <Box sx={styles.roomCard}>{room?.roomNumber}</Box>
                 </Grid>
               );
             })}
@@ -121,6 +106,38 @@ const SuiteTypeDetailPage = () => {
   );
 };
 
+const SuiteTypeDetails = ({ data, handleDeleteSuiteType }) => {
+  return (
+    <Stack spacing={1}>
+      <div style={styles.photoContainer}>
+        {data?.images.map((metaData, index) => (
+          <img
+            key={index}
+            src={metaData.file}
+            alt={`img-${index + 1}`}
+            style={styles.image}
+          />
+        ))}
+      </div>
+      <Stack direction={"row"}></Stack>
+      <Label font={"semibold"}>Info: {data?.name}</Label>
+      <Label font={"semibold"}>Description</Label>
+      <Label>{data?.description}</Label>
+      <Label font={"semibold"}>Mattress Detail</Label>
+      <Label>{data?.mattress}.</Label>
+      <Label font={"semibold"}>Other Actions</Label>
+      <Box width={100}>
+        <Button
+          variant="contained"
+          sx={styles.deleteBtn}
+          onClick={handleDeleteSuiteType}
+        >
+          Delete
+        </Button>
+      </Box>
+    </Stack>
+  );
+};
 const styles = {
   photoContainer: {
     display: "flex",

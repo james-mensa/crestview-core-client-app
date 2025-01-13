@@ -18,7 +18,7 @@ const  amenities=[
     // {
     //   "_id": "64ec0e5f95e1b02ab5bc1f13",
     //   "name": "Swimming Pool",
-    //   "description": "Outdoor heated swimming pool with lounge chairs and a poolside bar.",
+    //   "description": "Outdoor heated swimming pool with room chairs and a poolside bar.",
     //   "icon":Assets.pool,
     //   "isAvailable": true
     // },
@@ -137,7 +137,7 @@ const roomsTypeData=[
         tax:1,
         maxOccupancy:5,
         amenities,
-        description: "The Penthouse Suite is a spacious top-floor retreat, showcasing modern design and luxurious furnishings. It features floor-to-ceiling windows that offer stunning city or ocean views, along with a private rooftop terrace for an exclusive experience. The suite includes an open-plan living room and a bedroom with a king-sized bed, in-room spa services, and high-speed internet with a smart TV. Guests also enjoy complimentary access to the executive lounge, making it an ideal choice for high-end travelers, couples, or special celebrations.",
+        description: "The Penthouse Suite is a spacious top-floor retreat, showcasing modern design and luxurious furnishings. It features floor-to-ceiling windows that offer stunning city or ocean views, along with a private rooftop terrace for an exclusive experience. The suite includes an open-plan living room and a bedroom with a king-sized bed, in-room spa services, and high-speed internet with a smart TV. Guests also enjoy complimentary access to the executive room, making it an ideal choice for high-end travelers, couples, or special celebrations.",
         rooms:{
             total:10,
             data:[

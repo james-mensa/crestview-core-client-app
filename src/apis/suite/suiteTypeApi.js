@@ -28,10 +28,14 @@ export const deleteSuiteTypeById = async (id) => {
 };
 
 
+export const AddRoom = async (data) => {
+  return crudService.apiRequest("post",'/suite/room',data)
+};
 
 export const suitTypeApis={
   AddSuiteType,
   getSuiteTypes,
   getSuiteTypeById,
-  deleteSuiteTypeById
+  deleteSuiteTypeById,
+  AddRoom
 }
